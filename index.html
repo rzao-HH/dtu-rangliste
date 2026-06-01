@@ -2807,9 +2807,15 @@ const PHASE_ORDER = { R64:0, R32:1, R16:2, QF:2, R8:3, SF:3, R4:4, R2:5, F:5 };
 function phaseLabel(p) { return PHASE_LABEL[p] || p; }
 
 function minPlaceForPts(pts_arr, needed) {
+  // Finde den schlechtesten (höchsten Index) Platz, der noch >= needed Punkte gibt
+  let best = null;
   for (let i = 0; i < pts_arr.length; i++)
-    if (pts_arr[i] >= needed) return { place: i+1, pts: pts_arr[i] };
-  return null;
+    if (pts_arr[i] >= needed) best = i;
+  if (best === null) return null;
+  // Platzzahl: 1 + Anzahl der Plätze mit strikt mehr Punkten (löst 3./3./5. korrekt auf)
+  const pts = pts_arr[best];
+  const displayPlace = 1 + pts_arr.filter(p => p > pts).length;
+  return { place: displayPlace, pts: pts };
 }
 
 // Toleranter Namens-Vergleich: ignoriert Groß/Kleinschreibung, ß↔ss,
