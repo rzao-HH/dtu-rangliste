@@ -70,6 +70,10 @@ a.badge:hover{background:#c8102e}
 .d-chal{color:#f9ab00}
 .d-none{color:#ccc;font-size:12px;font-weight:400}
 .many-item{background:#fff;border-radius:8px;padding:12px 16px;margin-bottom:8px;box-shadow:0 1px 4px rgba(0,0,0,.06);display:flex;align-items:center;gap:10px;font-size:13px}
+.legend{background:#fff;border-bottom:1px solid #e8e8e8;padding:12px 24px;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:12px;color:#555;align-items:center}
+.leg-item{display:flex;align-items:center;gap:6px}
+.leg-dot{width:12px;height:12px;border-radius:50%;display:inline-block;flex-shrink:0}
+.leg-sep{width:1px;height:20px;background:#e0e0e0}
 .hidden{display:none!important}
 .no-results{text-align:center;color:#999;padding:30px;font-size:14px}
 </style>
@@ -102,6 +106,17 @@ a.badge:hover{background:#c8102e}
       <button class="tab" onclick="showTab('open2',this)">⚔️ 2 Kandidaten (19)</button>
       <button class="tab" onclick="showTab('many',this)">&#9888;&#65039; &gt;2 Kandidaten (17)</button>
     </div>
+  </div>
+
+  <div class="legend">
+    <div class="leg-item"><span class="leg-dot" style="background:#1a73e8"></span> Aktuell 1. Platz (blau)</div>
+    <div class="leg-item"><span class="leg-dot" style="background:#f9ab00"></span> Aktuell 2. Platz (gelb)</div>
+    <div class="leg-sep"></div>
+    <div class="leg-item"><b>Matrix:</b> Zeile = Ergebnis des 2. beim Austria Open · Spalte = Ergebnis des 1. · Punkt zeigt wer dann fährt</div>
+    <div class="leg-sep"></div>
+    <div class="leg-item"><b>SE Direktduelle:</b> Wie oft haben sie direkt gegeneinander gespielt (blau : gelb gewonnen)</div>
+    <div class="leg-item"><b>CO Vergleich:</b> Bei wie vielen CO-Turnieren (BRLT I/II) hatte wer mehr Punkte</div>
+    <div class="leg-item" style="color:#999;font-style:italic">* in der Matrix = Gleichstand → letztes Turnier entscheidet (Tiebreaker)</div>
   </div>
 
   <div class="content">
