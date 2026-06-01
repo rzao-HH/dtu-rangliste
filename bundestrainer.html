@@ -65,7 +65,10 @@ a.badge:hover{background:#c8102e}
 .duel-row{display:flex;justify-content:space-between;align-items:center;padding:3px 0}
 .duel-row+.duel-row{border-top:1px solid #eee}
 .duel-label{color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px;font-size:11px}
-.duel-val{font-weight:600;color:#1a1a2e}
+.duel-val{font-weight:700;font-size:15px}
+.d-lead{color:#1a73e8}
+.d-chal{color:#f9ab00}
+.d-none{color:#ccc;font-size:12px;font-weight:400}
 .many-item{background:#fff;border-radius:8px;padding:12px 16px;margin-bottom:8px;box-shadow:0 1px 4px rgba(0,0,0,.06);display:flex;align-items:center;gap:10px;font-size:13px}
 .hidden{display:none!important}
 .no-results{text-align:center;color:#999;padding:30px;font-size:14px}
@@ -167,8 +170,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">Keine direkten SE-Duelle</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">MAROHN/… 2–0 LOHMEIER/…</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-none">–</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ LOHMEIER/… · Austria Open</span>
@@ -199,8 +202,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">SILBERHORN/… 1–2 KUZENKO/…</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">SILBERHORN/… 1–1 KUZENKO/…</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">2</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">1</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ KUZENKO/… · Austria Open</span>
@@ -231,8 +234,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">SILBERHORN/… 2–0 VUONG/…</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">SILBERHORN/… 1–1 VUONG/…</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">1</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ VUONG/… · Austria Open</span>
@@ -263,8 +266,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">FRANK 1–1 PASCHKE</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">FRANK 1–1 PASCHKE</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">1</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">1</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ PASCHKE · Austria Open</span>
@@ -295,8 +298,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">HERRMANN 2–0 HALAWEH</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">HERRMANN 2–0 HALAWEH</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ HALAWEH · Austria Open</span>
@@ -327,8 +330,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">Keine direkten SE-Duelle</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">DUONG 2–0 MEIER</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-none">–</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ MEIER · Austria Open</span>
@@ -359,8 +362,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">ELBERS/… 3–1 BÄUERLE/…</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">ELBERS/… 1–1 BÄUERLE/…</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-lead">3</span> : <span class="d-chal">1</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">1</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ BÄUERLE/… · Austria Open</span>
@@ -391,8 +394,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">FRANK/… 2–0 BARTL/…</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">FRANK/… 2–0 BARTL/…</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ BARTL/… · Austria Open</span>
@@ -423,8 +426,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">SENFT 2–0 BUSSMANN</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">SENFT 2–0 BUSSMANN</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ BUSSMANN · Austria Open</span>
@@ -455,8 +458,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">DO/… 3–1 BUSSMANN/…</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">DO/… 2–0 BUSSMANN/…</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-lead">3</span> : <span class="d-chal">1</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ BUSSMANN/… · Austria Open</span>
@@ -487,8 +490,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">SCHMITT/… 3–0 HAMACHER/…</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">SCHMITT/… 1–1 HAMACHER/…</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-lead">3</span> : <span class="d-chal">0</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">1</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ HAMACHER/… · Austria Open</span>
@@ -519,8 +522,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">Keine direkten SE-Duelle</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">UNLAND 2–0 KOHLER</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-none">–</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ KOHLER · Austria Open</span>
@@ -551,8 +554,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">LICHTE/… 1–0 CHABRAK/…</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">LICHTE/… 2–0 CHABRAK/…</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">0</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ CHABRAK/… · Austria Open</span>
@@ -583,8 +586,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">ERDOGAN/… 3–0 OKUMUS/…</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">ERDOGAN/… 2–0 OKUMUS/…</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-lead">3</span> : <span class="d-chal">0</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ OKUMUS/… · Austria Open</span>
@@ -615,8 +618,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">Keine direkten SE-Duelle</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">LAWALL 2–0 HARTOK</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-none">–</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ HARTOK · Austria Open</span>
@@ -647,8 +650,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">Keine direkten SE-Duelle</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">KAMPKE 2–0 RIESEMANN</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-none">–</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ RIESEMANN · Austria Open</span>
@@ -679,8 +682,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">Keine direkten SE-Duelle</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">RIESEMANN/… 1–1 KAMPKE/…</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-none">–</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">1</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ KAMPKE/… · Austria Open</span>
@@ -711,8 +714,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">Keine direkten SE-Duelle</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">HARTOK/… 2–0 HESS/…</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-none">–</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ HESS/… · Austria Open</span>
@@ -743,8 +746,8 @@ a.badge:hover{background:#c8102e}
       </div>
     </div>
     <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val">HARTOK/… 1–0 HARTOK/…</span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val">Nicht beide angetreten</span></div>
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">0</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-none">–</span></span></div>
     </div>
     <div class="axis-labels">
       <span class="ax-y">↓ HARTOK/… · Austria Open</span>
