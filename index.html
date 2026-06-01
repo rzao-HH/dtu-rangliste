@@ -2782,6 +2782,21 @@ document.getElementById('f-kategorie').addEventListener('change', () => {
 document.getElementById('f-verein').addEventListener('change', render);
 document.getElementById('f-suche').addEventListener('input', render);
 
+// URL-Parameter: ?klasse=U30+pair setzt den Klassenfilter automatisch
+(function() {
+  const params = new URLSearchParams(location.search);
+  const kp = params.get('klasse');
+  if (kp) {
+    const sel = document.getElementById('f-klasse');
+    for (let i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].value.toLowerCase().includes(kp.toLowerCase())) {
+        sel.value = sel.options[i].value;
+        break;
+      }
+    }
+  }
+})();
+
 render();
 
 // ── Detail-Panel ─────────────────────────────────────────────────────────────
