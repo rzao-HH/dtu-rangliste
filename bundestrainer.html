@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bundestrainer-Ansicht · DTU Rangliste 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f2f5;color:#1a1a2e}
+#pw-screen{position:fixed;inset:0;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;z-index:9999}
+.pw-box{background:#fff;border-radius:16px;padding:40px;width:320px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.pw-box h2{margin-bottom:8px;color:#1a1a2e;font-size:20px}
+.pw-box p{color:#666;font-size:13px;margin-bottom:24px}
+.pw-box input{width:100%;padding:12px 16px;border:2px solid #e0e0e0;border-radius:8px;font-size:15px;outline:none;transition:border .2s}
+.pw-box input:focus{border-color:#c8102e}
+.pw-box button{margin-top:12px;width:100%;padding:12px;background:#c8102e;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer}
+.pw-box button:hover{background:#a50d25}
+.pw-err{color:#c8102e;font-size:13px;margin-top:10px;display:none}
+header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+header h1{font-size:18px;font-weight:700}
+header .sub{font-size:12px;opacity:.7;margin-top:2px}
+.filter-bar{background:#fff;border-bottom:1px solid #e0e0e0;padding:12px 24px;display:flex;gap:12px;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.filter-bar input{flex:1;padding:8px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;outline:none}
+.filter-bar input:focus{border-color:#c8102e}
+.tabs{display:flex;gap:8px}
+.tab{padding:7px 16px;border-radius:20px;border:1.5px solid #ddd;background:#fff;font-size:13px;cursor:pointer;font-weight:500;transition:all .2s}
+.tab.active,.tab:hover{background:#c8102e;color:#fff;border-color:#c8102e}
+.content{max-width:1100px;margin:0 auto;padding:24px}
+.section{margin-bottom:40px}
+.section-title{font-size:16px;font-weight:700;color:#1a1a2e;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #c8102e;display:flex;align-items:center;gap:10px}
+.section-title .cnt{background:#c8102e;color:#fff;border-radius:10px;padding:1px 9px;font-size:12px}
+.badge{background:#1a1a2e;color:#fff;border-radius:6px;padding:3px 9px;font-size:12px;font-weight:600;white-space:nowrap}
+/* Decided table */
+.dec-table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.dec-table th{background:#f8f9fa;padding:10px 14px;text-align:left;font-size:12px;color:#666;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.dec-table td{padding:10px 14px;border-top:1px solid #f0f0f0;font-size:14px}
+.dec-table tr:hover td{background:#fafafa}
+.num{text-align:right;font-weight:600}
+.muted{color:#999}
+/* Cards */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(460px,1fr));gap:20px}
+.card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.card-head{margin-bottom:14px}
+.standings{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.sr{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:8px;flex:1;min-width:200px}
+.lead-row{background:#e8f0fe;border-left:3px solid #1a73e8}
+.chal-row{background:#fef3e2;border-left:3px solid #f9ab00}
+.srank{font-weight:700;font-size:15px;width:20px}
+.sname{flex:1;font-size:13px;font-weight:500}
+.spts{font-weight:700;font-size:14px;white-space:nowrap}
+.axis-labels{display:flex;justify-content:space-between;font-size:11px;color:#888;margin-bottom:6px;padding:0 2px}
+.ax-y{color:#f9ab00;font-weight:600}
+.ax-x{color:#1a73e8;font-weight:600}
+.mtx-wrap{overflow-x:auto}
+.mtx{border-collapse:collapse;width:100%;font-size:13px}
+.mtx th,.mtx td{padding:7px 10px;text-align:center;border:1px solid #e8e8e8}
+.mtx thead th{background:#f8f9fa;font-size:11px;color:#555;font-weight:600}
+.mtx .rl{text-align:left;font-size:11px;color:#888;background:#fafafa;white-space:nowrap;font-weight:600}
+.cl{background:#dbeafe;color:#1a3a6b;font-weight:600}
+.cc{background:#fef3e2;color:#7a4f00;font-weight:600}
+.ct{background:#fffde7!important;color:#5a4000!important}
+.tb-note{font-size:11px;color:#999;margin-top:8px;font-style:italic}
+.many-item{background:#fff;border-radius:8px;padding:12px 16px;margin-bottom:8px;box-shadow:0 1px 4px rgba(0,0,0,.06);display:flex;align-items:center;gap:10px;font-size:13px}
+.hidden{display:none!important}
+.no-results{text-align:center;color:#999;padding:30px;font-size:14px}
+</style>
+</head>
+<body>
+
+<div id="pw-screen">
+  <div class="pw-box">
+    <h2>🔒 Bundestrainer-Ansicht</h2>
+    <p>DTU Rangliste Technik 2026</p>
+    <input type="password" id="pw" placeholder="Passwort" onkeydown="if(event.key==='Enter')chkPw()">
+    <button onclick="chkPw()">Anmelden</button>
+    <div class="pw-err" id="pw-err">Falsches Passwort</div>
+  </div>
+</div>
+
+<div id="main" style="display:none">
+  <header>
+    <div>
+      <h1>Bundestrainer-Ansicht · DTU Rangliste Technik 2026</h1>
+      <div class="sub">Stand nach BRLT II · verbleibendes Turnier: Austria Open</div>
+    </div>
+  </header>
+
+  <div class="filter-bar">
+    <input type="text" id="search" placeholder="Klasse suchen…" oninput="doFilter()">
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('all',this)">Alle</button>
+      <button class="tab" onclick="showTab('decided',this)">✅ Entschieden (24)</button>
+      <button class="tab" onclick="showTab('open2',this)">⚔️ 2 Kandidaten (22)</button>
+      <button class="tab" onclick="showTab('many',this)">&#9888;&#65039; &gt;2 Kandidaten (19)</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="section" id="sec-decided">
+      <div class="section-title">✅ Nominierung entschieden <span class="cnt">24</span></div>
+      <table class="dec-table">
+        <thead><tr><th>Klasse</th><th>Nominierte/r</th><th style="text-align:right">Punkte</th><th style="text-align:right">2. Platz max.</th></tr></thead>
+        <tbody>
+      <tr class="kr" data-k="o60 team female">
+        <td><span class="badge">O60 team female</span></td>
+        <td><strong>Karen HEIMANN / Doris HELY / Sylvia HOHFELD</strong></td>
+        <td class="num">15.0</td>
+        <td class="num muted">max. 0.0</td>
+      </tr>
+      <tr class="kr" data-k="o66 female">
+        <td><span class="badge">O66 female</span></td>
+        <td><strong>Carmen DEISE</strong></td>
+        <td class="num">55</td>
+        <td class="num muted">max. 45.0</td>
+      </tr>
+      <tr class="kr" data-k="o66 male">
+        <td><span class="badge">O66 male</span></td>
+        <td><strong>Manfred STADTMÜLLER</strong></td>
+        <td class="num">60</td>
+        <td class="num muted">max. 55.0</td>
+      </tr>
+      <tr class="kr" data-k="u50 pair">
+        <td><span class="badge">U50 pair</span></td>
+        <td><strong>Bianca SCHOENEMEIER / Hilko PASCHKE</strong></td>
+        <td class="num">60</td>
+        <td class="num muted">max. 54.0</td>
+      </tr>
+      <tr class="kr" data-k="u60 female">
+        <td><span class="badge">U60 female</span></td>
+        <td><strong>Candida TUNKEL</strong></td>
+        <td class="num">60</td>
+        <td class="num muted">max. 50.0</td>
+      </tr>
+      <tr class="kr" data-k="u65 female">
+        <td><span class="badge">U65 female</span></td>
+        <td><strong>Heekyung REIMANN</strong></td>
+        <td class="num">60</td>
+        <td class="num muted">max. 54.0</td>
+      </tr>
+      <tr class="kr" data-k="cadet team male">
+        <td><span class="badge">cadet team male</span></td>
+        <td><strong>Louis KREIBICH / Maximilian WANNER / Maximilian BACH</strong></td>
+        <td class="num">60</td>
+        <td class="num muted">max. 52.5</td>
+      </tr>
+      <tr class="kr" data-k="freestyle kids male">
+        <td><span class="badge">freestyle kids male</span></td>
+        <td><strong>Mats KRAUSE</strong></td>
+        <td class="num">15.0</td>
+        <td class="num muted">max. 0.0</td>
+      </tr>
+      <tr class="kr" data-k="kids female">
+        <td><span class="badge">kids female</span></td>
+        <td><strong>Tessa rahena NAZIR</strong></td>
+        <td class="num">60</td>
+        <td class="num muted">max. 55.0</td>
+      </tr>
+      <tr class="kr" data-k="kids team female">
+        <td><span class="badge">kids team female</span></td>
+        <td><strong>Melia ENGERT / Laura KRUMNOW / Filiz SARIKOC</strong></td>
+        <td class="num">15.0</td>
+        <td class="num muted">max. 0.0</td>
+      </tr>
+      <tr class="kr" data-k="para cadet female p21">
+        <td><span class="badge">para cadet female P21</span></td>
+        <td><strong>Emma DROLETZ</strong></td>
+        <td class="num">60</td>
+        <td class="num muted">max. 0.0</td>
+      </tr>
+      <tr class="kr" data-k="para cadet male p22">
+        <td><span class="badge">para cadet male P22</span></td>
+        <td><strong>Laurenz KUPAS</strong></td>
+        <td class="num">30</td>
+        <td class="num muted">max. 0.0</td>
+      </tr>
+      <tr class="kr" data-k="para cadet male p23">
+        <td><span class="badge">para cadet male P23</span></td>
+        <td><strong>Frederick FREIHERR VON KETELHODT</strong></td>
+        <td class="num">45</td>
+        <td class="num muted">max. 0.0</td>
+      </tr>
+      <tr class="kr" data-k="para cadet male p61">
+        <td><span class="badge">para cadet male P61</span></td>
+        <td><strong>Jakob ERNST</strong></td>
+        <td class="num">30</td>
+        <td class="num muted">max. 0.0</td>
+      </tr>
+      <tr class="kr" data-k="para junior female p22">
+        <td><span class="badge">para junior female P22</span></td>
+        <td><strong>Dorothea elisabeth WAGNER</strong></td>
+        <td class="num">60</td>
+        <td class="num muted">max. 0.0</td>
+      </tr>
+      <tr class="kr" data-k="para junior female p51">
+        <td><span class="badge">para junior female P51</span></td>
+        <td><strong>Mayla HORST</strong></td>
+        <td class="num">45</td>
+        <td class="num muted">max. 0.0</td>
+      </tr>
+      <tr class="kr" data-k="para over30 female p31">
+        <td><span class="badge">para over30 female P31</span></td>
+        <td><strong>Alexandra GROß</strong></td>
+        <td class="num">30</td>
+        <td class="num muted">max. 0.0</td>
+      </tr>
+      <tr class="kr" data-k="para over30 female p61">
+        <td><span class="badge">para over30 female P61</span></td>
+        <td><strong>Waltraud PRICK-SCHORN</strong></td>
+        <td class="num">30</td>
+        <td class="num muted">max. 0.0</td>
+      </tr>
+      <tr class="kr" data-k="para over30 male p12">
+        <td><span class="badge">para over30 male P12</span></td>
+        <td><strong>Holger MAHR</strong></td>
+        <td class="num">15</td>
+        <td class="num muted">max. 0.0</td>
+      </tr>
+      <tr class="kr" data-k="para over30 male p34">
+        <td><span class="badge">para over30 male P34</span></td>
+        <td><strong>Arndt MALLEPREE</strong></td>
+        <td class="num">15</td>
+        <td class="num muted">max. 0.0</td>
+      </tr>
+      <tr class="kr" data-k="para over30 male ps46">
+        <td><span class="badge">para over30 male PS46</span></td>
+        <td><strong>Walter HOFFMANN</strong></td>
+        <td class="num">15</td>
+        <td class="num muted">max. 0.0</td>
+      </tr>
+      <tr class="kr" data-k="para senior male p22 b-kl">
+        <td><span class="badge">para senior male P22 B-Kl</span></td>
+        <td><strong>Ben GOLOGRANEC</strong></td>
+        <td class="num">15</td>
+        <td class="num muted">max. 0.0</td>
+      </tr>
+      <tr class="kr" data-k="para senior male p22 c-kl">
+        <td><span class="badge">para senior male P22 C-Kl</span></td>
+        <td><strong>Jan-Ole KOHLSCHMIDT</strong></td>
+        <td class="num">15</td>
+        <td class="num muted">max. 0.0</td>
+      </tr>
+      <tr class="kr" data-k="para senior male p33">
+        <td><span class="badge">para senior male P33</span></td>
+        <td><strong>Kilian NELZ</strong></td>
+        <td class="num">15</td>
+        <td class="num muted">max. 0.0</td>
+      </tr></tbody>
+      </table>
+    </div>
+
+    <div class="section" id="sec-open2">
+      <div class="section-title">⚔️ Noch offen — 2 Kandidaten <span class="cnt">22</span></div>
+      <div class="cards-grid">
+        
+  <div class="card kr" data-k="o60 team male">
+    <div class="card-head">
+      <span class="badge">O60 team male</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Frank MAROHN / Manfred STADTMÜLLER / Jurgen KOHLER</span>
+        <span class="spts">30 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Volker LOHMEIER / Dieter HERBST / Dieter SCHOPS</span>
+        <span class="spts">25.0 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ LOHMEIER/… · Austria Open</span>
+      <span class="ax-x">MAROHN/… · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl">MAROHN/…</td><td class="cl">MAROHN/…</td><td class="cc ct">LOHMEIER/…*</td><td class="cc">LOHMEIER/…</td><td class="cc">LOHMEIER/…</td></tr><tr><th class="rl">2. Platz</th><td class="cl">MAROHN/…</td><td class="cl">MAROHN/…</td><td class="cl">MAROHN/…</td><td class="cc">LOHMEIER/…</td><td class="cc">LOHMEIER/…</td></tr><tr><th class="rl">3. Platz</th><td class="cl">MAROHN/…</td><td class="cl">MAROHN/…</td><td class="cl">MAROHN/…</td><td class="cc">LOHMEIER/…</td><td class="cc">LOHMEIER/…</td></tr><tr><th class="rl">5. Platz</th><td class="cl">MAROHN/…</td><td class="cl">MAROHN/…</td><td class="cl">MAROHN/…</td><td class="cl">MAROHN/…</td><td class="cl">MAROHN/…</td></tr><tr><th class="rl">kein</th><td class="cl">MAROHN/…</td><td class="cl">MAROHN/…</td><td class="cl">MAROHN/…</td><td class="cl">MAROHN/…</td><td class="cl">MAROHN/…</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="u30 pair">
+    <div class="card-head">
+      <span class="badge">U30 pair</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Helena SILBERHORN / Mian FROMM</span>
+        <span class="spts">45 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Patrick KUZENKO / Pia HOFFMANN</span>
+        <span class="spts">25 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ KUZENKO/… · Austria Open</span>
+      <span class="ax-x">SILBERHORN/… · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl">SILBERHORN/…</td><td class="cl">SILBERHORN/…</td><td class="cc ct">KUZENKO/…*</td><td class="cc">KUZENKO/…</td><td class="cc">KUZENKO/…</td></tr><tr><th class="rl">2. Platz</th><td class="cl">SILBERHORN/…</td><td class="cl">SILBERHORN/…</td><td class="cl">SILBERHORN/…</td><td class="cc">KUZENKO/…</td><td class="cc">KUZENKO/…</td></tr><tr><th class="rl">3. Platz</th><td class="cl">SILBERHORN/…</td><td class="cl">SILBERHORN/…</td><td class="cl">SILBERHORN/…</td><td class="cc ct">KUZENKO/…*</td><td class="cc ct">KUZENKO/…*</td></tr><tr><th class="rl">5. Platz</th><td class="cl">SILBERHORN/…</td><td class="cl">SILBERHORN/…</td><td class="cl">SILBERHORN/…</td><td class="cl">SILBERHORN/…</td><td class="cl">SILBERHORN/…</td></tr><tr><th class="rl">kein</th><td class="cl">SILBERHORN/…</td><td class="cl">SILBERHORN/…</td><td class="cl">SILBERHORN/…</td><td class="cl">SILBERHORN/…</td><td class="cl">SILBERHORN/…</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="u30 team female">
+    <div class="card-head">
+      <span class="badge">U30 team female</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Helena SILBERHORN / Tuong-vi DO / Pia HOFFMANN</span>
+        <span class="spts">45 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Thi nam phuong VUONG / Anna Monika SIEPMANN / Jessica STORM</span>
+        <span class="spts">45 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ VUONG/… · Austria Open</span>
+      <span class="ax-x">SILBERHORN/… · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl ct">SILBERHORN/…*</td><td class="cc">VUONG/…</td><td class="cc">VUONG/…</td><td class="cc">VUONG/…</td><td class="cc">VUONG/…</td></tr><tr><th class="rl">2. Platz</th><td class="cl">SILBERHORN/…</td><td class="cl ct">SILBERHORN/…*</td><td class="cc">VUONG/…</td><td class="cc">VUONG/…</td><td class="cc">VUONG/…</td></tr><tr><th class="rl">3. Platz</th><td class="cl">SILBERHORN/…</td><td class="cl">SILBERHORN/…</td><td class="cl ct">SILBERHORN/…*</td><td class="cc">VUONG/…</td><td class="cc">VUONG/…</td></tr><tr><th class="rl">5. Platz</th><td class="cl">SILBERHORN/…</td><td class="cl">SILBERHORN/…</td><td class="cl">SILBERHORN/…</td><td class="cl ct">SILBERHORN/…*</td><td class="cc ct">VUONG/…*</td></tr><tr><th class="rl">kein</th><td class="cl">SILBERHORN/…</td><td class="cl">SILBERHORN/…</td><td class="cl">SILBERHORN/…</td><td class="cl ct">SILBERHORN/…*</td><td class="cl ct">SILBERHORN/…*</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="u40 male">
+    <div class="card-head">
+      <span class="badge">U40 male</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Fabian FRANK</span>
+        <span class="spts">50 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Hilko PASCHKE</span>
+        <span class="spts">45 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ PASCHKE · Austria Open</span>
+      <span class="ax-x">FRANK · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl">FRANK</td><td class="cc ct">PASCHKE*</td><td class="cc">PASCHKE</td><td class="cc">PASCHKE</td><td class="cc">PASCHKE</td></tr><tr><th class="rl">2. Platz</th><td class="cl">FRANK</td><td class="cl">FRANK</td><td class="cc ct">PASCHKE*</td><td class="cc">PASCHKE</td><td class="cc">PASCHKE</td></tr><tr><th class="rl">3. Platz</th><td class="cl">FRANK</td><td class="cl">FRANK</td><td class="cl">FRANK</td><td class="cc">PASCHKE</td><td class="cc">PASCHKE</td></tr><tr><th class="rl">5. Platz</th><td class="cl">FRANK</td><td class="cl">FRANK</td><td class="cl">FRANK</td><td class="cl">FRANK</td><td class="cl">FRANK</td></tr><tr><th class="rl">kein</th><td class="cl">FRANK</td><td class="cl">FRANK</td><td class="cl">FRANK</td><td class="cl">FRANK</td><td class="cl">FRANK</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="u50 female">
+    <div class="card-head">
+      <span class="badge">U50 female</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Tina HERRMANN</span>
+        <span class="spts">55 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Brigitte HALAWEH</span>
+        <span class="spts">35 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ HALAWEH · Austria Open</span>
+      <span class="ax-x">HERRMANN · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl">HERRMANN</td><td class="cl">HERRMANN</td><td class="cc ct">HALAWEH*</td><td class="cc">HALAWEH</td><td class="cc">HALAWEH</td></tr><tr><th class="rl">2. Platz</th><td class="cl">HERRMANN</td><td class="cl">HERRMANN</td><td class="cl">HERRMANN</td><td class="cc ct">HALAWEH*</td><td class="cc ct">HALAWEH*</td></tr><tr><th class="rl">3. Platz</th><td class="cl">HERRMANN</td><td class="cl">HERRMANN</td><td class="cl">HERRMANN</td><td class="cl">HERRMANN</td><td class="cl">HERRMANN</td></tr><tr><th class="rl">5. Platz</th><td class="cl">HERRMANN</td><td class="cl">HERRMANN</td><td class="cl">HERRMANN</td><td class="cl">HERRMANN</td><td class="cl">HERRMANN</td></tr><tr><th class="rl">kein</th><td class="cl">HERRMANN</td><td class="cl">HERRMANN</td><td class="cl">HERRMANN</td><td class="cl">HERRMANN</td><td class="cl">HERRMANN</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="u50 male">
+    <div class="card-head">
+      <span class="badge">U50 male</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Quoc binh DUONG</span>
+        <span class="spts">50 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Dirk MEIER</span>
+        <span class="spts">35 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ MEIER · Austria Open</span>
+      <span class="ax-x">DUONG · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl">DUONG</td><td class="cc ct">MEIER*</td><td class="cc">MEIER</td><td class="cc">MEIER</td><td class="cc">MEIER</td></tr><tr><th class="rl">2. Platz</th><td class="cl">DUONG</td><td class="cl">DUONG</td><td class="cc ct">MEIER*</td><td class="cc">MEIER</td><td class="cc">MEIER</td></tr><tr><th class="rl">3. Platz</th><td class="cl">DUONG</td><td class="cl">DUONG</td><td class="cl">DUONG</td><td class="cc ct">MEIER*</td><td class="cc ct">MEIER*</td></tr><tr><th class="rl">5. Platz</th><td class="cl">DUONG</td><td class="cl">DUONG</td><td class="cl">DUONG</td><td class="cl">DUONG</td><td class="cl">DUONG</td></tr><tr><th class="rl">kein</th><td class="cl">DUONG</td><td class="cl">DUONG</td><td class="cl">DUONG</td><td class="cl">DUONG</td><td class="cl">DUONG</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="u50 team female">
+    <div class="card-head">
+      <span class="badge">U50 team female</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Stephanie ELBERS / Francesca DINCAO / Amelie BRÜNING</span>
+        <span class="spts">55 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Bärbel BÄUERLE / Angelika BUSSMANN / Bianca SCHOENEMEIER</span>
+        <span class="spts">50 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ BÄUERLE/… · Austria Open</span>
+      <span class="ax-x">ELBERS/… · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl">ELBERS/…</td><td class="cc ct">BÄUERLE/…*</td><td class="cc">BÄUERLE/…</td><td class="cc">BÄUERLE/…</td><td class="cc">BÄUERLE/…</td></tr><tr><th class="rl">2. Platz</th><td class="cl">ELBERS/…</td><td class="cl">ELBERS/…</td><td class="cc ct">BÄUERLE/…*</td><td class="cc">BÄUERLE/…</td><td class="cc">BÄUERLE/…</td></tr><tr><th class="rl">3. Platz</th><td class="cl">ELBERS/…</td><td class="cl">ELBERS/…</td><td class="cl">ELBERS/…</td><td class="cc">BÄUERLE/…</td><td class="cc">BÄUERLE/…</td></tr><tr><th class="rl">5. Platz</th><td class="cl">ELBERS/…</td><td class="cl">ELBERS/…</td><td class="cl">ELBERS/…</td><td class="cl">ELBERS/…</td><td class="cl">ELBERS/…</td></tr><tr><th class="rl">kein</th><td class="cl">ELBERS/…</td><td class="cl">ELBERS/…</td><td class="cl">ELBERS/…</td><td class="cl">ELBERS/…</td><td class="cl">ELBERS/…</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="u50 team male">
+    <div class="card-head">
+      <span class="badge">U50 team male</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Fabian FRANK / Steven BEHN / Hilko PASCHKE</span>
+        <span class="spts">30 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Maximilian BARTL / Patrick LEBENS / Sebastian SEIBOLD</span>
+        <span class="spts">10.0 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ BARTL/… · Austria Open</span>
+      <span class="ax-x">FRANK/… · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl">FRANK/…</td><td class="cl">FRANK/…</td><td class="cl">FRANK/…</td><td class="cc">BARTL/…</td><td class="cc">BARTL/…</td></tr><tr><th class="rl">2. Platz</th><td class="cl">FRANK/…</td><td class="cl">FRANK/…</td><td class="cl">FRANK/…</td><td class="cl">FRANK/…</td><td class="cc">BARTL/…</td></tr><tr><th class="rl">3. Platz</th><td class="cl">FRANK/…</td><td class="cl">FRANK/…</td><td class="cl">FRANK/…</td><td class="cl">FRANK/…</td><td class="cc ct">BARTL/…*</td></tr><tr><th class="rl">5. Platz</th><td class="cl">FRANK/…</td><td class="cl">FRANK/…</td><td class="cl">FRANK/…</td><td class="cl">FRANK/…</td><td class="cl">FRANK/…</td></tr><tr><th class="rl">kein</th><td class="cl">FRANK/…</td><td class="cl">FRANK/…</td><td class="cl">FRANK/…</td><td class="cl">FRANK/…</td><td class="cl">FRANK/…</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="u60 male">
+    <div class="card-head">
+      <span class="badge">U60 male</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Christian SENFT</span>
+        <span class="spts">60 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Michael BUSSMANN</span>
+        <span class="spts">40 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ BUSSMANN · Austria Open</span>
+      <span class="ax-x">SENFT · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl">SENFT</td><td class="cl">SENFT</td><td class="cl">SENFT</td><td class="cc ct">BUSSMANN*</td><td class="cc ct">BUSSMANN*</td></tr><tr><th class="rl">2. Platz</th><td class="cl">SENFT</td><td class="cl">SENFT</td><td class="cl">SENFT</td><td class="cl">SENFT</td><td class="cl">SENFT</td></tr><tr><th class="rl">3. Platz</th><td class="cl">SENFT</td><td class="cl">SENFT</td><td class="cl">SENFT</td><td class="cl">SENFT</td><td class="cl">SENFT</td></tr><tr><th class="rl">5. Platz</th><td class="cl">SENFT</td><td class="cl">SENFT</td><td class="cl">SENFT</td><td class="cl">SENFT</td><td class="cl">SENFT</td></tr><tr><th class="rl">kein</th><td class="cl">SENFT</td><td class="cl">SENFT</td><td class="cl">SENFT</td><td class="cl">SENFT</td><td class="cl">SENFT</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="u60 pair">
+    <div class="card-head">
+      <span class="badge">U60 pair</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Anh-tuan DO / Candida TUNKEL</span>
+        <span class="spts">55 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Michael BUSSMANN / Sabine MUELLER</span>
+        <span class="spts">50 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ BUSSMANN/… · Austria Open</span>
+      <span class="ax-x">DO/… · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl ct">DO/…*</td><td class="cc">BUSSMANN/…</td><td class="cc">BUSSMANN/…</td><td class="cc">BUSSMANN/…</td><td class="cc">BUSSMANN/…</td></tr><tr><th class="rl">2. Platz</th><td class="cl">DO/…</td><td class="cl ct">DO/…*</td><td class="cc">BUSSMANN/…</td><td class="cc">BUSSMANN/…</td><td class="cc">BUSSMANN/…</td></tr><tr><th class="rl">3. Platz</th><td class="cl">DO/…</td><td class="cl">DO/…</td><td class="cl ct">DO/…*</td><td class="cc">BUSSMANN/…</td><td class="cc">BUSSMANN/…</td></tr><tr><th class="rl">5. Platz</th><td class="cl">DO/…</td><td class="cl">DO/…</td><td class="cl">DO/…</td><td class="cl">DO/…</td><td class="cl">DO/…</td></tr><tr><th class="rl">kein</th><td class="cl">DO/…</td><td class="cl">DO/…</td><td class="cl">DO/…</td><td class="cl">DO/…</td><td class="cl">DO/…</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="u60 team female">
+    <div class="card-head">
+      <span class="badge">U60 team female</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Barbara SCHMITT / Konstanze ESCH / Bettina MAK</span>
+        <span class="spts">30.0 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Kerstin HAMACHER / Monika WAGNER / Nicole mattea ZINNER</span>
+        <span class="spts">20 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ HAMACHER/… · Austria Open</span>
+      <span class="ax-x">SCHMITT/… · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl">SCHMITT/…</td><td class="cc ct">HAMACHER/…*</td><td class="cc">HAMACHER/…</td><td class="cc">HAMACHER/…</td><td class="cc">HAMACHER/…</td></tr><tr><th class="rl">2. Platz</th><td class="cl">SCHMITT/…</td><td class="cl">SCHMITT/…</td><td class="cc ct">HAMACHER/…*</td><td class="cc">HAMACHER/…</td><td class="cc">HAMACHER/…</td></tr><tr><th class="rl">3. Platz</th><td class="cl">SCHMITT/…</td><td class="cl">SCHMITT/…</td><td class="cl">SCHMITT/…</td><td class="cc">HAMACHER/…</td><td class="cc">HAMACHER/…</td></tr><tr><th class="rl">5. Platz</th><td class="cl">SCHMITT/…</td><td class="cl">SCHMITT/…</td><td class="cl">SCHMITT/…</td><td class="cl">SCHMITT/…</td><td class="cl">SCHMITT/…</td></tr><tr><th class="rl">kein</th><td class="cl">SCHMITT/…</td><td class="cl">SCHMITT/…</td><td class="cl">SCHMITT/…</td><td class="cl">SCHMITT/…</td><td class="cl">SCHMITT/…</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="u65 male">
+    <div class="card-head">
+      <span class="badge">U65 male</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Werner UNLAND</span>
+        <span class="spts">60 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Jurgen KOHLER</span>
+        <span class="spts">40 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ KOHLER · Austria Open</span>
+      <span class="ax-x">UNLAND · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl">UNLAND</td><td class="cl">UNLAND</td><td class="cl">UNLAND</td><td class="cc ct">KOHLER*</td><td class="cc ct">KOHLER*</td></tr><tr><th class="rl">2. Platz</th><td class="cl">UNLAND</td><td class="cl">UNLAND</td><td class="cl">UNLAND</td><td class="cl">UNLAND</td><td class="cl">UNLAND</td></tr><tr><th class="rl">3. Platz</th><td class="cl">UNLAND</td><td class="cl">UNLAND</td><td class="cl">UNLAND</td><td class="cl">UNLAND</td><td class="cl">UNLAND</td></tr><tr><th class="rl">5. Platz</th><td class="cl">UNLAND</td><td class="cl">UNLAND</td><td class="cl">UNLAND</td><td class="cl">UNLAND</td><td class="cl">UNLAND</td></tr><tr><th class="rl">kein</th><td class="cl">UNLAND</td><td class="cl">UNLAND</td><td class="cl">UNLAND</td><td class="cl">UNLAND</td><td class="cl">UNLAND</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="cadet pair">
+    <div class="card-head">
+      <span class="badge">cadet pair</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Mira LICHTE / Louis KREIBICH</span>
+        <span class="spts">60 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Hideya CHABRAK / Maximilian BACH</span>
+        <span class="spts">45 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ CHABRAK/… · Austria Open</span>
+      <span class="ax-x">LICHTE/… · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl">LICHTE/…</td><td class="cl">LICHTE/…</td><td class="cc ct">CHABRAK/…*</td><td class="cc">CHABRAK/…</td><td class="cc">CHABRAK/…</td></tr><tr><th class="rl">2. Platz</th><td class="cl">LICHTE/…</td><td class="cl">LICHTE/…</td><td class="cl">LICHTE/…</td><td class="cc ct">CHABRAK/…*</td><td class="cc ct">CHABRAK/…*</td></tr><tr><th class="rl">3. Platz</th><td class="cl">LICHTE/…</td><td class="cl">LICHTE/…</td><td class="cl">LICHTE/…</td><td class="cl">LICHTE/…</td><td class="cl">LICHTE/…</td></tr><tr><th class="rl">5. Platz</th><td class="cl">LICHTE/…</td><td class="cl">LICHTE/…</td><td class="cl">LICHTE/…</td><td class="cl">LICHTE/…</td><td class="cl">LICHTE/…</td></tr><tr><th class="rl">kein</th><td class="cl">LICHTE/…</td><td class="cl">LICHTE/…</td><td class="cl">LICHTE/…</td><td class="cl">LICHTE/…</td><td class="cl">LICHTE/…</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="cadet team female">
+    <div class="card-head">
+      <span class="badge">cadet team female</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Alisa ERDOGAN / Eva sun YOUN / Tia rehana NAZIR</span>
+        <span class="spts">60 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Asya OKUMUS / Elina MEYER / Larissa CHOW</span>
+        <span class="spts">45 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ OKUMUS/… · Austria Open</span>
+      <span class="ax-x">ERDOGAN/… · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl">ERDOGAN/…</td><td class="cl">ERDOGAN/…</td><td class="cc ct">OKUMUS/…*</td><td class="cc">OKUMUS/…</td><td class="cc">OKUMUS/…</td></tr><tr><th class="rl">2. Platz</th><td class="cl">ERDOGAN/…</td><td class="cl">ERDOGAN/…</td><td class="cl">ERDOGAN/…</td><td class="cc ct">OKUMUS/…*</td><td class="cc ct">OKUMUS/…*</td></tr><tr><th class="rl">3. Platz</th><td class="cl">ERDOGAN/…</td><td class="cl">ERDOGAN/…</td><td class="cl">ERDOGAN/…</td><td class="cl">ERDOGAN/…</td><td class="cl">ERDOGAN/…</td></tr><tr><th class="rl">5. Platz</th><td class="cl">ERDOGAN/…</td><td class="cl">ERDOGAN/…</td><td class="cl">ERDOGAN/…</td><td class="cl">ERDOGAN/…</td><td class="cl">ERDOGAN/…</td></tr><tr><th class="rl">kein</th><td class="cl">ERDOGAN/…</td><td class="cl">ERDOGAN/…</td><td class="cl">ERDOGAN/…</td><td class="cl">ERDOGAN/…</td><td class="cl">ERDOGAN/…</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="freestyle female">
+    <div class="card-head">
+      <span class="badge">freestyle female</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Leah LAWALL</span>
+        <span class="spts">50 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Rebekka HARTOK</span>
+        <span class="spts">28 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ HARTOK · Austria Open</span>
+      <span class="ax-x">LAWALL · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl">LAWALL</td><td class="cl">LAWALL</td><td class="cl">LAWALL</td><td class="cc ct">HARTOK*</td><td class="cc ct">HARTOK*</td></tr><tr><th class="rl">2. Platz</th><td class="cl">LAWALL</td><td class="cl">LAWALL</td><td class="cl">LAWALL</td><td class="cl">LAWALL</td><td class="cl">LAWALL</td></tr><tr><th class="rl">3. Platz</th><td class="cl">LAWALL</td><td class="cl">LAWALL</td><td class="cl">LAWALL</td><td class="cl">LAWALL</td><td class="cl">LAWALL</td></tr><tr><th class="rl">5. Platz</th><td class="cl">LAWALL</td><td class="cl">LAWALL</td><td class="cl">LAWALL</td><td class="cl">LAWALL</td><td class="cl">LAWALL</td></tr><tr><th class="rl">kein</th><td class="cl">LAWALL</td><td class="cl">LAWALL</td><td class="cl">LAWALL</td><td class="cl">LAWALL</td><td class="cl">LAWALL</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="freestyle junior male">
+    <div class="card-head">
+      <span class="badge">freestyle junior male</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Alexander KAMPKE</span>
+        <span class="spts">50 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Fionn luca RIESEMANN</span>
+        <span class="spts">28 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ RIESEMANN · Austria Open</span>
+      <span class="ax-x">KAMPKE · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl">KAMPKE</td><td class="cl">KAMPKE</td><td class="cl">KAMPKE</td><td class="cc ct">RIESEMANN*</td><td class="cc ct">RIESEMANN*</td></tr><tr><th class="rl">2. Platz</th><td class="cl">KAMPKE</td><td class="cl">KAMPKE</td><td class="cl">KAMPKE</td><td class="cl">KAMPKE</td><td class="cl">KAMPKE</td></tr><tr><th class="rl">3. Platz</th><td class="cl">KAMPKE</td><td class="cl">KAMPKE</td><td class="cl">KAMPKE</td><td class="cl">KAMPKE</td><td class="cl">KAMPKE</td></tr><tr><th class="rl">5. Platz</th><td class="cl">KAMPKE</td><td class="cl">KAMPKE</td><td class="cl">KAMPKE</td><td class="cl">KAMPKE</td><td class="cl">KAMPKE</td></tr><tr><th class="rl">kein</th><td class="cl">KAMPKE</td><td class="cl">KAMPKE</td><td class="cl">KAMPKE</td><td class="cl">KAMPKE</td><td class="cl">KAMPKE</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="freestyle junior pair">
+    <div class="card-head">
+      <span class="badge">freestyle junior pair</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Fionn luca RIESEMANN / Hedda charlotte FINKE</span>
+        <span class="spts">50 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Alexander KAMPKE / Lanika ROMEYKE</span>
+        <span class="spts">37.5 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ KAMPKE/… · Austria Open</span>
+      <span class="ax-x">RIESEMANN/… · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl">RIESEMANN/…</td><td class="cl">RIESEMANN/…</td><td class="cl">RIESEMANN/…</td><td class="cc">KAMPKE/…</td><td class="cc">KAMPKE/…</td></tr><tr><th class="rl">2. Platz</th><td class="cl">RIESEMANN/…</td><td class="cl">RIESEMANN/…</td><td class="cl">RIESEMANN/…</td><td class="cl">RIESEMANN/…</td><td class="cc">KAMPKE/…</td></tr><tr><th class="rl">3. Platz</th><td class="cl">RIESEMANN/…</td><td class="cl">RIESEMANN/…</td><td class="cl">RIESEMANN/…</td><td class="cl">RIESEMANN/…</td><td class="cl">RIESEMANN/…</td></tr><tr><th class="rl">5. Platz</th><td class="cl">RIESEMANN/…</td><td class="cl">RIESEMANN/…</td><td class="cl">RIESEMANN/…</td><td class="cl">RIESEMANN/…</td><td class="cl">RIESEMANN/…</td></tr><tr><th class="rl">kein</th><td class="cl">RIESEMANN/…</td><td class="cl">RIESEMANN/…</td><td class="cl">RIESEMANN/…</td><td class="cl">RIESEMANN/…</td><td class="cl">RIESEMANN/…</td></tr></tbody>
+      </table>
+    </div>
+    
+  </div>
+  <div class="card kr" data-k="freestyle kids female">
+    <div class="card-head">
+      <span class="badge">freestyle kids female</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Laura KRUMNOW</span>
+        <span class="spts">30 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Melia ENGERT</span>
+        <span class="spts">10 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ ENGERT · Austria Open</span>
+      <span class="ax-x">KRUMNOW · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl">KRUMNOW</td><td class="cl">KRUMNOW</td><td class="cl">KRUMNOW</td><td class="cc">ENGERT</td><td class="cc">ENGERT</td></tr><tr><th class="rl">2. Platz</th><td class="cl">KRUMNOW</td><td class="cl">KRUMNOW</td><td class="cl">KRUMNOW</td><td class="cl">KRUMNOW</td><td class="cc">ENGERT</td></tr><tr><th class="rl">3. Platz</th><td class="cl">KRUMNOW</td><td class="cl">KRUMNOW</td><td class="cl">KRUMNOW</td><td class="cl">KRUMNOW</td><td class="cc ct">ENGERT*</td></tr><tr><th class="rl">5. Platz</th><td class="cl">KRUMNOW</td><td class="cl">KRUMNOW</td><td class="cl">KRUMNOW</td><td class="cl">KRUMNOW</td><td class="cl">KRUMNOW</td></tr><tr><th class="rl">kein</th><td class="cl">KRUMNOW</td><td class="cl">KRUMNOW</td><td class="cl">KRUMNOW</td><td class="cl">KRUMNOW</td><td class="cl">KRUMNOW</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="freestyle pair">
+    <div class="card-head">
+      <span class="badge">freestyle pair</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Rebekka HARTOK / Leon REICH</span>
+        <span class="spts">40 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Anne Sophie HESS / Andreas MENZEL</span>
+        <span class="spts">10.0 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ HESS/… · Austria Open</span>
+      <span class="ax-x">HARTOK/… · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cc ct">HESS/…*</td><td class="cc ct">HESS/…*</td></tr><tr><th class="rl">2. Platz</th><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td></tr><tr><th class="rl">3. Platz</th><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td></tr><tr><th class="rl">5. Platz</th><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td></tr><tr><th class="rl">kein</th><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="freestyle team">
+    <div class="card-head">
+      <span class="badge">freestyle team</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Rebekka HARTOK / Imraan ilmi NURZAMAN / Syifa fauziah NURZAMAN / Leon REICH / Wyatt SOMMERFELD</span>
+        <span class="spts">7.5 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Rebekka HARTOK / Imraan ilmi NURZAMAN / Syifa fauziah NURZAMAN / Leon REICH / Patrick KUZENKO</span>
+        <span class="spts">7.5 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ HARTOK/… · Austria Open</span>
+      <span class="ax-x">HARTOK/… · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cc ct">HARTOK/…*</td><td class="cc">HARTOK/…</td><td class="cc">HARTOK/…</td><td class="cc">HARTOK/…</td><td class="cc">HARTOK/…</td></tr><tr><th class="rl">2. Platz</th><td class="cl">HARTOK/…</td><td class="cc ct">HARTOK/…*</td><td class="cc">HARTOK/…</td><td class="cc">HARTOK/…</td><td class="cc">HARTOK/…</td></tr><tr><th class="rl">3. Platz</th><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cc ct">HARTOK/…*</td><td class="cc">HARTOK/…</td><td class="cc">HARTOK/…</td></tr><tr><th class="rl">5. Platz</th><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cc ct">HARTOK/…*</td><td class="cc">HARTOK/…</td></tr><tr><th class="rl">kein</th><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cl">HARTOK/…</td><td class="cc ct">HARTOK/…*</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="para cadet female p22">
+    <div class="card-head">
+      <span class="badge">para cadet female P22</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Kaya PIETSCH</span>
+        <span class="spts">30 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Hanne HANSEN</span>
+        <span class="spts">10 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ HANSEN · Austria Open</span>
+      <span class="ax-x">PIETSCH · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cl">PIETSCH</td><td class="cl">PIETSCH</td><td class="cl">PIETSCH</td><td class="cc">HANSEN</td><td class="cc">HANSEN</td></tr><tr><th class="rl">2. Platz</th><td class="cl">PIETSCH</td><td class="cl">PIETSCH</td><td class="cl">PIETSCH</td><td class="cl">PIETSCH</td><td class="cc">HANSEN</td></tr><tr><th class="rl">3. Platz</th><td class="cl">PIETSCH</td><td class="cl">PIETSCH</td><td class="cl">PIETSCH</td><td class="cl">PIETSCH</td><td class="cc ct">HANSEN*</td></tr><tr><th class="rl">5. Platz</th><td class="cl">PIETSCH</td><td class="cl">PIETSCH</td><td class="cl">PIETSCH</td><td class="cl">PIETSCH</td><td class="cl">PIETSCH</td></tr><tr><th class="rl">kein</th><td class="cl">PIETSCH</td><td class="cl">PIETSCH</td><td class="cl">PIETSCH</td><td class="cl">PIETSCH</td><td class="cl">PIETSCH</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+  <div class="card kr" data-k="para over30 male p61">
+    <div class="card-head">
+      <span class="badge">para over30 male P61</span>
+    </div>
+    <div class="standings">
+      <div class="sr lead-row">
+        <span class="srank">1.</span>
+        <span class="sname">Marcel DIRMEIER</span>
+        <span class="spts">15 Pkt</span>
+      </div>
+      <div class="sr chal-row">
+        <span class="srank">2.</span>
+        <span class="sname">Pascal TREPELS</span>
+        <span class="spts">15 Pkt</span>
+      </div>
+    </div>
+    <div class="axis-labels">
+      <span class="ax-y">↓ TREPELS · Austria Open</span>
+      <span class="ax-x">DIRMEIER · Austria Open →</span>
+    </div>
+    <div class="mtx-wrap">
+      <table class="mtx">
+        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
+        <tbody><tr><th class="rl">1. Platz</th><td class="cc ct">TREPELS*</td><td class="cc">TREPELS</td><td class="cc">TREPELS</td><td class="cc">TREPELS</td><td class="cc">TREPELS</td></tr><tr><th class="rl">2. Platz</th><td class="cl">DIRMEIER</td><td class="cc ct">TREPELS*</td><td class="cc">TREPELS</td><td class="cc">TREPELS</td><td class="cc">TREPELS</td></tr><tr><th class="rl">3. Platz</th><td class="cl">DIRMEIER</td><td class="cl">DIRMEIER</td><td class="cc ct">TREPELS*</td><td class="cc">TREPELS</td><td class="cc">TREPELS</td></tr><tr><th class="rl">5. Platz</th><td class="cl">DIRMEIER</td><td class="cl">DIRMEIER</td><td class="cl">DIRMEIER</td><td class="cc ct">TREPELS*</td><td class="cc">TREPELS</td></tr><tr><th class="rl">kein</th><td class="cl">DIRMEIER</td><td class="cl">DIRMEIER</td><td class="cl">DIRMEIER</td><td class="cl">DIRMEIER</td><td class="cc ct">TREPELS*</td></tr></tbody>
+      </table>
+    </div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+      </div>
+    </div>
+
+    <div class="section" id="sec-many"><div class="section-title">&#9888;&#65039; Noch offen &mdash; mehr als 2 Kandidaten <span class="cnt">19</span></div><div class="many-item kr" data-k="o60 pair"><span class="badge">O60 pair</span> <span class="muted">3 Kandidaten: Manfred STADTMUELLER / Sylvia HOHFELD, Heekyung REIMANN / Werner UNLAND, Werner HORNUNG / Carmen DEISE</span></div><div class="many-item kr" data-k="u30 female"><span class="badge">U30 female</span> <span class="muted">3 Kandidaten: Adina MACHWIRTH, Pia HOFFMANN, Helena SILBERHORN</span></div><div class="many-item kr" data-k="u30 male"><span class="badge">U30 male</span> <span class="muted">13 Kandidaten: Patrick KUZENKO, Tung-duong tim DO, Mian FROMM, Leon REICH</span></div><div class="many-item kr" data-k="u30 team male"><span class="badge">U30 team male</span> <span class="muted">3 Kandidaten: Alexander SCHULZ / Damon Ricardo MACKOWSKI / Dustin SEYBOLD, Niklas KOOPMANN / Eric LIESER / Christoph BISMARCK, Noah Mo KRAUSE / Louis THOMASCHEWSKI / Matyas olivier ZINNER</span></div><div class="many-item kr" data-k="u40 female"><span class="badge">U40 female</span> <span class="muted">3 Kandidaten: Stephanie ELBERS, Francesca DINCAO, Baerbel REINER</span></div><div class="many-item kr" data-k="u60 team male"><span class="badge">U60 team male</span> <span class="muted">3 Kandidaten: Kai THOMASCHEWSKI / Oliver FRISKE / Carsten SCHWEIZER, Leonhard HANAWITSCH / Veit OEHLER / Frank STEFFEN, Anh-tuan DO / Ingo LEBENS / Michael STAMM</span></div><div class="many-item kr" data-k="cadet female"><span class="badge">cadet female</span> <span class="muted">7 Kandidaten: Tia rehana NAZIR, Alisa ERDOGAN, Elina MEYER, Mira LICHTE</span></div><div class="many-item kr" data-k="cadet male"><span class="badge">cadet male</span> <span class="muted">10 Kandidaten: Maximilian BACH, Neil SOMMERFELD, Maximilian WANNER, Simon MIEHLNICKEL</span></div><div class="many-item kr" data-k="freestyle junior female"><span class="badge">freestyle junior female</span> <span class="muted">4 Kandidaten: Cesia anna SCHMITZ, Lanika ROMEYKE, Hedda charlotte FINKE, Frida GÖHNE</span></div><div class="many-item kr" data-k="freestyle junior team"><span class="badge">freestyle junior team</span> <span class="muted">3 Kandidaten: Melia ENGERT / Fenja ENGERT / Jorin ENGERT / Laura KRUMNOW / Jakob ORLOV, Viktoria weiyue CHEN / Constantin FURCH / Frida GÖHNE / Mats KRAUSE / Neil SOMMERFELD, Viktoria weiyue CHEN / Constantin FURCH / Frida GÖHNE / Mats KRAUSE / Henry LAKNER</span></div><div class="many-item kr" data-k="freestyle male"><span class="badge">freestyle male</span> <span class="muted">3 Kandidaten: Imraan ilmi NURZAMAN, Wyatt SOMMERFELD, Martin JEGLINSKI</span></div><div class="many-item kr" data-k="kids male"><span class="badge">kids male</span> <span class="muted">9 Kandidaten: Maximilian STAEMMLER, Frederik PANSE, Zakaria CHABRAK, Yakub UZGUR</span></div><div class="many-item kr" data-k="kids pair"><span class="badge">kids pair</span> <span class="muted">4 Kandidaten: Melia ENGERT / Theo WITTELSBERGER, Bomi LEE / Maximilian STAEMMLER, Frederik PANSE / Aurora letizia WILKE, Vivien FLEISCHER / Zakaria CHABRAK</span></div><div class="many-item kr" data-k="kids team male"><span class="badge">kids team male</span> <span class="muted">3 Kandidaten: Jesper BRANDT / Zakaria CHABRAK / Ben UMLAND, Adrian BUSSMANN / Faye CHEIKH FALL HAMDY / Mats KRAUSE, Theo WITTELSBERGER / Yakub UZGUR / Max ?</span></div><div class="many-item kr" data-k="rangliste technik 2026- junior female"><span class="badge">Rangliste Technik 2026- Junior female</span> <span class="muted">13 Kandidaten: Vivien HOFMANN, Ksenia alexandra BONGARD, Maja KOSTADINOV, Lanika ROMEYKE</span></div><div class="many-item kr" data-k="rangliste technik 2026- junior male"><span class="badge">Rangliste Technik 2026- Junior male</span> <span class="muted">15 Kandidaten: Jonas MALIK, Nikita FORESTA, Philipp GROßE, Tim HEISTERS</span></div><div class="many-item kr" data-k="rangliste technik 2026- junior pair"><span class="badge">Rangliste Technik 2026- Junior pair</span> <span class="muted">5 Kandidaten: Maja KOSTADINOV / Nikita FORESTA, Chiara NORATO / Matheo STEIN, Ksenia alexandra BONGARD / Jonas MALIK, Leonhard GROSS / Maya SCHMIDT</span></div><div class="many-item kr" data-k="rangliste technik 2026- junior team female"><span class="badge">Rangliste Technik 2026- Junior team female</span> <span class="muted">3 Kandidaten: Lija jana FISCHER / Vivien HOFMANN / Cesia anna SCHMITZ, Hannah SCHMITT / Mia FRANKE / Verena KEPPELER, Chiara NORATO / Maja KOSTADINOV / Valentina KÖNIG</span></div><div class="many-item kr" data-k="rangliste technik 2026- junior team male"><span class="badge">Rangliste Technik 2026- Junior team male</span> <span class="muted">3 Kandidaten: Tristan VIERING / Mika HARDER / Sorel RIGOLL, Noa OLIWKA / Philipp GROSSE / Tim HEISTERS, Leonhard GROSS / Carlos KELLER / Aaron KERNER</span></div></div>
+  </div>
+</div>
+
+<script>
+function chkPw(){
+  if(document.getElementById('pw').value==='HansWurst'){
+    document.getElementById('pw-screen').style.display='none';
+    document.getElementById('main').style.display='';
+  }else{
+    document.getElementById('pw-err').style.display='';
+  }
+}
+
+let activeTab='all';
+function showTab(tab,btn){
+  activeTab=tab;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  doFilter();
+}
+
+function doFilter(){
+  const q=document.getElementById('search').value.toLowerCase().trim();
+  ['sec-decided','sec-open2','sec-many'].forEach(id=>{
+    const sec=document.getElementById(id);
+    if(!sec) return;
+    const type=id==='sec-decided'?'decided':id==='sec-open2'?'open2':'many';
+    let secVisible=activeTab==='all'||activeTab===type;
+    if(!secVisible){sec.style.display='none';return;}
+    sec.style.display='';
+    let anyVisible=false;
+    sec.querySelectorAll('.kr').forEach(row=>{
+      const k=row.dataset.k||'';
+      const vis=!q||k.includes(q);
+      row.classList.toggle('hidden',!vis);
+      if(vis) anyVisible=true;
+    });
+  });
+}
+</script>
+</body>
+</html>
