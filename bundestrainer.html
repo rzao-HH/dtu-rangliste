@@ -100,6 +100,23 @@ a.badge:hover{background:#c8102e}
 .leg-sep{width:1px;height:20px;background:#e0e0e0}
 .hidden{display:none!important}
 .no-results{text-align:center;color:#999;padding:30px;font-size:14px}
+
+.at-info{background:#eef6ff;border-left:3px solid #1a73e8;border-radius:6px;padding:8px 12px;margin:10px 0;font-size:12px;color:#33415c;line-height:1.45}
+.sc-out td{color:#c0c4cc!important;background:#fafafa!important}
+.sc-out td.sc-name{font-style:italic}
+.sc-out td.sc-win,.sc-out td.sc-tie{background:#fafafa!important;color:#c0c4cc!important;font-weight:400!important}
+.ptag{display:inline-block;margin-left:8px;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;vertical-align:middle;letter-spacing:.3px}
+.ptag-key{margin-left:6px;font-size:10px;color:#888;font-weight:600;vertical-align:middle;white-space:nowrap}
+.ptag-co{background:#fde7d6;color:#b35414}
+.ptag-se{background:#e3ecfd;color:#1a56b3}
+.at-mini{font-size:11px;color:#888;margin-top:4px;font-weight:600}
+.dec-table td.reason{font-size:12px;color:#555;white-space:normal}
+.dec-table tr.grp-sep td{background:#fff8e1;color:#8a6d00;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;padding:6px 14px}
+.sum-split{margin-top:10px;border-top:1px solid #e0e0e0;padding-top:8px;text-align:left;display:flex;flex-direction:column;gap:4px}
+.sum-split-row{font-size:11px;color:#555;line-height:1.35}
+.sum-split-row .ss-pct{display:inline-block;min-width:34px;font-weight:800;color:#2e7d32}
+.sum-split-row .ss-pct.ss-soft{color:#7cb342}
+.sum-split-row .ss-n{color:#999;font-weight:600}
 </style>
 </head>
 <body>
@@ -122,40 +139,28 @@ a.badge:hover{background:#c8102e}
     </div>
   </header>
 
-  <div class="summary-bar">
+  <div class="summary-bar" style="grid-template-columns:repeat(3,1fr)">
   <div class="sum-item sum-green">
-    <div class="sum-pct">14%</div>
-    <div class="sum-lbl">Nominierung bereits entschieden</div>
-    <div class="sum-n">6 Klassen</div>
+    <div class="sum-pct">38%</div>
+    <div class="sum-lbl">Nominierung entschieden</div>
+    <div class="sum-n">16 Klassen</div>
+    <div class="sum-split">
+      <div class="sum-split-row"><span class="ss-pct">14%</span> rechnerisch uneinholbar <span class="ss-n">(6)</span></div>
+      <div class="sum-split-row"><span class="ss-pct ss-soft">24%</span> nur weil Konkurrent nicht in Österreich startet <span class="ss-n">(10)</span></div>
+    </div>
   </div>
-  <div class="sum-item sum-yellow">
-    <div class="sum-pct">2%</div>
-    <div class="sum-lbl">Bisher ohne Mitbewerber</div>
-    <div class="sum-n">1 Klassen</div>
-  </div>
-  <div class="sum-item sum-orange">
-    <div class="sum-pct">26%</div>
-    <div class="sum-lbl">Noch offen — Kandidat hat mind. 1× gegen den Führenden gewonnen</div>
-    <div class="sum-n">11 Klassen</div>
-  </div>
-  <div class="sum-item sum-red">
-    <div class="sum-pct">57%</div>
-    <div class="sum-lbl">Nominierung möglich — ohne den Führenden jemals besiegt zu haben. Das Losverfahren entscheidet.</div>
-    <div class="sum-n">24 Klassen</div>
-  </div>
+  <div class="sum-item sum-orange"><div class="sum-pct">48%</div><div class="sum-lbl">Noch offen — 2 Kandidaten am Start</div><div class="sum-n">20 Klassen</div></div>
+  <div class="sum-item sum-red"><div class="sum-pct">14%</div><div class="sum-lbl">Noch offen — mehr als 2 Kandidaten am Start</div><div class="sum-n">6 Klassen</div></div>
 </div>
-<div class="summary-statement">
-  In <strong>83% der Klassen (35 von 42)</strong> könnte jemand zur WM fahren, der im direkten Vergleich <strong>seltener gewonnen hat als der jetzige Erste</strong> — unabhängig davon, wer auf dem Platz der bessere Sportler ist.
-</div>
+<div class="summary-statement">Nach Veröffentlichung der Austria-Open-Startliste sind <strong>16 von 42 Klassen entschieden</strong> (davon <strong>10</strong> nur, weil die Herausforderer nicht in Österreich antreten). In <strong>13 der 26 offenen Klassen (31 % aller Klassen)</strong> könnte trotzdem jemand zur WM fahren, der den aktuellen Ersten <strong>noch nie geschlagen hat</strong> (kein gewonnenes Direktduell, kein gewonnener CO-Vergleich) — vor der Startliste waren es noch 24 Klassen. Das Losverfahren entscheidet.</div>
 
   <div class="filter-bar">
     <input type="text" id="search" placeholder="Klasse suchen…" oninput="doFilter()">
     <div class="tabs">
       <button class="tab active" onclick="showTab('all',this)">Alle</button>
-      <button class="tab" onclick="showTab('decided',this)">✅ Entschieden (6)</button>
-      <button class="tab" onclick="showTab('single',this)">👤 Bisher ohne Mitbewerber (1)</button>
-      <button class="tab" onclick="showTab('open2',this)">⚔️ 2 Kandidaten (19)</button>
-      <button class="tab" onclick="showTab('many',this)">&#9888;&#65039; &gt;2 Kandidaten (16)</button>
+      <button class="tab" onclick="showTab('decided',this)">✅ Entschieden (16)</button>
+      <button class="tab" onclick="showTab('open2',this)">⚔️ 2 Kandidaten (20)</button>
+      <button class="tab" onclick="showTab('many',this)">&#9888;&#65039; &gt;2 Kandidaten (6)</button>
     </div>
   </div>
 
@@ -172,103 +177,50 @@ a.badge:hover{background:#c8102e}
 
   <div class="content">
     <div class="section" id="sec-decided">
-      <div class="section-title">✅ Nominierung entschieden <span class="cnt">6</span></div>
-      <table class="dec-table">
-        <thead><tr><th>Klasse</th><th>Nominierte/r</th><th style="text-align:right">Punkte</th><th style="text-align:right">2. Platz max.</th></tr></thead>
-        <tbody>
+      <div class="section-title">✅ Nominierung entschieden <span class="cnt">16</span></div>
+      <table class="dec-table"><thead><tr><th>Klasse</th><th>Nominierte/r</th><th style="text-align:right">Punkte</th><th>2. Platz max.</th><th>Hinweis</th></tr></thead><tbody>
       <tr class="kr" data-k="o66 female">
-        <td><a class="badge" href="index.html?klasse=O66+female" target="_blank">O66 female</a></td>
+        <td><a class="badge" href="index.html?klasse=O66+female" target="_blank">O66 female</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></td>
         <td><strong>Carmen DEISE</strong></td>
         <td class="num">55</td>
         <td class="num muted">max. 45.0</td>
-      </tr>
-      <tr class="kr" data-k="o66 male">
-        <td><a class="badge" href="index.html?klasse=O66+male" target="_blank">O66 male</a></td>
+      <td class="muted">✓ rechnerisch uneinholbar</td></tr><tr class="kr" data-k="o66 male">
+        <td><a class="badge" href="index.html?klasse=O66+male" target="_blank">O66 male</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></td>
         <td><strong>Manfred STADTMÜLLER</strong></td>
         <td class="num">60</td>
         <td class="num muted">max. 55.0</td>
-      </tr>
-      <tr class="kr" data-k="u50 pair">
-        <td><a class="badge" href="index.html?klasse=U50+pair" target="_blank">U50 pair</a></td>
+      <td class="muted">✓ rechnerisch uneinholbar</td></tr><tr class="kr" data-k="u50 pair">
+        <td><a class="badge" href="index.html?klasse=U50+pair" target="_blank">U50 pair</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></td>
         <td><strong>Bianca SCHOENEMEIER / Hilko PASCHKE</strong></td>
         <td class="num">60</td>
         <td class="num muted">max. 54.0</td>
-      </tr>
-      <tr class="kr" data-k="u60 female">
-        <td><a class="badge" href="index.html?klasse=U60+female" target="_blank">U60 female</a></td>
+      <td class="muted">✓ rechnerisch uneinholbar</td></tr><tr class="kr" data-k="u60 female">
+        <td><a class="badge" href="index.html?klasse=U60+female" target="_blank">U60 female</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></td>
         <td><strong>Candida TUNKEL</strong></td>
         <td class="num">60</td>
         <td class="num muted">max. 50.0</td>
-      </tr>
-      <tr class="kr" data-k="u65 female">
-        <td><a class="badge" href="index.html?klasse=U65+female" target="_blank">U65 female</a></td>
+      <td class="muted">✓ rechnerisch uneinholbar</td></tr><tr class="kr" data-k="u65 female">
+        <td><a class="badge" href="index.html?klasse=U65+female" target="_blank">U65 female</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></td>
         <td><strong>Heekyung REIMANN</strong></td>
         <td class="num">60</td>
         <td class="num muted">max. 54.0</td>
-      </tr>
-      <tr class="kr" data-k="cadet team male">
-        <td><a class="badge" href="index.html?klasse=cadet+team+male" target="_blank">cadet team male</a></td>
+      <td class="muted">✓ rechnerisch uneinholbar</td></tr><tr class="kr" data-k="cadet team male">
+        <td><a class="badge" href="index.html?klasse=cadet+team+male" target="_blank">cadet team male</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></td>
         <td><strong>Louis KREIBICH / Maximilian WANNER / Maximilian BACH</strong></td>
         <td class="num">60</td>
         <td class="num muted">max. 52.5</td>
-      </tr></tbody>
-      </table>
+      <td class="muted">✓ rechnerisch uneinholbar</td></tr>
+      <tr class="grp-sep"><td colspan="5">— faktisch entschieden nach Austria-Open-Startliste (Herausforderer treten nicht an) —</td></tr>
+      <tr class="kr" data-k="u40 male"><td><a class="badge" href="index.html?klasse=U40+male" target="_blank">U40 male</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span><div class="at-mini">🇦🇹 Austria Open: 12 Starter, 4 GER</div></td><td><strong>Fabian FRANK</strong></td><td class="num">50 Pkt</td><td class="reason" colspan="2">Herausforderer treten in dieser Klasse nicht in Österreich an → keine Punkte mehr möglich, Chance verfällt. Betrifft: <b style="color:#111">Hilko PASCHKE</b>.</td></tr><tr class="kr" data-k="cadet pair"><td><a class="badge" href="index.html?klasse=cadet+pair" target="_blank">cadet pair</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span><div class="at-mini">🇦🇹 Austria Open: 22 Starter, 4 GER</div></td><td><strong>Mira LICHTE / Louis KREIBICH</strong></td><td class="num">60 Pkt</td><td class="reason" colspan="2">Herausforderer treten in dieser Klasse nicht in Österreich an → keine Punkte mehr möglich, Chance verfällt. Betrifft: <b style="color:#111">Hideya CHABRAK / Maximilian BACH</b>.</td></tr><tr class="kr" data-k="o60 team male"><td><a class="badge" href="index.html?klasse=O60+team+male" target="_blank">O60 team male</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span><div class="at-mini">🇦🇹 Austria Open: 6 Starter, 6 GER</div></td><td><strong>Frank MAROHN / Manfred STADTMÜLLER / Jurgen KOHLER</strong></td><td class="num">30 Pkt</td><td class="reason" colspan="2">Herausforderer treten in dieser Klasse nicht in Österreich an → keine Punkte mehr möglich, Chance verfällt. Betrifft: <b style="color:#111">Volker LOHMEIER / Dieter HERBST / Dieter SCHOPS</b>.</td></tr><tr class="kr" data-k="u50 team male"><td><a class="badge" href="index.html?klasse=U50+team+male" target="_blank">U50 team male</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span><div class="at-mini">🇦🇹 Austria Open: 9 Starter, 2 GER</div></td><td><strong>Fabian FRANK / Steven BEHN / Hilko PASCHKE</strong></td><td class="num">30 Pkt</td><td class="reason" colspan="2">Herausforderer treten in dieser Klasse nicht in Österreich an → keine Punkte mehr möglich, Chance verfällt. Betrifft: <b style="color:#111">Maximilian BARTL / Patrick LEBENS / Sebastian SEIBOLD</b>.</td></tr><tr class="kr" data-k="u60 team female"><td><a class="badge" href="index.html?klasse=U60+team+female" target="_blank">U60 team female</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span><div class="at-mini">🇦🇹 Austria Open: 3 Starter, 2 GER</div></td><td><strong>Barbara SCHMITT / Konstanze ESCH / Bettina MAK</strong></td><td class="num">30.0 Pkt</td><td class="reason" colspan="2">Herausforderer treten in dieser Klasse nicht in Österreich an → keine Punkte mehr möglich, Chance verfällt. Betrifft: <b style="color:#111">Kerstin HAMACHER / Monika WAGNER / Nicole mattea ZINNER</b>.</td></tr><tr class="kr" data-k="freestyle female"><td><a class="badge" href="index.html?klasse=freestyle+female" target="_blank">freestyle female</a><span class="ptag ptag-co" title="G1 Freestyle/Para Cut-Off">CO</span><span class="ptag-key">1.:30 · 2.:25 · 3.:20 · 4.:15 · 5.:8 · ab 6.:0</span><div class="at-mini">🇦🇹 Austria Open: 10 Starter, 3 GER</div></td><td><strong>Leah LAWALL</strong></td><td class="num">45 Pkt</td><td class="reason" colspan="2">Herausforderer treten in dieser Klasse nicht in Österreich an → keine Punkte mehr möglich, Chance verfällt. Betrifft: <b style="color:#111">Rebekka HARTOK</b>.</td></tr><tr class="kr" data-k="freestyle team"><td><a class="badge" href="index.html?klasse=freestyle+team" target="_blank">freestyle team</a><span class="ptag ptag-co" title="G1 Freestyle/Para Cut-Off">CO</span><span class="ptag-key">1.:30 · 2.:25 · 3.:20 · 4.:15 · 5.:8 · ab 6.:0</span><div class="at-mini">🇦🇹 Austria Open: 7 Starter, 2 GER</div></td><td><strong>Rebekka HARTOK / Imraan ilmi NURZAMAN / Syifa fauziah NURZAMAN / Leon REICH / Wyatt SOMMERFELD</strong></td><td class="num">7.5 Pkt</td><td class="reason" colspan="2">Herausforderer treten in dieser Klasse nicht in Österreich an → keine Punkte mehr möglich, Chance verfällt. Betrifft: <b style="color:#111">Rebekka HARTOK / Imraan ilmi NURZAMAN / Syifa fauziah NURZAMAN / Leon REICH / Patrick KUZENKO</b>.</td></tr><tr class="kr" data-k="u30 female"><td><a class="badge" href="index.html?klasse=U30+female" target="_blank">U30 female</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span><div class="at-mini">🇦🇹 Austria Open: 50 Starter, 9 GER</div></td><td><strong>Adina MACHWIRTH</strong></td><td class="num">40</td><td class="reason" colspan="2">Herausforderer treten in dieser Klasse nicht in Österreich an → keine Punkte mehr möglich, Chance verfällt. Betrifft: <b style="color:#111">Pia HOFFMANN, Helena SILBERHORN</b>.</td></tr><tr class="kr" data-k="freestyle junior team"><td><a class="badge" href="index.html?klasse=freestyle+junior+team" target="_blank">freestyle junior team</a><span class="ptag ptag-co" title="G1 Freestyle/Para Cut-Off">CO</span><span class="ptag-key">1.:30 · 2.:25 · 3.:20 · 4.:15 · 5.:8 · ab 6.:0</span><div class="at-mini">🇦🇹 Austria Open: 5 Starter, 0 GER</div></td><td><strong>Melia ENGERT / Fenja ENGERT / Jorin ENGERT / Laura KRUMNOW / Jakob ORLOV</strong></td><td class="num">20</td><td class="reason" colspan="2">Herausforderer treten in dieser Klasse nicht in Österreich an → keine Punkte mehr möglich, Chance verfällt. Betrifft: <b style="color:#111">Viktoria weiyue CHEN / Constantin FURCH / Frida GÖHNE / Mats KRAUSE / Neil SOMMERFELD, Viktoria weiyue CHEN / Constantin FURCH / Frida GÖHNE / Mats KRAUSE / Henry LAKNER</b>.</td></tr><tr class="kr" data-k="o60 team female"><td><a class="badge" href="index.html?klasse=O60+team+female" target="_blank">O60 team female</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></td><td><strong>Karen HEIMANN / Doris HELY / Sylvia HOHFELD</strong></td><td class="num">15.0</td><td class="reason" colspan="2">Kein konkurrierendes Team in Österreich gemeldet — Führung nicht mehr einholbar.</td></tr></tbody></table>
     </div>
 
-    <div class="section" id="sec-single">
-      <div class="section-title">👤 Bisher ohne Mitbewerber — noch einholbar durch neuen Starter <span class="cnt">1</span></div>
-      <table class="dec-table">
-        <thead><tr><th>Klasse</th><th>Aktuell 1.</th><th style="text-align:right">Punkte</th><th style="text-align:right">Gefahr durch</th></tr></thead>
-        <tbody>
-      <tr class="kr" data-k="o60 team female">
-        <td><a class="badge" href="index.html?klasse=O60+team+female" target="_blank">O60 team female</a></td>
-        <td><strong>Karen HEIMANN / Doris HELY / Sylvia HOHFELD</strong></td>
-        <td class="num">15.0</td>
-        <td class="num muted">max. 30 (neuer Starter)</td>
-      </tr></tbody>
-      </table>
-    </div>
-
-    <div class="section" id="sec-open2">
-      <div class="section-title">⚔️ Noch offen — 2 Kandidaten <span class="cnt">19</span></div>
-      <div class="sub-title">Einzel</div><div class="cards-grid">
-  <div class="card kr" data-k="u40 male">
+    <div class="section" id="sec-open2"><div class="section-title">⚔️ Noch offen — 2 Kandidaten <span class="cnt">20</span></div>
+<div class="sub-title">Einzel</div><div class="cards-grid">
+<div class="card kr" data-k="u50 female">
     <div class="card-head">
-      <a class="badge" href="index.html?klasse=U40+male" target="_blank">U40 male</a>
+      <a class="badge" href="index.html?klasse=U50+female" target="_blank">U50 female</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span>
     </div>
-    <div class="standings">
-      <div class="sr lead-row">
-        <span class="srank">1.</span>
-        <span class="sname">Fabian FRANK</span>
-        <span class="spts">50 Pkt</span>
-      </div>
-      <div class="sr chal-row">
-        <span class="srank">2.</span>
-        <span class="sname">Hilko PASCHKE</span>
-        <span class="spts">45 Pkt</span>
-      </div>
-    </div>
-    
-    <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">1</span></span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">1</span></span></div>
-    </div>
-    <div class="axis-labels">
-      <span class="ax-y">↓ PASCHKE · Austria Open</span>
-      <span class="ax-x">FRANK · Austria Open →</span>
-    </div>
-    <div class="mtx-wrap">
-      <table class="mtx">
-        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
-        <tbody><tr><th class="rl">1. Platz</th><td class="cl">●</td><td class="cc ct">●*</td><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody>
-      </table>
-    </div>
-    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
-  </div>
-  <div class="card kr" data-k="u50 female">
-    <div class="card-head">
-      <a class="badge" href="index.html?klasse=U50+female" target="_blank">U50 female</a>
-    </div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 10 Starter in dieser Klasse, davon 4 aus 🇩🇪 GER.</div>
     <div class="standings">
       <div class="sr lead-row">
         <span class="srank">1.</span>
@@ -298,10 +250,11 @@ a.badge:hover{background:#c8102e}
     </div>
     <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
   </div>
-  <div class="card kr" data-k="u50 male">
+<div class="card kr" data-k="u50 male">
     <div class="card-head">
-      <a class="badge" href="index.html?klasse=U50+male" target="_blank">U50 male</a>
+      <a class="badge" href="index.html?klasse=U50+male" target="_blank">U50 male</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span>
     </div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 10 Starter in dieser Klasse, davon 4 aus 🇩🇪 GER.</div>
     <div class="standings">
       <div class="sr lead-row">
         <span class="srank">1.</span>
@@ -331,10 +284,11 @@ a.badge:hover{background:#c8102e}
     </div>
     <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
   </div>
-  <div class="card kr" data-k="u60 male">
+<div class="card kr" data-k="u60 male">
     <div class="card-head">
-      <a class="badge" href="index.html?klasse=U60+male" target="_blank">U60 male</a>
+      <a class="badge" href="index.html?klasse=U60+male" target="_blank">U60 male</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span>
     </div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 7 Starter in dieser Klasse, davon 3 aus 🇩🇪 GER.</div>
     <div class="standings">
       <div class="sr lead-row">
         <span class="srank">1.</span>
@@ -364,10 +318,11 @@ a.badge:hover{background:#c8102e}
     </div>
     <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
   </div>
-  <div class="card kr" data-k="u65 male">
+<div class="card kr" data-k="u65 male">
     <div class="card-head">
-      <a class="badge" href="index.html?klasse=U65+male" target="_blank">U65 male</a>
+      <a class="badge" href="index.html?klasse=U65+male" target="_blank">U65 male</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span>
     </div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 10 Starter in dieser Klasse, davon 3 aus 🇩🇪 GER.</div>
     <div class="standings">
       <div class="sr lead-row">
         <span class="srank">1.</span>
@@ -396,11 +351,29 @@ a.badge:hover{background:#c8102e}
       </table>
     </div>
     <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
-  </div></div><div class="sub-title">Team / Paar</div><div class="cards-grid">
-  <div class="card kr" data-k="u30 pair">
-    <div class="card-head">
-      <a class="badge" href="index.html?klasse=U30+pair" target="_blank">U30 pair</a>
+  </div>
+<div class="card kr" data-k="u40 female">
+    <div class="card-head"><a class="badge" href="index.html?klasse=U40+female" target="_blank">U40 female</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 18 Starter in dieser Klasse, davon 7 aus 🇩🇪 GER. <span style="color:#c62828">Nicht am Start → Chance verfällt:</span> Baerbel REINER (15).</div>
+    <div class="standings">
+      <div class="sr lead-row"><span class="srank">1.</span><span class="sname">Stephanie ELBERS</span><span class="spts">45 Pkt</span></div>
+      <div class="sr chal-row"><span class="srank">2.</span><span class="sname">Francesca DINCAO</span><span class="spts">18 Pkt</span></div>
     </div>
+    <div class="duel-box">
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-none">–</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">1</span></span></div>
+    </div>
+    <div class="axis-labels"><span class="ax-y">↓ DINCAO · Austria Open</span><span class="ax-x">ELBERS · Austria Open →</span></div>
+    <div class="mtx-wrap"><table class="mtx"><thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead><tbody><tr><th class="rl">1. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td><td class="cc">●</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody></table></div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+</div>
+<div class="sub-title">Team / Paar</div><div class="cards-grid">
+<div class="card kr" data-k="u30 pair">
+    <div class="card-head">
+      <a class="badge" href="index.html?klasse=U30+pair" target="_blank">U30 pair</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span>
+    </div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 22 Starter in dieser Klasse, davon 6 aus 🇩🇪 GER.</div>
     <div class="standings">
       <div class="sr lead-row">
         <span class="srank">1.</span>
@@ -430,10 +403,11 @@ a.badge:hover{background:#c8102e}
     </div>
     <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
   </div>
-  <div class="card kr" data-k="u60 pair">
+<div class="card kr" data-k="u60 pair">
     <div class="card-head">
-      <a class="badge" href="index.html?klasse=U60+pair" target="_blank">U60 pair</a>
+      <a class="badge" href="index.html?klasse=U60+pair" target="_blank">U60 pair</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span>
     </div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 7 Starter in dieser Klasse, davon 6 aus 🇩🇪 GER.</div>
     <div class="standings">
       <div class="sr lead-row">
         <span class="srank">1.</span>
@@ -463,76 +437,11 @@ a.badge:hover{background:#c8102e}
     </div>
     <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
   </div>
-  <div class="card kr" data-k="cadet pair">
+<div class="card kr" data-k="u30 team female">
     <div class="card-head">
-      <a class="badge" href="index.html?klasse=cadet+pair" target="_blank">cadet pair</a>
+      <a class="badge" href="index.html?klasse=U30+team+female" target="_blank">U30 team female</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span>
     </div>
-    <div class="standings">
-      <div class="sr lead-row">
-        <span class="srank">1.</span>
-        <span class="sname">Mira LICHTE / Louis KREIBICH</span>
-        <span class="spts">60 Pkt</span>
-      </div>
-      <div class="sr chal-row">
-        <span class="srank">2.</span>
-        <span class="sname">Hideya CHABRAK / Maximilian BACH</span>
-        <span class="spts">45 Pkt</span>
-      </div>
-    </div>
-    <div class="unfair-banner">⚠️ <strong>CHABRAK/…</strong> könnte zur WM fahren, ohne <strong>LICHTE/…</strong> jemals besiegt zu haben (3–0 für LICHTE/…)</div>
-    <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">0</span></span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
-    </div>
-    <div class="axis-labels">
-      <span class="ax-y">↓ CHABRAK/… · Austria Open</span>
-      <span class="ax-x">LICHTE/… · Austria Open →</span>
-    </div>
-    <div class="mtx-wrap">
-      <table class="mtx">
-        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
-        <tbody><tr><th class="rl">1. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td><td class="cc ct">●*</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody>
-      </table>
-    </div>
-    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
-  </div>
-  <div class="card kr" data-k="o60 team male">
-    <div class="card-head">
-      <a class="badge" href="index.html?klasse=O60+team+male" target="_blank">O60 team male</a>
-    </div>
-    <div class="standings">
-      <div class="sr lead-row">
-        <span class="srank">1.</span>
-        <span class="sname">Frank MAROHN / Manfred STADTMÜLLER / Jurgen KOHLER</span>
-        <span class="spts">30 Pkt</span>
-      </div>
-      <div class="sr chal-row">
-        <span class="srank">2.</span>
-        <span class="sname">Volker LOHMEIER / Dieter HERBST / Dieter SCHOPS</span>
-        <span class="spts">25.0 Pkt</span>
-      </div>
-    </div>
-    <div class="unfair-banner">⚠️ <strong>LOHMEIER/…</strong> könnte zur WM fahren, ohne <strong>MAROHN/…</strong> jemals besiegt zu haben (2–0 für MAROHN/…)</div>
-    <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-none">–</span></span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
-    </div>
-    <div class="axis-labels">
-      <span class="ax-y">↓ LOHMEIER/… · Austria Open</span>
-      <span class="ax-x">MAROHN/… · Austria Open →</span>
-    </div>
-    <div class="mtx-wrap">
-      <table class="mtx">
-        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
-        <tbody><tr><th class="rl">1. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody>
-      </table>
-    </div>
-    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
-  </div>
-  <div class="card kr" data-k="u30 team female">
-    <div class="card-head">
-      <a class="badge" href="index.html?klasse=U30+team+female" target="_blank">U30 team female</a>
-    </div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 24 Starter in dieser Klasse, davon 6 aus 🇩🇪 GER.</div>
     <div class="standings">
       <div class="sr lead-row">
         <span class="srank">1.</span>
@@ -562,10 +471,11 @@ a.badge:hover{background:#c8102e}
     </div>
     <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
   </div>
-  <div class="card kr" data-k="u50 team female">
+<div class="card kr" data-k="u50 team female">
     <div class="card-head">
-      <a class="badge" href="index.html?klasse=U50+team+female" target="_blank">U50 team female</a>
+      <a class="badge" href="index.html?klasse=U50+team+female" target="_blank">U50 team female</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span>
     </div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 15 Starter in dieser Klasse, davon 6 aus 🇩🇪 GER.</div>
     <div class="standings">
       <div class="sr lead-row">
         <span class="srank">1.</span>
@@ -595,76 +505,11 @@ a.badge:hover{background:#c8102e}
     </div>
     <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
   </div>
-  <div class="card kr" data-k="u50 team male">
+<div class="card kr" data-k="cadet team female">
     <div class="card-head">
-      <a class="badge" href="index.html?klasse=U50+team+male" target="_blank">U50 team male</a>
+      <a class="badge" href="index.html?klasse=cadet+team+female" target="_blank">cadet team female</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span>
     </div>
-    <div class="standings">
-      <div class="sr lead-row">
-        <span class="srank">1.</span>
-        <span class="sname">Fabian FRANK / Steven BEHN / Hilko PASCHKE</span>
-        <span class="spts">30 Pkt</span>
-      </div>
-      <div class="sr chal-row">
-        <span class="srank">2.</span>
-        <span class="sname">Maximilian BARTL / Patrick LEBENS / Sebastian SEIBOLD</span>
-        <span class="spts">10.0 Pkt</span>
-      </div>
-    </div>
-    <div class="unfair-banner">⚠️ <strong>BARTL/…</strong> könnte zur WM fahren, ohne <strong>FRANK/…</strong> jemals besiegt zu haben (2–0 für FRANK/…)</div>
-    <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-none">–</span></span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
-    </div>
-    <div class="axis-labels">
-      <span class="ax-y">↓ BARTL/… · Austria Open</span>
-      <span class="ax-x">FRANK/… · Austria Open →</span>
-    </div>
-    <div class="mtx-wrap">
-      <table class="mtx">
-        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
-        <tbody><tr><th class="rl">1. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody>
-      </table>
-    </div>
-    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
-  </div>
-  <div class="card kr" data-k="u60 team female">
-    <div class="card-head">
-      <a class="badge" href="index.html?klasse=U60+team+female" target="_blank">U60 team female</a>
-    </div>
-    <div class="standings">
-      <div class="sr lead-row">
-        <span class="srank">1.</span>
-        <span class="sname">Barbara SCHMITT / Konstanze ESCH / Bettina MAK</span>
-        <span class="spts">30.0 Pkt</span>
-      </div>
-      <div class="sr chal-row">
-        <span class="srank">2.</span>
-        <span class="sname">Kerstin HAMACHER / Monika WAGNER / Nicole mattea ZINNER</span>
-        <span class="spts">20 Pkt</span>
-      </div>
-    </div>
-    
-    <div class="duel-box">
-      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-none">–</span></span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">1</span></span></div>
-    </div>
-    <div class="axis-labels">
-      <span class="ax-y">↓ HAMACHER/… · Austria Open</span>
-      <span class="ax-x">SCHMITT/… · Austria Open →</span>
-    </div>
-    <div class="mtx-wrap">
-      <table class="mtx">
-        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
-        <tbody><tr><th class="rl">1. Platz</th><td class="cl">●</td><td class="cc ct">●*</td><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody>
-      </table>
-    </div>
-    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
-  </div>
-  <div class="card kr" data-k="cadet team female">
-    <div class="card-head">
-      <a class="badge" href="index.html?klasse=cadet+team+female" target="_blank">cadet team female</a>
-    </div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 21 Starter in dieser Klasse, davon 6 aus 🇩🇪 GER.</div>
     <div class="standings">
       <div class="sr lead-row">
         <span class="srank">1.</span>
@@ -693,44 +538,104 @@ a.badge:hover{background:#c8102e}
       </table>
     </div>
     <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
-  </div></div><div class="sub-title">Freestyle</div><div class="cards-grid">
-  <div class="card kr" data-k="freestyle female">
-    <div class="card-head">
-      <a class="badge" href="index.html?klasse=freestyle+female" target="_blank">freestyle female</a>
-    </div>
+  </div>
+<div class="card kr" data-k="o60 pair">
+    <div class="card-head"><a class="badge" href="index.html?klasse=O60+pair" target="_blank">O60 pair</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 9 Starter in dieser Klasse, davon 4 aus 🇩🇪 GER. <span style="color:#c62828">Nicht am Start → Chance verfällt:</span> Werner HORNUNG / Carmen DEISE (30).</div>
     <div class="standings">
-      <div class="sr lead-row">
-        <span class="srank">1.</span>
-        <span class="sname">Leah LAWALL</span>
-        <span class="spts">50 Pkt</span>
-      </div>
-      <div class="sr chal-row">
-        <span class="srank">2.</span>
-        <span class="sname">Rebekka HARTOK</span>
-        <span class="spts">28 Pkt</span>
-      </div>
+      <div class="sr lead-row"><span class="srank">1.</span><span class="sname">Manfred STADTMUELLER / Sylvia HOHFELD</span><span class="spts">55 Pkt</span></div>
+      <div class="sr chal-row"><span class="srank">2.</span><span class="sname">Heekyung REIMANN / Werner UNLAND</span><span class="spts">50 Pkt</span></div>
     </div>
-    <div class="unfair-banner">⚠️ <strong>HARTOK</strong> könnte zur WM fahren, ohne <strong>LAWALL</strong> jemals besiegt zu haben (2–0 für LAWALL)</div>
+    <div class="duel-box">
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-lead">0</span> : <span class="d-chal">1</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
+    </div>
+    <div class="axis-labels"><span class="ax-y">↓ REIMANN/… · Austria Open</span><span class="ax-x">STADTMUELLER/… · Austria Open →</span></div>
+    <div class="mtx-wrap"><table class="mtx"><thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead><tbody><tr><th class="rl">1. Platz</th><td class="cl ct">●*</td><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl ct">●*</td><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl ct">●*</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody></table></div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+<div class="card kr" data-k="rangliste technik 2026- junior pair">
+    <div class="card-head"><a class="badge" href="index.html?klasse=Rangliste+Technik+2026-+Junior+pair" target="_blank">Rangliste Technik 2026- Junior pair</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 34 Starter in dieser Klasse, davon 4 aus 🇩🇪 GER. <span style="color:#c62828">Nicht am Start → Chance verfällt:</span> Chiara NORATO / Matheo STEIN (30), Leonhard GROSS / Maya SCHMIDT (8), Ajla HANDANOVIC / Milad SOJUDI-GHAMNAK (4).</div>
+    <div class="standings">
+      <div class="sr lead-row"><span class="srank">1.</span><span class="sname">Maja KOSTADINOV / Nikita FORESTA</span><span class="spts">34 Pkt</span></div>
+      <div class="sr chal-row"><span class="srank">2.</span><span class="sname">Ksenia alexandra BONGARD / Jonas MALIK</span><span class="spts">24 Pkt</span></div>
+    </div>
     <div class="duel-box">
       <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-none">–</span></span></div>
       <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">2</span> : <span class="d-chal">0</span></span></div>
     </div>
-    <div class="axis-labels">
-      <span class="ax-y">↓ HARTOK · Austria Open</span>
-      <span class="ax-x">LAWALL · Austria Open →</span>
-    </div>
-    <div class="mtx-wrap">
-      <table class="mtx">
-        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
-        <tbody><tr><th class="rl">1. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td><td class="cc ct">●*</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody>
-      </table>
-    </div>
+    <div class="axis-labels"><span class="ax-y">↓ BONGARD/… · Austria Open</span><span class="ax-x">KOSTADINOV/… · Austria Open →</span></div>
+    <div class="mtx-wrap"><table class="mtx"><thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead><tbody><tr><th class="rl">1. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody></table></div>
     <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
   </div>
-  <div class="card kr" data-k="freestyle junior male">
-    <div class="card-head">
-      <a class="badge" href="index.html?klasse=freestyle+junior+male" target="_blank">freestyle junior male</a>
+<div class="card kr" data-k="u30 team male">
+    <div class="card-head"><a class="badge" href="index.html?klasse=U30+team+male" target="_blank">U30 team male</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 12 Starter in dieser Klasse, davon 3 aus 🇩🇪 GER. <span style="color:#c62828">Nicht am Start → Chance verfällt:</span> Noah Mo KRAUSE / Louis THOMASCHEWSKI / Matyas olivier ZINNER (25).</div>
+    <div class="standings">
+      <div class="sr lead-row"><span class="srank">1.</span><span class="sname">Alexander SCHULZ / Damon Ricardo MACKOWSKI / Dustin SEYBOLD</span><span class="spts">38 Pkt</span></div>
+      <div class="sr chal-row"><span class="srank">2.</span><span class="sname">Niklas KOOPMANN / Eric LIESER / Christoph BISMARCK</span><span class="spts">38 Pkt</span></div>
     </div>
+    <div class="duel-box">
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-none">–</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">1</span></span></div>
+    </div>
+    <div class="axis-labels"><span class="ax-y">↓ KOOPMANN/… · Austria Open</span><span class="ax-x">SCHULZ/… · Austria Open →</span></div>
+    <div class="mtx-wrap"><table class="mtx"><thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead><tbody><tr><th class="rl">1. Platz</th><td class="cl ct">●*</td><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl ct">●*</td><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl ct">●*</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl ct">●*</td><td class="cc">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl ct">●*</td></tr></tbody></table></div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+<div class="card kr" data-k="u60 team male">
+    <div class="card-head"><a class="badge" href="index.html?klasse=U60+team+male" target="_blank">U60 team male</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 11 Starter in dieser Klasse, davon 7 aus 🇩🇪 GER. <span style="color:#c62828">Nicht am Start → Chance verfällt:</span> Leonhard HANAWITSCH / Veit OEHLER / Frank STEFFEN (35).</div>
+    <div class="standings">
+      <div class="sr lead-row"><span class="srank">1.</span><span class="sname">Kai THOMASCHEWSKI / Oliver FRISKE / Carsten SCHWEIZER</span><span class="spts">45 Pkt</span></div>
+      <div class="sr chal-row"><span class="srank">2.</span><span class="sname">Anh-tuan DO / Ingo LEBENS / Michael STAMM</span><span class="spts">30 Pkt</span></div>
+    </div>
+    <div class="duel-box">
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-none">–</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">0</span> : <span class="d-chal">2</span></span></div>
+    </div>
+    <div class="axis-labels"><span class="ax-y">↓ DO/… · Austria Open</span><span class="ax-x">THOMASCHEWSKI/… · Austria Open →</span></div>
+    <div class="mtx-wrap"><table class="mtx"><thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead><tbody><tr><th class="rl">1. Platz</th><td class="cl">●</td><td class="cc ct">●*</td><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody></table></div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+<div class="card kr" data-k="rangliste technik 2026- junior team female">
+    <div class="card-head"><a class="badge" href="index.html?klasse=Rangliste+Technik+2026-+Junior+team+female" target="_blank">Rangliste Technik 2026- Junior team female</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 15 Starter in dieser Klasse, davon 6 aus 🇩🇪 GER. <span style="color:#c62828">Nicht am Start → Chance verfällt:</span> Hannah SCHMITT / Mia FRANKE / Verena KEPPELER (30).</div>
+    <div class="standings">
+      <div class="sr lead-row"><span class="srank">1.</span><span class="sname">Lija jana FISCHER / Vivien HOFMANN / Cesia anna SCHMITZ</span><span class="spts">45 Pkt</span></div>
+      <div class="sr chal-row"><span class="srank">2.</span><span class="sname">Chiara NORATO / Maja KOSTADINOV / Valentina KÖNIG</span><span class="spts">28 Pkt</span></div>
+    </div>
+    <div class="duel-box">
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">0</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">1</span></span></div>
+    </div>
+    <div class="axis-labels"><span class="ax-y">↓ NORATO/… · Austria Open</span><span class="ax-x">FISCHER/… · Austria Open →</span></div>
+    <div class="mtx-wrap"><table class="mtx"><thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead><tbody><tr><th class="rl">1. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody></table></div>
+    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+<div class="card kr" data-k="rangliste technik 2026- junior team male">
+    <div class="card-head"><a class="badge" href="index.html?klasse=Rangliste+Technik+2026-+Junior+team+male" target="_blank">Rangliste Technik 2026- Junior team male</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 6 Starter in dieser Klasse, davon 5 aus 🇩🇪 GER. <span style="color:#c62828">Nicht am Start → Chance verfällt:</span> Leonhard GROSS / Carlos KELLER / Aaron KERNER (12).</div>
+    <div class="standings">
+      <div class="sr lead-row"><span class="srank">1.</span><span class="sname">Tristan VIERING / Mika HARDER / Sorel RIGOLL</span><span class="spts">35 Pkt</span></div>
+      <div class="sr chal-row"><span class="srank">2.</span><span class="sname">Noa OLIWKA / Philipp GROSSE / Tim HEISTERS</span><span class="spts">30 Pkt</span></div>
+    </div>
+    <div class="duel-box">
+      <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-none">–</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">1</span></span></div>
+    </div>
+    <div class="axis-labels"><span class="ax-y">↓ OLIWKA/… · Austria Open</span><span class="ax-x">VIERING/… · Austria Open →</span></div>
+    <div class="mtx-wrap"><table class="mtx"><thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead><tbody><tr><th class="rl">1. Platz</th><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody></table></div>
+    
+  </div>
+</div>
+<div class="sub-title">Freestyle</div><div class="cards-grid">
+<div class="card kr" data-k="freestyle junior male">
+    <div class="card-head">
+      <a class="badge" href="index.html?klasse=freestyle+junior+male" target="_blank">freestyle junior male</a><span class="ptag ptag-co" title="G1 Freestyle/Para Cut-Off">CO</span><span class="ptag-key">1.:30 · 2.:25 · 3.:20 · 4.:15 · 5.:8 · ab 6.:0</span>
+    </div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 14 Starter in dieser Klasse, davon 3 aus 🇩🇪 GER.</div>
     <div class="standings">
       <div class="sr lead-row">
         <span class="srank">1.</span>
@@ -753,17 +658,16 @@ a.badge:hover{background:#c8102e}
       <span class="ax-x">KAMPKE · Austria Open →</span>
     </div>
     <div class="mtx-wrap">
-      <table class="mtx">
-        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
-        <tbody><tr><th class="rl">1. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td><td class="cc ct">●*</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody>
+      <table class="mtx"><thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>4. Platz</th><th>5. Platz</th><th>kein</th></tr></thead><tbody><tr><th class="rl">1. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td><td class="cc ct">●*</td><td class="cc ct">●*</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">4. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody>
       </table>
     </div>
     <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
   </div>
-  <div class="card kr" data-k="freestyle junior pair">
+<div class="card kr" data-k="freestyle junior pair">
     <div class="card-head">
-      <a class="badge" href="index.html?klasse=freestyle+junior+pair" target="_blank">freestyle junior pair</a>
+      <a class="badge" href="index.html?klasse=freestyle+junior+pair" target="_blank">freestyle junior pair</a><span class="ptag ptag-co" title="G1 Freestyle/Para Cut-Off">CO</span><span class="ptag-key">1.:30 · 2.:25 · 3.:20 · 4.:15 · 5.:8 · ab 6.:0</span>
     </div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 8 Starter in dieser Klasse, davon 4 aus 🇩🇪 GER.</div>
     <div class="standings">
       <div class="sr lead-row">
         <span class="srank">1.</span>
@@ -786,17 +690,16 @@ a.badge:hover{background:#c8102e}
       <span class="ax-x">RIESEMANN/… · Austria Open →</span>
     </div>
     <div class="mtx-wrap">
-      <table class="mtx">
-        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
-        <tbody><tr><th class="rl">1. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody>
+      <table class="mtx"><thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>4. Platz</th><th>5. Platz</th><th>kein</th></tr></thead><tbody><tr><th class="rl">1. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">4. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody>
       </table>
     </div>
     
   </div>
-  <div class="card kr" data-k="freestyle pair">
+<div class="card kr" data-k="freestyle pair">
     <div class="card-head">
-      <a class="badge" href="index.html?klasse=freestyle+pair" target="_blank">freestyle pair</a>
+      <a class="badge" href="index.html?klasse=freestyle+pair" target="_blank">freestyle pair</a><span class="ptag ptag-co" title="G1 Freestyle/Para Cut-Off">CO</span><span class="ptag-key">1.:30 · 2.:25 · 3.:20 · 4.:15 · 5.:8 · ab 6.:0</span>
     </div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 8 Starter in dieser Klasse, davon 3 aus 🇩🇪 GER.</div>
     <div class="standings">
       <div class="sr lead-row">
         <span class="srank">1.</span>
@@ -819,225 +722,108 @@ a.badge:hover{background:#c8102e}
       <span class="ax-x">HARTOK/… · Austria Open →</span>
     </div>
     <div class="mtx-wrap">
-      <table class="mtx">
-        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
-        <tbody><tr><th class="rl">1. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td><td class="cc ct">●*</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody>
+      <table class="mtx"><thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>4. Platz</th><th>5. Platz</th><th>kein</th></tr></thead><tbody><tr><th class="rl">1. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td><td class="cc ct">●*</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">4. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody>
       </table>
     </div>
     <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
   </div>
-  <div class="card kr" data-k="freestyle team">
-    <div class="card-head">
-      <a class="badge" href="index.html?klasse=freestyle+team" target="_blank">freestyle team</a>
-    </div>
+<div class="card kr" data-k="freestyle male">
+    <div class="card-head"><a class="badge" href="index.html?klasse=freestyle+male" target="_blank">freestyle male</a><span class="ptag ptag-co" title="G1 Freestyle/Para Cut-Off">CO</span><span class="ptag-key">1.:30 · 2.:25 · 3.:20 · 4.:15 · 5.:8 · ab 6.:0</span></div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 14 Starter in dieser Klasse, davon 2 aus 🇩🇪 GER. <span style="color:#c62828">Nicht am Start → Chance verfällt:</span> Martin JEGLINSKI (8).</div>
     <div class="standings">
-      <div class="sr lead-row">
-        <span class="srank">1.</span>
-        <span class="sname">Rebekka HARTOK / Imraan ilmi NURZAMAN / Syifa fauziah NURZAMAN / Leon REICH / Wyatt SOMMERFELD</span>
-        <span class="spts">7.5 Pkt</span>
-      </div>
-      <div class="sr chal-row">
-        <span class="srank">2.</span>
-        <span class="sname">Rebekka HARTOK / Imraan ilmi NURZAMAN / Syifa fauziah NURZAMAN / Leon REICH / Patrick KUZENKO</span>
-        <span class="spts">7.5 Pkt</span>
-      </div>
+      <div class="sr lead-row"><span class="srank">1.</span><span class="sname">Imraan ilmi NURZAMAN</span><span class="spts">25 Pkt</span></div>
+      <div class="sr chal-row"><span class="srank">2.</span><span class="sname">Wyatt SOMMERFELD</span><span class="spts">15 Pkt</span></div>
     </div>
-    
     <div class="duel-box">
       <div class="duel-row"><span class="duel-label">SE Direktduelle</span><span class="duel-val"><span class="d-none">–</span></span></div>
-      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-none">–</span></span></div>
+      <div class="duel-row"><span class="duel-label">CO Vergleich</span><span class="duel-val"><span class="d-lead">1</span> : <span class="d-chal">1</span></span></div>
     </div>
-    <div class="axis-labels">
-      <span class="ax-y">↓ HARTOK/… · Austria Open</span>
-      <span class="ax-x">HARTOK/… · Austria Open →</span>
-    </div>
-    <div class="mtx-wrap">
-      <table class="mtx">
-        <thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>5. Platz</th><th>kein</th></tr></thead>
-        <tbody><tr><th class="rl">1. Platz</th><td class="cc ct">●*</td><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cc ct">●*</td><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td><td class="cc">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td></tr></tbody>
-      </table>
-    </div>
-    <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
-  </div></div>
-    </div>
+    <div class="axis-labels"><span class="ax-y">↓ SOMMERFELD · Austria Open</span><span class="ax-x">NURZAMAN · Austria Open →</span></div>
+    <div class="mtx-wrap"><table class="mtx"><thead><tr><th></th><th>1. Platz</th><th>2. Platz</th><th>3. Platz</th><th>4. Platz</th><th>5. Platz</th><th>kein</th></tr></thead><tbody><tr><th class="rl">1. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td><td class="cc">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">2. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc ct">●*</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">3. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td><td class="cc">●</td></tr><tr><th class="rl">4. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cc">●</td></tr><tr><th class="rl">5. Platz</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr><tr><th class="rl">kein</th><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td><td class="cl">●</td></tr></tbody></table></div>
+    
+  <div class="tb-note">* Gleichstand → Tiebreaker (letztes Turnier entscheidet)</div>
+  </div>
+</div>
+</div>
 
-    <div class="section" id="sec-many"><div class="section-title">&#9888;&#65039; Noch offen &mdash; mehr als 2 Kandidaten <span class="cnt">16</span></div><div class="sub-title">Einzel</div><div class="many-group">
-        <div class="many-card kr" data-k="u30 female">
-          <div class="card-head"><a class="badge" href="index.html?klasse=U30+female" target="_blank">U30 female</a></div>
-          <div class="unfair-banner">⚠️ <strong>MACHWIRTH</strong> hat noch nie gegen einen dieser Kandidaten verloren — trotzdem könnten sie zur WM fahren, ohne MACHWIRTH jemals besiegt zu haben: <strong>SILBERHORN (3–0)</strong></div>
-          <div class="sc-wrap">
-            <table class="sc-table">
-              <thead><tr><th></th><th>Athlet</th><th>Aktuell</th><th>→ 1. Platz</th><th>→ 2. Platz</th><th>→ 3. Platz</th><th>→ 5. Platz</th><th>→ kein</th></tr></thead>
-              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Adina MACHWIRTH</strong></td><td class="sc-cur">40</td><td class="sc-win">60</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-tie">40</td><td class="sc-tie">40</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Pia HOFFMANN</td><td class="sc-cur">30</td><td class="sc-win">60</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-no">38</td><td class="sc-no">30</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Helena SILBERHORN</td><td class="sc-cur">10</td><td class="sc-tie">40</td><td class="sc-no">35</td><td class="sc-no">30</td><td class="sc-no">18</td><td class="sc-no">10</td></tr></tbody>
-            </table>
-          </div>
-          <div class="sc-note">Grün = würde aktuellen 1. Platz (Stand heute) überholen — nicht berücksichtigt: der Führende könnte sich beim Austria Open ebenfalls verbessern</div>
-        </div>
-        <div class="many-card kr" data-k="u30 male">
-          <div class="card-head"><a class="badge" href="index.html?klasse=U30+male" target="_blank">U30 male</a></div>
+    <div class="section" id="sec-many"><div class="section-title">&#9888;&#65039; Noch offen — mehr als 2 Kandidaten <span class="cnt">6</span></div>
+<div class="sub-title">Einzel</div><div class="many-group">
+<div class="many-card kr" data-k="u30 male">
+          <div class="card-head"><a class="badge" href="index.html?klasse=U30+male" target="_blank">U30 male</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 36 Starter in dieser Klasse, davon 4 aus 🇩🇪 GER. <span style="color:#c62828">Nicht am Start → Chance verfällt:</span> Leon REICH (8), Matyas olivier ZINNER (5), Wyatt SOMMERFELD (5), Erik ZENKNER (0), Kenneth JANNASCH (0), Louis THOMASCHEWSKI (0), Niklas KOOPMANN (0), Noah JOSTING (0).</div>
           <div class="unfair-banner">⚠️ <strong>KUZENKO</strong> hat noch nie gegen einen dieser Kandidaten verloren — trotzdem könnten sie zur WM fahren, ohne KUZENKO jemals besiegt zu haben: <strong>DO (2–0), REICH (2–0), ZINNER (3–0), SOMMERFELD (1–0), ZENKNER (1–0), THOMASCHEWSKI (3–0), KOOPMANN (1–0), JOSTING (1–0), SCHULZ (2–0)</strong></div>
           <div class="sc-wrap">
             <table class="sc-table">
               <thead><tr><th></th><th>Athlet</th><th>Aktuell</th><th>→ 1. Platz</th><th>→ 2. Platz</th><th>→ 3. Platz</th><th>→ 5. Platz</th><th>→ kein</th></tr></thead>
-              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Patrick KUZENKO</strong></td><td class="sc-cur">25</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-win">33</td><td class="sc-tie">25</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Tung-duong tim DO</td><td class="sc-cur">23</td><td class="sc-win">48</td><td class="sc-win">43</td><td class="sc-win">38</td><td class="sc-win">26</td><td class="sc-no">23</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Mian FROMM</td><td class="sc-cur">20</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-win">40</td><td class="sc-win">28</td><td class="sc-no">20</td></tr><tr><td class="sc-rank">4.</td><td class="sc-name">Leon REICH</td><td class="sc-cur">8</td><td class="sc-win">38</td><td class="sc-win">33</td><td class="sc-win">28</td><td class="sc-no">16</td><td class="sc-no">8</td></tr><tr><td class="sc-rank">5.</td><td class="sc-name">Matyas olivier ZINNER</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-win">30</td><td class="sc-tie">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr><td class="sc-rank">6.</td><td class="sc-name">Wyatt SOMMERFELD</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-win">30</td><td class="sc-tie">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr><td class="sc-rank">7.</td><td class="sc-name">Erik ZENKNER</td><td class="sc-cur">0</td><td class="sc-win">30</td><td class="sc-tie">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">8.</td><td class="sc-name">Kenneth JANNASCH</td><td class="sc-cur">0</td><td class="sc-win">30</td><td class="sc-tie">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">9.</td><td class="sc-name">Louis THOMASCHEWSKI</td><td class="sc-cur">0</td><td class="sc-win">30</td><td class="sc-tie">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">10.</td><td class="sc-name">Niklas KOOPMANN</td><td class="sc-cur">0</td><td class="sc-win">30</td><td class="sc-tie">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">11.</td><td class="sc-name">Noah JOSTING</td><td class="sc-cur">0</td><td class="sc-win">30</td><td class="sc-tie">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">12.</td><td class="sc-name">Alexander SCHULZ</td><td class="sc-cur">0</td><td class="sc-win">30</td><td class="sc-tie">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr></tbody>
+              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Patrick KUZENKO</strong></td><td class="sc-cur">25</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-win">33</td><td class="sc-tie">25</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Tung-duong tim DO</td><td class="sc-cur">23</td><td class="sc-win">48</td><td class="sc-win">43</td><td class="sc-win">38</td><td class="sc-win">26</td><td class="sc-no">23</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Mian FROMM</td><td class="sc-cur">20</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-win">40</td><td class="sc-win">28</td><td class="sc-no">20</td></tr><tr class="sc-out"><td class="sc-rank">4.</td><td class="sc-name">Leon REICH</td><td class="sc-cur">8</td><td class="sc-win">38</td><td class="sc-win">33</td><td class="sc-win">28</td><td class="sc-no">16</td><td class="sc-no">8</td></tr><tr class="sc-out"><td class="sc-rank">5.</td><td class="sc-name">Matyas olivier ZINNER</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-win">30</td><td class="sc-tie">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr class="sc-out"><td class="sc-rank">6.</td><td class="sc-name">Wyatt SOMMERFELD</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-win">30</td><td class="sc-tie">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr class="sc-out"><td class="sc-rank">7.</td><td class="sc-name">Erik ZENKNER</td><td class="sc-cur">0</td><td class="sc-win">30</td><td class="sc-tie">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr class="sc-out"><td class="sc-rank">8.</td><td class="sc-name">Kenneth JANNASCH</td><td class="sc-cur">0</td><td class="sc-win">30</td><td class="sc-tie">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr class="sc-out"><td class="sc-rank">9.</td><td class="sc-name">Louis THOMASCHEWSKI</td><td class="sc-cur">0</td><td class="sc-win">30</td><td class="sc-tie">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr class="sc-out"><td class="sc-rank">10.</td><td class="sc-name">Niklas KOOPMANN</td><td class="sc-cur">0</td><td class="sc-win">30</td><td class="sc-tie">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr class="sc-out"><td class="sc-rank">11.</td><td class="sc-name">Noah JOSTING</td><td class="sc-cur">0</td><td class="sc-win">30</td><td class="sc-tie">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">12.</td><td class="sc-name">Alexander SCHULZ</td><td class="sc-cur">0</td><td class="sc-win">30</td><td class="sc-tie">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr></tbody>
             </table>
           </div>
           <div class="sc-note">Grün = würde aktuellen 1. Platz (Stand heute) überholen — nicht berücksichtigt: der Führende könnte sich beim Austria Open ebenfalls verbessern</div>
         </div>
-        <div class="many-card kr" data-k="u40 female">
-          <div class="card-head"><a class="badge" href="index.html?klasse=U40+female" target="_blank">U40 female</a></div>
-          
-          <div class="sc-wrap">
-            <table class="sc-table">
-              <thead><tr><th></th><th>Athlet</th><th>Aktuell</th><th>→ 1. Platz</th><th>→ 2. Platz</th><th>→ 3. Platz</th><th>→ 5. Platz</th><th>→ kein</th></tr></thead>
-              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Stephanie ELBERS</strong></td><td class="sc-cur">45</td><td class="sc-win">70</td><td class="sc-win">65</td><td class="sc-win">60</td><td class="sc-win">48</td><td class="sc-tie">45</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Francesca DINCAO</td><td class="sc-cur">18</td><td class="sc-win">48</td><td class="sc-no">43</td><td class="sc-no">38</td><td class="sc-no">26</td><td class="sc-no">18</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Baerbel REINER</td><td class="sc-cur">15</td><td class="sc-tie">45</td><td class="sc-no">40</td><td class="sc-no">35</td><td class="sc-no">23</td><td class="sc-no">15</td></tr></tbody>
-            </table>
-          </div>
-          <div class="sc-note">Grün = würde aktuellen 1. Platz (Stand heute) überholen — nicht berücksichtigt: der Führende könnte sich beim Austria Open ebenfalls verbessern</div>
-        </div>
-        <div class="many-card kr" data-k="cadet female">
-          <div class="card-head"><a class="badge" href="index.html?klasse=cadet+female" target="_blank">cadet female</a></div>
+<div class="many-card kr" data-k="cadet female">
+          <div class="card-head"><a class="badge" href="index.html?klasse=cadet+female" target="_blank">cadet female</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 44 Starter in dieser Klasse, davon 11 aus 🇩🇪 GER. <span style="color:#c62828">Nicht am Start → Chance verfällt:</span> Hideya CHABRAK (5).</div>
           <div class="unfair-banner">⚠️ <strong>NAZIR</strong> hat noch nie gegen einen dieser Kandidaten verloren — trotzdem könnten sie zur WM fahren, ohne NAZIR jemals besiegt zu haben: <strong>ERDOGAN (3–0), MEYER (3–0), CHEN (2–0), CHABRAK (3–0)</strong></div>
           <div class="sc-wrap">
             <table class="sc-table">
               <thead><tr><th></th><th>Athlet</th><th>Aktuell</th><th>→ 1. Platz</th><th>→ 2. Platz</th><th>→ 3. Platz</th><th>→ 5. Platz</th><th>→ kein</th></tr></thead>
-              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Tia rehana NAZIR</strong></td><td class="sc-cur">33</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-tie">33</td><td class="sc-tie">33</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Alisa ERDOGAN</td><td class="sc-cur">30</td><td class="sc-win">60</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">38</td><td class="sc-no">30</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Elina MEYER</td><td class="sc-cur">25</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-tie">33</td><td class="sc-no">25</td></tr><tr><td class="sc-rank">4.</td><td class="sc-name">Mira LICHTE</td><td class="sc-cur">15</td><td class="sc-win">45</td><td class="sc-win">40</td><td class="sc-win">35</td><td class="sc-no">23</td><td class="sc-no">15</td></tr><tr><td class="sc-rank">5.</td><td class="sc-name">Viktoria weiyue CHEN</td><td class="sc-cur">10</td><td class="sc-win">40</td><td class="sc-win">35</td><td class="sc-no">30</td><td class="sc-no">18</td><td class="sc-no">10</td></tr><tr><td class="sc-rank">6.</td><td class="sc-name">Alexandra NIKONENKO</td><td class="sc-cur">8</td><td class="sc-win">38</td><td class="sc-tie">33</td><td class="sc-no">28</td><td class="sc-no">16</td><td class="sc-no">8</td></tr><tr><td class="sc-rank">7.</td><td class="sc-name">Hideya CHABRAK</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-no">30</td><td class="sc-no">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr></tbody>
+              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Tia rehana NAZIR</strong></td><td class="sc-cur">33</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-tie">33</td><td class="sc-tie">33</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Alisa ERDOGAN</td><td class="sc-cur">30</td><td class="sc-win">60</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">38</td><td class="sc-no">30</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Elina MEYER</td><td class="sc-cur">25</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-tie">33</td><td class="sc-no">25</td></tr><tr><td class="sc-rank">4.</td><td class="sc-name">Mira LICHTE</td><td class="sc-cur">15</td><td class="sc-win">45</td><td class="sc-win">40</td><td class="sc-win">35</td><td class="sc-no">23</td><td class="sc-no">15</td></tr><tr><td class="sc-rank">5.</td><td class="sc-name">Viktoria weiyue CHEN</td><td class="sc-cur">10</td><td class="sc-win">40</td><td class="sc-win">35</td><td class="sc-no">30</td><td class="sc-no">18</td><td class="sc-no">10</td></tr><tr><td class="sc-rank">6.</td><td class="sc-name">Alexandra NIKONENKO</td><td class="sc-cur">8</td><td class="sc-win">38</td><td class="sc-tie">33</td><td class="sc-no">28</td><td class="sc-no">16</td><td class="sc-no">8</td></tr><tr class="sc-out"><td class="sc-rank">7.</td><td class="sc-name">Hideya CHABRAK</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-no">30</td><td class="sc-no">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr></tbody>
             </table>
           </div>
           <div class="sc-note">Grün = würde aktuellen 1. Platz (Stand heute) überholen — nicht berücksichtigt: der Führende könnte sich beim Austria Open ebenfalls verbessern</div>
         </div>
-        <div class="many-card kr" data-k="cadet male">
-          <div class="card-head"><a class="badge" href="index.html?klasse=cadet+male" target="_blank">cadet male</a></div>
+<div class="many-card kr" data-k="cadet male">
+          <div class="card-head"><a class="badge" href="index.html?klasse=cadet+male" target="_blank">cadet male</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 19 Starter in dieser Klasse, davon 4 aus 🇩🇪 GER. <span style="color:#c62828">Nicht am Start → Chance verfällt:</span> Simon MIEHLNICKEL (10), Louis KREIBICH (5), Louis WINTER (5), Max KEMMERLING (0), Xavier KURR (0), Lucas Bodo FELLBAUM (0), Clemens SCHICKE (0).</div>
           <div class="unfair-banner">⚠️ <strong>BACH</strong> hat noch nie gegen einen dieser Kandidaten verloren — trotzdem könnten sie zur WM fahren, ohne BACH jemals besiegt zu haben: <strong>SOMMERFELD (2–0), WANNER (3–0), MIEHLNICKEL (2–0), KREIBICH (2–0), WINTER (4–0), KEMMERLING (2–0), KURR (1–0), FELLBAUM (2–0), SCHICKE (1–0)</strong></div>
           <div class="sc-wrap">
             <table class="sc-table">
               <thead><tr><th></th><th>Athlet</th><th>Aktuell</th><th>→ 1. Platz</th><th>→ 2. Platz</th><th>→ 3. Platz</th><th>→ 5. Platz</th><th>→ kein</th></tr></thead>
-              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Maximilian BACH</strong></td><td class="sc-cur">30</td><td class="sc-win">60</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">38</td><td class="sc-tie">30</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Neil SOMMERFELD</td><td class="sc-cur">25</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-win">33</td><td class="sc-no">25</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Maximilian WANNER</td><td class="sc-cur">23</td><td class="sc-win">48</td><td class="sc-win">43</td><td class="sc-win">38</td><td class="sc-no">26</td><td class="sc-no">23</td></tr><tr><td class="sc-rank">4.</td><td class="sc-name">Simon MIEHLNICKEL</td><td class="sc-cur">10</td><td class="sc-win">40</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">18</td><td class="sc-no">10</td></tr><tr><td class="sc-rank">5.</td><td class="sc-name">Louis KREIBICH</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr><td class="sc-rank">6.</td><td class="sc-name">Louis WINTER</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr><td class="sc-rank">7.</td><td class="sc-name">Max KEMMERLING</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">8.</td><td class="sc-name">Xavier KURR</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">9.</td><td class="sc-name">Lucas Bodo FELLBAUM</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">10.</td><td class="sc-name">Clemens SCHICKE</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr></tbody>
+              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Maximilian BACH</strong></td><td class="sc-cur">30</td><td class="sc-win">60</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">38</td><td class="sc-tie">30</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Neil SOMMERFELD</td><td class="sc-cur">25</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-win">33</td><td class="sc-no">25</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Maximilian WANNER</td><td class="sc-cur">23</td><td class="sc-win">48</td><td class="sc-win">43</td><td class="sc-win">38</td><td class="sc-no">26</td><td class="sc-no">23</td></tr><tr class="sc-out"><td class="sc-rank">4.</td><td class="sc-name">Simon MIEHLNICKEL</td><td class="sc-cur">10</td><td class="sc-win">40</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">18</td><td class="sc-no">10</td></tr><tr class="sc-out"><td class="sc-rank">5.</td><td class="sc-name">Louis KREIBICH</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr class="sc-out"><td class="sc-rank">6.</td><td class="sc-name">Louis WINTER</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr class="sc-out"><td class="sc-rank">7.</td><td class="sc-name">Max KEMMERLING</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr class="sc-out"><td class="sc-rank">8.</td><td class="sc-name">Xavier KURR</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr class="sc-out"><td class="sc-rank">9.</td><td class="sc-name">Lucas Bodo FELLBAUM</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr class="sc-out"><td class="sc-rank">10.</td><td class="sc-name">Clemens SCHICKE</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr></tbody>
             </table>
           </div>
           <div class="sc-note">Grün = würde aktuellen 1. Platz (Stand heute) überholen — nicht berücksichtigt: der Führende könnte sich beim Austria Open ebenfalls verbessern</div>
         </div>
-        <div class="many-card kr" data-k="rangliste technik 2026- junior female">
-          <div class="card-head"><a class="badge" href="index.html?klasse=Rangliste+Technik+2026-+Junior+female" target="_blank">Rangliste Technik 2026- Junior female</a></div>
+<div class="many-card kr" data-k="rangliste technik 2026- junior female">
+          <div class="card-head"><a class="badge" href="index.html?klasse=Rangliste+Technik+2026-+Junior+female" target="_blank">Rangliste Technik 2026- Junior female</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 51 Starter in dieser Klasse, davon 5 aus 🇩🇪 GER. <span style="color:#c62828">Nicht am Start → Chance verfällt:</span> Maja KOSTADINOV (15), Lija jana FISCHER (5), Cesia SCHMITZ (5), Veronika MELENTIEVA (5), Ajla HANDANOVIC (0), Bjelle britt DYCK (0), Valentina KÖNIG (0), Chiara NORATO (0).</div>
           <div class="unfair-banner">⚠️ <strong>HOFMANN</strong> hat noch nie gegen einen dieser Kandidaten verloren — trotzdem könnten sie zur WM fahren, ohne HOFMANN jemals besiegt zu haben: <strong>ROMEYKE (1–0), SCHMITZ (2–0), SCHMITT (2–0), KEPPELER (1–0), KÖNIG (1–0)</strong></div>
           <div class="sc-wrap">
             <table class="sc-table">
               <thead><tr><th></th><th>Athlet</th><th>Aktuell</th><th>→ 1. Platz</th><th>→ 2. Platz</th><th>→ 3. Platz</th><th>→ 5. Platz</th><th>→ kein</th></tr></thead>
-              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Vivien HOFMANN</strong></td><td class="sc-cur">30</td><td class="sc-win">60</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">38</td><td class="sc-tie">30</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Ksenia alexandra BONGARD</td><td class="sc-cur">25</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-win">33</td><td class="sc-no">25</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Maja KOSTADINOV</td><td class="sc-cur">15</td><td class="sc-win">45</td><td class="sc-win">40</td><td class="sc-win">35</td><td class="sc-no">23</td><td class="sc-no">15</td></tr><tr><td class="sc-rank">4.</td><td class="sc-name">Lanika ROMEYKE</td><td class="sc-cur">13</td><td class="sc-win">43</td><td class="sc-win">38</td><td class="sc-win">33</td><td class="sc-no">21</td><td class="sc-no">13</td></tr><tr><td class="sc-rank">5.</td><td class="sc-name">Lija jana FISCHER</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr><td class="sc-rank">6.</td><td class="sc-name">Cesia SCHMITZ</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr><td class="sc-rank">7.</td><td class="sc-name">Veronika MELENTIEVA</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr><td class="sc-rank">8.</td><td class="sc-name">Ajla HANDANOVIC</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">9.</td><td class="sc-name">Bjelle britt DYCK</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">10.</td><td class="sc-name">Hannah SCHMITT</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">11.</td><td class="sc-name">Verena KEPPELER</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">12.</td><td class="sc-name">Valentina KÖNIG</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">13.</td><td class="sc-name">Chiara NORATO</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr></tbody>
+              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Vivien HOFMANN</strong></td><td class="sc-cur">30</td><td class="sc-win">60</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">38</td><td class="sc-tie">30</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Ksenia alexandra BONGARD</td><td class="sc-cur">25</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-win">33</td><td class="sc-no">25</td></tr><tr class="sc-out"><td class="sc-rank">3.</td><td class="sc-name">Maja KOSTADINOV</td><td class="sc-cur">15</td><td class="sc-win">45</td><td class="sc-win">40</td><td class="sc-win">35</td><td class="sc-no">23</td><td class="sc-no">15</td></tr><tr><td class="sc-rank">4.</td><td class="sc-name">Lanika ROMEYKE</td><td class="sc-cur">13</td><td class="sc-win">43</td><td class="sc-win">38</td><td class="sc-win">33</td><td class="sc-no">21</td><td class="sc-no">13</td></tr><tr class="sc-out"><td class="sc-rank">5.</td><td class="sc-name">Lija jana FISCHER</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr class="sc-out"><td class="sc-rank">6.</td><td class="sc-name">Cesia SCHMITZ</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr class="sc-out"><td class="sc-rank">7.</td><td class="sc-name">Veronika MELENTIEVA</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr class="sc-out"><td class="sc-rank">8.</td><td class="sc-name">Ajla HANDANOVIC</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr class="sc-out"><td class="sc-rank">9.</td><td class="sc-name">Bjelle britt DYCK</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">10.</td><td class="sc-name">Hannah SCHMITT</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">11.</td><td class="sc-name">Verena KEPPELER</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr class="sc-out"><td class="sc-rank">12.</td><td class="sc-name">Valentina KÖNIG</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr class="sc-out"><td class="sc-rank">13.</td><td class="sc-name">Chiara NORATO</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr></tbody>
             </table>
           </div>
           <div class="sc-note">Grün = würde aktuellen 1. Platz (Stand heute) überholen — nicht berücksichtigt: der Führende könnte sich beim Austria Open ebenfalls verbessern</div>
         </div>
-        <div class="many-card kr" data-k="rangliste technik 2026- junior male">
-          <div class="card-head"><a class="badge" href="index.html?klasse=Rangliste+Technik+2026-+Junior+male" target="_blank">Rangliste Technik 2026- Junior male</a></div>
+<div class="many-card kr" data-k="rangliste technik 2026- junior male">
+          <div class="card-head"><a class="badge" href="index.html?klasse=Rangliste+Technik+2026-+Junior+male" target="_blank">Rangliste Technik 2026- Junior male</a><span class="ptag ptag-se" title="G1 Single Elimination">SE</span><span class="ptag-key">1.:30 · 2.:25 · 3./4.:20 · 5.–8.:8</span></div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 37 Starter in dieser Klasse, davon 7 aus 🇩🇪 GER. <span style="color:#c62828">Nicht am Start → Chance verfällt:</span> Philipp GROßE (10), Leonhard GROSS (5), Aaron KERNER (5), Matheo STEIN (0), Mika HARDER (0), Milad SOJUDI-GHAMNAK (0), Anton-lewin JURGENSEN (0), Anton Lewin JÜRGENSEN (0), Justus BÜSCHER (0).</div>
           <div class="unfair-banner">⚠️ <strong>MALIK</strong> hat noch nie gegen einen dieser Kandidaten verloren — trotzdem könnten sie zur WM fahren, ohne MALIK jemals besiegt zu haben: <strong>FORESTA (3–0), GROßE (3–0), HEISTERS (2–0), GROSS (4–0), KERNER (2–0), STEIN (1–0), HARDER (1–0), SOJUDI-GHAMNAK (1–0), OLIWKA (2–0), RIGOLL (2–0), VIERING (2–0), JURGENSEN (3–0), JÜRGENSEN (1–0), BÜSCHER (1–0)</strong></div>
           <div class="sc-wrap">
             <table class="sc-table">
               <thead><tr><th></th><th>Athlet</th><th>Aktuell</th><th>→ 1. Platz</th><th>→ 2. Platz</th><th>→ 3. Platz</th><th>→ 5. Platz</th><th>→ kein</th></tr></thead>
-              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Jonas MALIK</strong></td><td class="sc-cur">30</td><td class="sc-win">60</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">38</td><td class="sc-tie">30</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Nikita FORESTA</td><td class="sc-cur">15</td><td class="sc-win">45</td><td class="sc-win">40</td><td class="sc-win">35</td><td class="sc-no">23</td><td class="sc-no">15</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Philipp GROßE</td><td class="sc-cur">10</td><td class="sc-win">40</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">18</td><td class="sc-no">10</td></tr><tr><td class="sc-rank">4.</td><td class="sc-name">Tim HEISTERS</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr><td class="sc-rank">5.</td><td class="sc-name">Leonhard GROSS</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr><td class="sc-rank">6.</td><td class="sc-name">Aaron KERNER</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr><td class="sc-rank">7.</td><td class="sc-name">Matheo STEIN</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">8.</td><td class="sc-name">Mika HARDER</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">9.</td><td class="sc-name">Milad SOJUDI-GHAMNAK</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">10.</td><td class="sc-name">Noa OLIWKA</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">11.</td><td class="sc-name">Sorel RIGOLL</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">12.</td><td class="sc-name">Tristan VIERING</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">13.</td><td class="sc-name">Anton-lewin JURGENSEN</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">14.</td><td class="sc-name">Anton Lewin JÜRGENSEN</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">15.</td><td class="sc-name">Justus BÜSCHER</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr></tbody>
-            </table>
-          </div>
-          <div class="sc-note">Grün = würde aktuellen 1. Platz (Stand heute) überholen — nicht berücksichtigt: der Führende könnte sich beim Austria Open ebenfalls verbessern</div>
-        </div></div><div class="sub-title">Team / Paar</div><div class="many-group">
-        <div class="many-card kr" data-k="o60 pair">
-          <div class="card-head"><a class="badge" href="index.html?klasse=O60+pair" target="_blank">O60 pair</a></div>
-          <div class="unfair-banner">⚠️ <strong>STADTMUELLER/…</strong> hat noch nie gegen einen dieser Kandidaten verloren — trotzdem könnten sie zur WM fahren, ohne STADTMUELLER/… jemals besiegt zu haben: <strong>HORNUNG/… (3–0)</strong></div>
-          <div class="sc-wrap">
-            <table class="sc-table">
-              <thead><tr><th></th><th>Athlet</th><th>Aktuell</th><th>→ 1. Platz</th><th>→ 2. Platz</th><th>→ 3. Platz</th><th>→ 5. Platz</th><th>→ kein</th></tr></thead>
-              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Manfred STADTMUELLER / Sylvia HOHFELD</strong></td><td class="sc-cur">55</td><td class="sc-win">70</td><td class="sc-win">65</td><td class="sc-win">60</td><td class="sc-tie">55</td><td class="sc-tie">55</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Heekyung REIMANN / Werner UNLAND</td><td class="sc-cur">50</td><td class="sc-win">70</td><td class="sc-win">65</td><td class="sc-win">60</td><td class="sc-no">50</td><td class="sc-no">50</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Werner HORNUNG / Carmen DEISE</td><td class="sc-cur">30</td><td class="sc-tie">55</td><td class="sc-no">50</td><td class="sc-no">45</td><td class="sc-no">33</td><td class="sc-no">30</td></tr></tbody>
+              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Jonas MALIK</strong></td><td class="sc-cur">30</td><td class="sc-win">60</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">38</td><td class="sc-tie">30</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Nikita FORESTA</td><td class="sc-cur">15</td><td class="sc-win">45</td><td class="sc-win">40</td><td class="sc-win">35</td><td class="sc-no">23</td><td class="sc-no">15</td></tr><tr class="sc-out"><td class="sc-rank">3.</td><td class="sc-name">Philipp GROßE</td><td class="sc-cur">10</td><td class="sc-win">40</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">18</td><td class="sc-no">10</td></tr><tr><td class="sc-rank">4.</td><td class="sc-name">Tim HEISTERS</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr class="sc-out"><td class="sc-rank">5.</td><td class="sc-name">Leonhard GROSS</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr class="sc-out"><td class="sc-rank">6.</td><td class="sc-name">Aaron KERNER</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr><tr class="sc-out"><td class="sc-rank">7.</td><td class="sc-name">Matheo STEIN</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr class="sc-out"><td class="sc-rank">8.</td><td class="sc-name">Mika HARDER</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr class="sc-out"><td class="sc-rank">9.</td><td class="sc-name">Milad SOJUDI-GHAMNAK</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">10.</td><td class="sc-name">Noa OLIWKA</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">11.</td><td class="sc-name">Sorel RIGOLL</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr><td class="sc-rank">12.</td><td class="sc-name">Tristan VIERING</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr class="sc-out"><td class="sc-rank">13.</td><td class="sc-name">Anton-lewin JURGENSEN</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr class="sc-out"><td class="sc-rank">14.</td><td class="sc-name">Anton Lewin JÜRGENSEN</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr><tr class="sc-out"><td class="sc-rank">15.</td><td class="sc-name">Justus BÜSCHER</td><td class="sc-cur">0</td><td class="sc-tie">30</td><td class="sc-no">25</td><td class="sc-no">20</td><td class="sc-no">8</td><td class="sc-no">0</td></tr></tbody>
             </table>
           </div>
           <div class="sc-note">Grün = würde aktuellen 1. Platz (Stand heute) überholen — nicht berücksichtigt: der Führende könnte sich beim Austria Open ebenfalls verbessern</div>
         </div>
-        <div class="many-card kr" data-k="rangliste technik 2026- junior pair">
-          <div class="card-head"><a class="badge" href="index.html?klasse=Rangliste+Technik+2026-+Junior+pair" target="_blank">Rangliste Technik 2026- Junior pair</a></div>
-          <div class="unfair-banner">⚠️ <strong>KOSTADINOV/…</strong> hat noch nie gegen einen dieser Kandidaten verloren — trotzdem könnten sie zur WM fahren, ohne KOSTADINOV/… jemals besiegt zu haben: <strong>NORATO/… (2–0), BONGARD/… (2–0), GROSS/… (2–0)</strong></div>
-          <div class="sc-wrap">
-            <table class="sc-table">
-              <thead><tr><th></th><th>Athlet</th><th>Aktuell</th><th>→ 1. Platz</th><th>→ 2. Platz</th><th>→ 3. Platz</th><th>→ 5. Platz</th><th>→ kein</th></tr></thead>
-              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Maja KOSTADINOV / Nikita FORESTA</strong></td><td class="sc-cur">34</td><td class="sc-win">60</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">38</td><td class="sc-tie">34</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Chiara NORATO / Matheo STEIN</td><td class="sc-cur">30</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-no">33</td><td class="sc-no">30</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Ksenia alexandra BONGARD / Jonas MALIK</td><td class="sc-cur">24</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-win">40</td><td class="sc-no">28</td><td class="sc-no">24</td></tr><tr><td class="sc-rank">4.</td><td class="sc-name">Leonhard GROSS / Maya SCHMIDT</td><td class="sc-cur">8</td><td class="sc-win">38</td><td class="sc-no">33</td><td class="sc-no">28</td><td class="sc-no">16</td><td class="sc-no">8</td></tr><tr><td class="sc-rank">5.</td><td class="sc-name">Ajla HANDANOVIC / Milad SOJUDI-GHAMNAK</td><td class="sc-cur">4</td><td class="sc-tie">34</td><td class="sc-no">29</td><td class="sc-no">24</td><td class="sc-no">12</td><td class="sc-no">4</td></tr></tbody>
-            </table>
-          </div>
-          <div class="sc-note">Grün = würde aktuellen 1. Platz (Stand heute) überholen — nicht berücksichtigt: der Führende könnte sich beim Austria Open ebenfalls verbessern</div>
-        </div>
-        <div class="many-card kr" data-k="u30 team male">
-          <div class="card-head"><a class="badge" href="index.html?klasse=U30+team+male" target="_blank">U30 team male</a></div>
-          
-          <div class="sc-wrap">
-            <table class="sc-table">
-              <thead><tr><th></th><th>Athlet</th><th>Aktuell</th><th>→ 1. Platz</th><th>→ 2. Platz</th><th>→ 3. Platz</th><th>→ 5. Platz</th><th>→ kein</th></tr></thead>
-              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Alexander SCHULZ / Damon Ricardo MACKOWSKI / Dustin SEYBOLD</strong></td><td class="sc-cur">38</td><td class="sc-win">65</td><td class="sc-win">60</td><td class="sc-win">55</td><td class="sc-win">43</td><td class="sc-tie">38</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Niklas KOOPMANN / Eric LIESER / Christoph BISMARCK</td><td class="sc-cur">38</td><td class="sc-win">65</td><td class="sc-win">60</td><td class="sc-win">55</td><td class="sc-win">43</td><td class="sc-tie">38</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Noah Mo KRAUSE / Louis THOMASCHEWSKI / Matyas olivier ZINNER</td><td class="sc-cur">25</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-no">33</td><td class="sc-no">25</td></tr></tbody>
-            </table>
-          </div>
-          <div class="sc-note">Grün = würde aktuellen 1. Platz (Stand heute) überholen — nicht berücksichtigt: der Führende könnte sich beim Austria Open ebenfalls verbessern</div>
-        </div>
-        <div class="many-card kr" data-k="u60 team male">
-          <div class="card-head"><a class="badge" href="index.html?klasse=U60+team+male" target="_blank">U60 team male</a></div>
-          
-          <div class="sc-wrap">
-            <table class="sc-table">
-              <thead><tr><th></th><th>Athlet</th><th>Aktuell</th><th>→ 1. Platz</th><th>→ 2. Platz</th><th>→ 3. Platz</th><th>→ 5. Platz</th><th>→ kein</th></tr></thead>
-              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Kai THOMASCHEWSKI / Oliver FRISKE / Carsten SCHWEIZER</strong></td><td class="sc-cur">45</td><td class="sc-win">65</td><td class="sc-win">60</td><td class="sc-win">55</td><td class="sc-tie">45</td><td class="sc-tie">45</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Leonhard HANAWITSCH / Veit OEHLER / Frank STEFFEN</td><td class="sc-cur">35</td><td class="sc-win">62</td><td class="sc-win">58</td><td class="sc-win">52</td><td class="sc-no">40</td><td class="sc-no">35</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Anh-tuan DO / Ingo LEBENS / Michael STAMM</td><td class="sc-cur">30</td><td class="sc-win">60</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-no">38</td><td class="sc-no">30</td></tr></tbody>
-            </table>
-          </div>
-          <div class="sc-note">Grün = würde aktuellen 1. Platz (Stand heute) überholen — nicht berücksichtigt: der Führende könnte sich beim Austria Open ebenfalls verbessern</div>
-        </div>
-        <div class="many-card kr" data-k="rangliste technik 2026- junior team female">
-          <div class="card-head"><a class="badge" href="index.html?klasse=Rangliste+Technik+2026-+Junior+team+female" target="_blank">Rangliste Technik 2026- Junior team female</a></div>
-          <div class="unfair-banner">⚠️ <strong>FISCHER/…</strong> hat noch nie gegen einen dieser Kandidaten verloren — trotzdem könnten sie zur WM fahren, ohne FISCHER/… jemals besiegt zu haben: <strong>SCHMITT/… (1–0), NORATO/… (2–0)</strong></div>
-          <div class="sc-wrap">
-            <table class="sc-table">
-              <thead><tr><th></th><th>Athlet</th><th>Aktuell</th><th>→ 1. Platz</th><th>→ 2. Platz</th><th>→ 3. Platz</th><th>→ 5. Platz</th><th>→ kein</th></tr></thead>
-              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Lija jana FISCHER / Vivien HOFMANN / Cesia anna SCHMITZ</strong></td><td class="sc-cur">45</td><td class="sc-win">75</td><td class="sc-win">70</td><td class="sc-win">65</td><td class="sc-win">53</td><td class="sc-tie">45</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Hannah SCHMITT / Mia FRANKE / Verena KEPPELER</td><td class="sc-cur">30</td><td class="sc-win">50</td><td class="sc-tie">45</td><td class="sc-no">40</td><td class="sc-no">30</td><td class="sc-no">30</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Chiara NORATO / Maja KOSTADINOV / Valentina KÖNIG</td><td class="sc-cur">28</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-tie">45</td><td class="sc-no">33</td><td class="sc-no">28</td></tr></tbody>
-            </table>
-          </div>
-          <div class="sc-note">Grün = würde aktuellen 1. Platz (Stand heute) überholen — nicht berücksichtigt: der Führende könnte sich beim Austria Open ebenfalls verbessern</div>
-        </div>
-        <div class="many-card kr" data-k="rangliste technik 2026- junior team male">
-          <div class="card-head"><a class="badge" href="index.html?klasse=Rangliste+Technik+2026-+Junior+team+male" target="_blank">Rangliste Technik 2026- Junior team male</a></div>
-          <div class="unfair-banner">⚠️ <strong>VIERING/…</strong> hat noch nie gegen einen dieser Kandidaten verloren — trotzdem könnten sie zur WM fahren, ohne VIERING/… jemals besiegt zu haben: <strong>GROSS/… (2–0)</strong></div>
-          <div class="sc-wrap">
-            <table class="sc-table">
-              <thead><tr><th></th><th>Athlet</th><th>Aktuell</th><th>→ 1. Platz</th><th>→ 2. Platz</th><th>→ 3. Platz</th><th>→ 5. Platz</th><th>→ kein</th></tr></thead>
-              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Tristan VIERING / Mika HARDER / Sorel RIGOLL</strong></td><td class="sc-cur">35</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-tie">35</td><td class="sc-tie">35</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Noa OLIWKA / Philipp GROSSE / Tim HEISTERS</td><td class="sc-cur">30</td><td class="sc-win">58</td><td class="sc-win">52</td><td class="sc-win">48</td><td class="sc-win">36</td><td class="sc-no">30</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Leonhard GROSS / Carlos KELLER / Aaron KERNER</td><td class="sc-cur">12</td><td class="sc-win">42</td><td class="sc-win">38</td><td class="sc-no">32</td><td class="sc-no">20</td><td class="sc-no">12</td></tr></tbody>
-            </table>
-          </div>
-          <div class="sc-note">Grün = würde aktuellen 1. Platz (Stand heute) überholen — nicht berücksichtigt: der Führende könnte sich beim Austria Open ebenfalls verbessern</div>
-        </div></div><div class="sub-title">Freestyle</div><div class="many-group">
-        <div class="many-card kr" data-k="freestyle junior female">
-          <div class="card-head"><a class="badge" href="index.html?klasse=freestyle+junior+female" target="_blank">freestyle junior female</a></div>
+</div>
+<div class="sub-title">Freestyle</div><div class="many-group">
+<div class="many-card kr" data-k="freestyle junior female">
+          <div class="card-head"><a class="badge" href="index.html?klasse=freestyle+junior+female" target="_blank">freestyle junior female</a><span class="ptag ptag-co" title="G1 Freestyle/Para Cut-Off">CO</span><span class="ptag-key">1.:30 · 2.:25 · 3.:20 · 4.:15 · 5.:8 · ab 6.:0</span></div>
+      <div class="at-info">🇦🇹 <b>Austria Open:</b> 9 Starter in dieser Klasse, davon 3 aus 🇩🇪 GER. <span style="color:#c62828">Nicht am Start → Chance verfällt:</span> Frida GÖHNE (10).</div>
           <div class="unfair-banner">⚠️ <strong>SCHMITZ</strong> hat noch nie gegen einen dieser Kandidaten verloren — trotzdem könnten sie zur WM fahren, ohne SCHMITZ jemals besiegt zu haben: <strong>FINKE (1–0), GÖHNE (1–0)</strong></div>
           <div class="sc-wrap">
             <table class="sc-table">
               <thead><tr><th></th><th>Athlet</th><th>Aktuell</th><th>→ 1. Platz</th><th>→ 2. Platz</th><th>→ 3. Platz</th><th>→ 5. Platz</th><th>→ kein</th></tr></thead>
-              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Cesia anna SCHMITZ</strong></td><td class="sc-cur">35</td><td class="sc-win">65</td><td class="sc-win">60</td><td class="sc-win">55</td><td class="sc-win">43</td><td class="sc-tie">35</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Lanika ROMEYKE</td><td class="sc-cur">25</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-no">33</td><td class="sc-no">25</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Hedda charlotte FINKE</td><td class="sc-cur">23</td><td class="sc-win">49</td><td class="sc-win">44</td><td class="sc-win">39</td><td class="sc-no">27</td><td class="sc-no">23</td></tr><tr><td class="sc-rank">4.</td><td class="sc-name">Frida GÖHNE</td><td class="sc-cur">10</td><td class="sc-win">40</td><td class="sc-tie">35</td><td class="sc-no">30</td><td class="sc-no">18</td><td class="sc-no">10</td></tr></tbody>
+              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Cesia anna SCHMITZ</strong></td><td class="sc-cur">35</td><td class="sc-win">65</td><td class="sc-win">60</td><td class="sc-win">55</td><td class="sc-win">43</td><td class="sc-tie">35</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Lanika ROMEYKE</td><td class="sc-cur">25</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-no">33</td><td class="sc-no">25</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Hedda charlotte FINKE</td><td class="sc-cur">23</td><td class="sc-win">49</td><td class="sc-win">44</td><td class="sc-win">39</td><td class="sc-no">27</td><td class="sc-no">23</td></tr><tr class="sc-out"><td class="sc-rank">4.</td><td class="sc-name">Frida GÖHNE</td><td class="sc-cur">10</td><td class="sc-win">40</td><td class="sc-tie">35</td><td class="sc-no">30</td><td class="sc-no">18</td><td class="sc-no">10</td></tr></tbody>
             </table>
           </div>
           <div class="sc-note">Grün = würde aktuellen 1. Platz (Stand heute) überholen — nicht berücksichtigt: der Führende könnte sich beim Austria Open ebenfalls verbessern</div>
         </div>
-        <div class="many-card kr" data-k="freestyle junior team">
-          <div class="card-head"><a class="badge" href="index.html?klasse=freestyle+junior+team" target="_blank">freestyle junior team</a></div>
-          <div class="unfair-banner">⚠️ <strong>ENGERT/…</strong> hat noch nie gegen einen dieser Kandidaten verloren — trotzdem könnten sie zur WM fahren, ohne ENGERT/… jemals besiegt zu haben: <strong>CHEN/… (1–0)</strong></div>
-          <div class="sc-wrap">
-            <table class="sc-table">
-              <thead><tr><th></th><th>Athlet</th><th>Aktuell</th><th>→ 1. Platz</th><th>→ 2. Platz</th><th>→ 3. Platz</th><th>→ 5. Platz</th><th>→ kein</th></tr></thead>
-              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Melia ENGERT / Fenja ENGERT / Jorin ENGERT / Laura KRUMNOW / Jakob ORLOV</strong></td><td class="sc-cur">20</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-win">40</td><td class="sc-win">28</td><td class="sc-tie">20</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Viktoria weiyue CHEN / Constantin FURCH / Frida GÖHNE / Mats KRAUSE / Neil SOMMERFELD</td><td class="sc-cur">15</td><td class="sc-win">45</td><td class="sc-win">40</td><td class="sc-win">35</td><td class="sc-win">23</td><td class="sc-no">15</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Viktoria weiyue CHEN / Constantin FURCH / Frida GÖHNE / Mats KRAUSE / Henry LAKNER</td><td class="sc-cur">5</td><td class="sc-win">35</td><td class="sc-win">30</td><td class="sc-win">25</td><td class="sc-no">13</td><td class="sc-no">5</td></tr></tbody>
-            </table>
-          </div>
-          <div class="sc-note">Grün = würde aktuellen 1. Platz (Stand heute) überholen — nicht berücksichtigt: der Führende könnte sich beim Austria Open ebenfalls verbessern</div>
-        </div>
-        <div class="many-card kr" data-k="freestyle male">
-          <div class="card-head"><a class="badge" href="index.html?klasse=freestyle+male" target="_blank">freestyle male</a></div>
-          <div class="unfair-banner">⚠️ <strong>NURZAMAN</strong> hat noch nie gegen einen dieser Kandidaten verloren — trotzdem könnten sie zur WM fahren, ohne NURZAMAN jemals besiegt zu haben: <strong>JEGLINSKI (2–0)</strong></div>
-          <div class="sc-wrap">
-            <table class="sc-table">
-              <thead><tr><th></th><th>Athlet</th><th>Aktuell</th><th>→ 1. Platz</th><th>→ 2. Platz</th><th>→ 3. Platz</th><th>→ 5. Platz</th><th>→ kein</th></tr></thead>
-              <tbody><tr><td class="sc-rank">1.</td><td class="sc-name"><strong>Imraan ilmi NURZAMAN</strong></td><td class="sc-cur">33</td><td class="sc-win">55</td><td class="sc-win">50</td><td class="sc-win">45</td><td class="sc-tie">33</td><td class="sc-tie">33</td></tr><tr><td class="sc-rank">2.</td><td class="sc-name">Wyatt SOMMERFELD</td><td class="sc-cur">23</td><td class="sc-win">53</td><td class="sc-win">48</td><td class="sc-win">43</td><td class="sc-no">31</td><td class="sc-no">23</td></tr><tr><td class="sc-rank">3.</td><td class="sc-name">Martin JEGLINSKI</td><td class="sc-cur">8</td><td class="sc-win">38</td><td class="sc-no">32</td><td class="sc-no">28</td><td class="sc-no">16</td><td class="sc-no">8</td></tr></tbody>
-            </table>
-          </div>
-          <div class="sc-note">Grün = würde aktuellen 1. Platz (Stand heute) überholen — nicht berücksichtigt: der Führende könnte sich beim Austria Open ebenfalls verbessern</div>
-        </div></div></div>
+</div>
+</div>
   </div>
 </div>
 
