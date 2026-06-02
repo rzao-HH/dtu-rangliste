@@ -859,29 +859,31 @@ a.badge:hover{background:#c8102e}
   <div class="section" id="sec-brlt">
       <div class="section-title">🔬 Was-wäre-wenn: BRLT-Schlüssel bei rein deutschen G1-Klassen</div>
       <div class="sim-box">
-        <p><b>Regelidee:</b> Hat eine Klasse beim <b>German Open</b> oder <b>Austria Open</b> nur deutsche Starter, zählt sie nicht als internationales G1-Turnier — die Punkte würden nach dem niedrigeren <b>BRLT-Schlüssel (1.: 15 · 2.: 10 · 3.: 5 · 4.: 4)</b> statt G1 (1.: 30 · 2.: 25 · 3.: 20 · 4.: 15) vergeben. Konkret für die betroffenen Klassen:</p>
+        <p><b>Regelidee:</b> Hat eine Klasse beim <b>German Open</b> oder <b>Austria Open</b> nur deutsche Starter, zählt sie nicht als internationales G1-Turnier — Punkte nach dem niedrigeren <b>BRLT-Schlüssel (1.: 15 · 2.: 10 · 3.: 5 · 4.: 4)</b> statt G1 (1.: 30 · 2.: 25 · 3.: 20). <b>Wichtig:</b> Die bestehende <b>Punktehalbierung</b> (wer niemanden hinter sich lässt = Letzter/allein, bekommt die Hälfte) gilt weiterhin und greift hier zusätzlich.</p>
 
-        <p style="margin-bottom:4px"><b>① German Open</b> — Ergebnisse bekannt, also rückwirkend berechenbar:</p>
+        <p style="margin-bottom:4px"><b>① German Open</b> — Ergebnisse bekannt, rückwirkend berechnet:</p>
         <table class="sim-table">
-          <thead><tr><th>Klasse</th><th>Kandidat</th><th>GO-Platz</th><th style="text-align:right">Summe alt</th><th style="text-align:right">Summe neu</th><th>Folge</th></tr></thead>
+          <thead><tr><th>Klasse</th><th>Kandidat (GO-Platz)</th><th>GO-Pkt alt</th><th>GO-Pkt neu (BRLT)</th><th style="text-align:right">Summe alt → neu</th></tr></thead>
           <tbody>
-            <tr><td rowspan="2"><b>freestyle junior pair</b></td><td>Riesemann/Finke (1.)</td><td>1.</td><td class="sim-cell">50</td><td class="sim-cell sim-bad">35</td><td rowspan="2" class="sim-bad"><b>Aus 50 : 37,5 wird 35 : 35 — Gleichstand!</b> Die klare Führung verschwindet; der Direktvergleich müsste entscheiden.</td></tr>
-            <tr><td>Kampke/Romeyke (2.)</td><td>2.</td><td class="sim-cell">37,5</td><td class="sim-cell sim-bad">35</td></tr>
-            <tr><td rowspan="2"><b>o60 team male</b></td><td>Lohmeier/Herbst/Schops</td><td>1.</td><td class="sim-cell">25</td><td class="sim-cell sim-good">25</td><td rowspan="2"><b>Keine Änderung:</b> Sieger wurde beim GO ohnehin schon mit 15 gewertet; Marohn/… war beim GO nicht dabei und bleibt mit 30 vorn.</td></tr>
-            <tr><td>Marohn/Stadtmüller/Kohler</td><td>—</td><td class="sim-cell">30</td><td class="sim-cell sim-good">30</td></tr>
+            <tr><td rowspan="2"><b>freestyle junior pair</b></td><td>Riesemann/Finke (1., jmd. dahinter)</td><td>30</td><td>15</td><td class="sim-cell">50 → <b>35</b></td></tr>
+            <tr><td>Kampke/Romeyke (2. = Letzter → halbiert)</td><td>12,5</td><td>10 → <b>5</b></td><td class="sim-cell">37,5 → <b>30</b></td></tr>
+            <tr><td colspan="5" class="sim-bad" style="background:#fff5f5"><b>Folge freestyle junior pair:</b> Führung schrumpft von <b>50 : 37,5</b> auf <b>35 : 30</b> (Vorsprung 12,5 → nur noch 5) — aber kein Gleichstand.</td></tr>
+            <tr><td rowspan="2"><b>o60 team male</b></td><td>Lohmeier/… (1., allein → halbiert)</td><td>15</td><td>15 → <b>7,5</b></td><td class="sim-cell">25 → <b>17,5</b></td></tr>
+            <tr><td>Marohn/… (kein GO)</td><td>—</td><td>—</td><td class="sim-cell">30 → 30</td></tr>
+            <tr><td colspan="5"><b>Folge o60 team male:</b> Marohn/… bleibt vorn, Abstand <b>wächst</b> von 30 : 25 auf <b>30 : 17,5</b>.</td></tr>
           </tbody>
         </table>
 
-        <p style="margin:14px 0 4px"><b>② Austria Open</b> — Ergebnisse noch offen, daher prospektiv (Austria-Ergebnis würde max. <b>15 statt 30</b> Punkte bringen → Schwung halbiert):</p>
+        <p style="margin:14px 0 4px"><b>② Austria Open</b> — Ergebnisse offen, prospektiv (Sieger hätte jmd. hinter sich → keine Halbierung; Austria-Beitrag max. <b>15 statt 30</b>):</p>
         <table class="sim-table">
           <thead><tr><th>Klasse</th><th>Stand</th><th>Effekt der Regel</th></tr></thead>
           <tbody>
-            <tr><td><b>u60 pair</b> <span class="muted">(offen)</span></td><td>Führer 55 · Herausf. 50</td><td class="sim-good">Herausforderer käme mit Austria-Sieg nur noch auf <b>max. 55 = Gleichstand</b> — <b>kein Überholen mehr möglich</b> (vorher überholbar). Klasse praktisch entschieden.</td></tr>
-            <tr><td><b>junior team male</b> <span class="muted">(offen)</span></td><td>Führer 35 · Herausf. 30</td><td class="sim-mid">Schwung kleiner: Herausforderer-Maximum sinkt von <b>57,5 auf 42,5</b> — Überholen bleibt aber knapp möglich (42,5 &gt; 35).</td></tr>
-            <tr><td><b>o60 team male</b> · <b>o60 team female</b> · <b>u60 team female</b> <span class="muted">(entschieden)</span></td><td>—</td><td>Keine Änderung — bereits entschieden.</td></tr>
+            <tr><td><b>u60 pair</b> <span class="muted">(offen)</span></td><td>Führer 55 · Herausf. 50</td><td class="sim-good">Herausforderer käme mit Austria-Sieg nur auf <b>max. 55 = Gleichstand</b> — <b>kein Überholen mehr</b>. Praktisch entschieden.</td></tr>
+            <tr><td><b>junior team male</b> <span class="muted">(offen)</span></td><td>Führer 35 · Herausf. 30</td><td class="sim-mid">Herausforderer-Maximum sinkt von <b>57,5 auf 42,5</b> — Überholen bleibt knapp möglich.</td></tr>
+            <tr><td><b>o60 team male · o60 team female · u60 team female</b> <span class="muted">(entschieden)</span></td><td>—</td><td>Keine Änderung — bereits entschieden.</td></tr>
           </tbody>
         </table>
-        <p class="sim-disc">Hinweis: Die German-Open-Daten zeigen, dass einzelne rein deutsche Klassen offenbar <b>bereits</b> reduziert gewertet wurden (z.B. o60 team male: 1. Platz = 15 statt 30). Eine einheitliche Regel würde das konsistent machen. Para-Klassen sind ausgenommen.</p>
+        <p class="sim-disc">Die Punktehalbierung wird bei rein deutschen Klassen also faktisch <b>doppelt</b> wirksam (niedrigerer Schlüssel + Halbierung bei Letzten/Alleinstartern). Para-Klassen sind von der Halbierung ausgenommen.</p>
       </div>
     </div>
   </div>
