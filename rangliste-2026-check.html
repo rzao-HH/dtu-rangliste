@@ -1086,10 +1086,9 @@ header,                                /* Bildschirm-Header (rot) */
 </style>
 </head>
 <body>
-<div style="background:#cc0000;color:#ffffff;font-weight:bold;text-align:center;padding:16px 12px;font-size:22px;line-height:1.3;letter-spacing:0.5px;font-family:Arial,Helvetica,sans-serif;border-bottom:4px solid #800000;text-transform:uppercase;">
-  &#9888; ENTWURF &ndash; Nicht zur Ver&ouml;ffentlichung bestimmt
+<div style="background:#b00000;color:#fff;font-weight:800;font-size:20px;line-height:1.3;text-align:center;padding:14px 16px;letter-spacing:0.5px;border-bottom:3px solid #7a0000;box-shadow:0 2px 6px rgba(0,0,0,.35);font-family:Arial,Helvetica,sans-serif;">
+  ⚠ ENTWURF &ndash; Nicht zur Ver&ouml;ffentlichung bestimmt ⚠
 </div>
-
 
 
 <header>
@@ -1757,6 +1756,55 @@ const BRLT2_PDFS = {
   'freestyle team':         [{label:'Finale', url: BRLT2_URL+'#page=130'}],
 };
 
+
+// Austria Open: Ergebnis-PDFs je Klasse (auf GitHub Pages gehostet).
+// Recognized -> Drawsheet-Bracketseite, Freestyle (CO, kein Bracket) -> Medallists-Seite.
+const AUSTRIA_PDFS = {
+  'kids female': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=1'}],
+  'cadet male': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=2'}],
+  'junior male': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=3'}],
+  'u30 male': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=4'}],
+  'u40 male': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=5'}],
+  'u50 male': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=6'}],
+  'u60 male': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=7'}],
+  'u65 male': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=8'}],
+  'o66 male': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=9'}],
+  'cadet female': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=10'}],
+  'junior female': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=11'}],
+  'u30 female': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=12'}],
+  'u40 female': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=13'}],
+  'u50 female': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=14'}],
+  'u60 female': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=15'}],
+  'u65 female': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=16'}],
+  'o66 female': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=17'}],
+  'cadet pair': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=18'}],
+  'junior pair': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=19'}],
+  'u30 pair': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=20'}],
+  'u50 pair': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=21'}],
+  'u60 pair': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=22'}],
+  'o60 pair': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=23'}],
+  'cadet team male': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=24'}],
+  'junior team male': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=25'}],
+  'u30 team male': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=26'}],
+  'u50 team male': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=27'}],
+  'u60 team male': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=28'}],
+  'o60 team male': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=29'}],
+  'cadet team female': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=30'}],
+  'junior team female': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=31'}],
+  'u30 team female': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=32'}],
+  'u50 team female': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=33'}],
+  'u60 team female': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=34'}],
+  'o60 team female': [{label:'Bracket', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Drawsheets.pdf#page=35'}],
+  'freestyle female': [{label:'Medaillen', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Medallists.pdf#page=39'}],
+  'freestyle male': [{label:'Medaillen', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Medallists.pdf#page=37'}],
+  'freestyle junior female': [{label:'Medaillen', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Medallists.pdf#page=38'}],
+  'freestyle junior male': [{label:'Medaillen', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Medallists.pdf#page=36'}],
+  'freestyle pair': [{label:'Medaillen', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Medallists.pdf#page=41'}],
+  'freestyle junior pair': [{label:'Medaillen', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Medallists.pdf#page=40'}],
+  'freestyle team': [{label:'Medaillen', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Medallists.pdf#page=43'}],
+  'freestyle junior team': [{label:'Medaillen', url:'https://rzao-hh.github.io/dtu-rangliste/austria/Medallists.pdf#page=42'}],
+};
+
 // Klassen beim BRLT II ohne deutschen Starter (Ergebnislink trotzdem zeigen)
 const BRLT2_KEINE_STARTER = new Set([
   // Stand 19.05.2026: alle Para-Klassen mit Ergebnis-PDF hatten mind. einen GER-Starter
@@ -2017,8 +2065,9 @@ function klasseHeaderRow(klasse, klasseLabel) {
   // Austria = G1 wie GO (gleicher SE/CO-Schlüssel). Para gab es bei Austria nicht.
   // PDF-Links folgen, sobald die DTU-Ergebnisseite vorliegt.
   const austriaPts  = key.startsWith('para') ? '' : goPtsTag(key);
+  const auLink = p => `<a href="${p.url}" target="_blank" class="klasse-pdf-link" onclick="event.stopPropagation()" title="Austria Open · ${p.label}">📄 ${p.label}</a>`;
   const austriaLink = (typeof AUSTRIA_PDFS !== 'undefined' && AUSTRIA_PDFS[key])
-    ? AUSTRIA_PDFS[key].map(goLink).join(' ') : '';
+    ? AUSTRIA_PDFS[key].map(auLink).join(' ') : '';
   const austriaCell = `${austriaLink}${austriaLink && austriaPts ? '<br>' : ''}${austriaPts}`;
 
   return `<tr class="klasse-header">
