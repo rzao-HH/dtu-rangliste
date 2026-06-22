@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DTU Bundesrangliste 2026 – Test-Varianten zur Halbierungsregel</title>
+<style>
+  :root{ --rot:#9C1B1B; --blau:#0b5394; --dunkel:#073763; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:Arial,Helvetica,sans-serif; color:#1a1a1a; background:#f4f5f7; line-height:1.5; }
+  .head{ background:#9C1B1B; color:#fff; padding:26px 22px; }
+  .head h1{ margin:0 0 6px; font-size:24px; }
+  .head p{ margin:0; opacity:.92; font-size:15px; max-width:880px; }
+  .entwurf{ background:#cc0000; color:#fff; font-weight:bold; text-align:center; padding:10px;
+            text-transform:uppercase; letter-spacing:.5px; font-size:15px; border-bottom:3px solid #800000; }
+  .wrap{ max-width:920px; margin:0 auto; padding:24px 18px 50px; }
+  .intro{ background:#fff; border:1px solid #e3e3e6; border-radius:10px; padding:18px 20px; margin-bottom:22px; font-size:15px; }
+  .intro b{ color:var(--rot); }
+  .card{ background:#fff; border:1px solid #e3e3e6; border-radius:10px; padding:0; margin-bottom:16px; overflow:hidden;
+         box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  .card .top{ background:var(--blau); color:#fff; padding:13px 18px; display:flex; align-items:center; gap:12px; }
+  .badge{ background:#fff; color:var(--blau); font-weight:bold; border-radius:50%; width:34px; height:34px;
+          display:flex; align-items:center; justify-content:center; font-size:17px; flex:0 0 34px; }
+  .card .top h2{ margin:0; font-size:17px; }
+  .card .body{ padding:14px 18px 16px; }
+  .card .body p{ margin:0 0 12px; font-size:14.5px; }
+  .card .keep{ font-size:13px; color:#555; }
+  .btn{ display:inline-block; background:var(--rot); color:#fff; text-decoration:none; font-weight:bold;
+        padding:9px 16px; border-radius:7px; font-size:14px; }
+  .btn:hover{ background:#7d1515; }
+  .ref{ margin-top:8px; font-size:14px; }
+  .ref a{ color:var(--blau); }
+  .foot{ text-align:center; color:#888; font-size:12px; margin-top:26px; }
+  code{ background:#eef0f3; padding:1px 5px; border-radius:4px; font-size:12.5px; }
+</style>
+</head>
+<body>
+<div class="entwurf">&#9888; Entwurf &ndash; Nicht zur Veröffentlichung bestimmt</div>
+<div class="head">
+  <h1>DTU Bundesrangliste Technik 2026 &ndash; Test-Varianten</h1>
+  <p>Vier Test-Varianten, die unterschiedlich mit der <b>Punkte-Halbierung</b> umgehen
+     (&bdquo;Sportler im Punktebereich, der niemanden hinter sich lässt&ldquo;). Alle bauen auf demselben
+     Datenstand auf (German Open, BRLT&nbsp;I, BRLT&nbsp;II, Austria Open). In jeder Variante zeigt ein blauer
+     Banner oben die geänderte Regel, eine Kurz-Zusammenfassung zum 1.&nbsp;Platz und – pro Sportler unter dem
+     Namen – die farbige Rang-/Punkteänderung gegenüber dem Original.</p>
+</div>
+<div class="wrap">
+
+  <div class="intro">
+    <b>Kurzüberblick.</b> Die Varianten 1, 3 und 4 betreffen nur <b>German Open</b> und <b>Austria Open</b>
+    (G1, Single&nbsp;Elimination); Variante&nbsp;2 betrifft alle Turniere. <b>BRLT&nbsp;I/II</b> bleibt in den
+    Varianten 1, 3 und 4 unverändert. Klick auf eine Variante öffnet die jeweilige Rangliste in einem neuen Tab.
+  </div>
+
+  <div class="card">
+    <div class="top"><span class="badge">1</span><h2>Halbierung bei GO + Austria (SE) komplett entfernt</h2></div>
+    <div class="body">
+      <p>Bei German Open und Austria Open wird in <b>allen SE-Klassen (Losverfahren)</b> die Halbierung
+         entfernt &ndash; volle Punkte, Hinweis &bdquo;(kein Match gewonnen)&ldquo;.</p>
+      <p class="keep">Unverändert: Freestyle/Cut-off-Klassen und alle BRLT-Turniere.</p>
+      <a class="btn" href="Rangliste_2026_G1-SE-ohne.html" target="_blank">Variante&nbsp;1 öffnen &rarr;</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="top"><span class="badge">2</span><h2>Halbierung überall komplett entfernt</h2></div>
+    <div class="body">
+      <p>Die Halbierung wird <b>durchgängig</b> nicht mehr angewendet &ndash; bei <b>allen Turnieren</b>
+         (GO, BRLT&nbsp;I, BRLT&nbsp;II, Austria) und in <b>allen Klassen</b> (SE und Cut-off). Alle Sportler
+         erhalten die vollen Punkte.</p>
+      <p class="keep">Hinweis: bei SE &bdquo;(kein Match gewonnen)&ldquo;, bei Cut-off &bdquo;(letzter Platz)&ldquo;.</p>
+      <a class="btn" href="Rangliste_2026_ohne-halbierung.html" target="_blank">Variante&nbsp;2 öffnen &rarr;</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="top"><span class="badge">3</span><h2>Halbierung entfällt ab 3 Startern (Freilos/keine Setzung)</h2></div>
+    <div class="body">
+      <p>Bei GO + Austria entfällt die SE-Halbierung in allen Brackets <b>ab 3 Startern</b> &ndash; also überall,
+         wo Freilose und/oder eine fehlende Setzung nach Weltrangliste auftreten. <b>Behalten</b> wird sie nur bei
+         Cut-off-Klassen sowie SE-Brackets mit nur 1 oder 2 Startern.</p>
+      <p class="keep">Hinweis bei vollen Punkten: &bdquo;(volle Punkte &ndash; Freilos/keine Setzung im Bracket)&ldquo;.</p>
+      <a class="btn" href="Rangliste_2026_G1-SE-fair.html" target="_blank">Variante&nbsp;3 öffnen &rarr;</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="top"><span class="badge">4</span><h2>Halbierung nur beim formal letzten Platz</h2></div>
+    <div class="body">
+      <p>Bei GO + Austria wird die SE-Halbierung <b>nur auf den jeweils formal letzten Platz</b> angewendet
+         (= kein Platz dahinter im Gesamtfeld), unabhängig von Siegen oder Freilosen.
+         Schwellen: 1.&nbsp;bei&nbsp;1 Starter, 2.&nbsp;bei&nbsp;2, 3./4.&nbsp;bei&nbsp;3&ndash;4,
+         5.&nbsp;bei&nbsp;5&ndash;6; <b>ab 7 Startern keine Halbierung</b>.</p>
+      <p class="keep">Unterschied zu Variante&nbsp;3: kleine Felder mit echtem letztem Platz (z.&nbsp;B. 3. im 4er-Feld,
+         5. im 5er-Feld) bleiben hier halbiert.</p>
+      <a class="btn" href="Rangliste_2026_G1-SE-formal.html" target="_blank">Variante&nbsp;4 öffnen &rarr;</a>
+    </div>
+  </div>
+
+  <div class="ref">
+    Zum Vergleich: <a href="rangliste-2026-check.html" target="_blank">Original-Rangliste (unveränderter Stand)</a>
+  </div>
+
+  <div class="foot">DTU Bundesrangliste Technik 2026 &middot; interne Test-Varianten zur Halbierungsregel</div>
+</div>
+</body>
+</html>
