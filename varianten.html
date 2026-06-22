@@ -35,6 +35,21 @@
   .ref a{ color:var(--blau); }
   .foot{ text-align:center; color:#888; font-size:12px; margin-top:26px; }
   code{ background:#eef0f3; padding:1px 5px; border-radius:4px; font-size:12.5px; }
+  .cmp-sec{ background:#fff; border:1px solid #e3e3e6; border-radius:10px; padding:18px 20px; margin:22px 0; }
+  .cmp-sec h2{ margin:0 0 4px; font-size:18px; color:var(--rot); }
+  .cmp-sec .sub{ margin:0 0 14px; font-size:13.5px; color:#555; }
+  .cmp{ width:100%; border-collapse:collapse; font-size:14px; }
+  .cmp th,.cmp td{ border:1px solid #e0e2e6; padding:7px 8px; text-align:center; }
+  .cmp thead th{ background:var(--blau); color:#fff; }
+  .cmp td.grp{ background:#f3f6fb; font-weight:bold; }
+  .cmp td.pl{ text-align:left; color:#333; }
+  .cmp .full{ color:#1a7f37; font-weight:bold; }
+  .cmp .half{ color:#c0392b; font-weight:bold; }
+  .cmp tbody tr.g0 td{ background:#fff; }
+  .cmp tbody tr.g1 td{ background:#fafbfc; }
+  .cmp-note{ font-size:13px; color:#555; margin-top:12px; line-height:1.5; }
+  .cmp-note b{ color:#333; }
+  @media(max-width:560px){ .cmp th,.cmp td{ padding:5px 4px; font-size:12.5px; } }
 </style>
 </head>
 <body>
@@ -109,6 +124,40 @@
         U30 Team weiblich &ndash; Hoffmann/Silberhorn/Do (Austria 3. im 7er-Feld &rarr; volle Punkte) ziehen gleich
         &rarr; Gleichstand auf Platz&nbsp;1. Sonst überall unverändert.</div>
       <a class="btn" href="Rangliste_2026_G1-SE-formal.html" target="_blank">Variante&nbsp;4 öffnen &rarr;</a>
+    </div>
+  </div>
+
+  <div class="cmp-sec">
+    <h2>Punktevergabe im Variantenvergleich</h2>
+    <p class="sub">G1-SE-Klassen (German Open &amp; Austria Open): Punkte je Platz nach Starterzahl.
+       <span class="full">grün</span> = volle Punkte, <span class="half">rot</span> = halbiert.</p>
+    <table class="cmp">
+      <thead><tr><th>Starter</th><th>Platz</th><th>Variante&nbsp;1 &amp; 2</th><th>Variante&nbsp;3</th><th>Variante&nbsp;4</th></tr></thead>
+      <tbody>
+        <tr class="g0"><td class="grp">1</td><td class="pl">1.</td><td class="full">30</td><td class="half">15</td><td class="half">15</td></tr>
+        <tr class="g1"><td class="grp" rowspan="2">2</td><td class="pl">1.</td><td class="full">30</td><td class="full">30</td><td class="full">30</td></tr>
+        <tr class="g1"><td class="pl">2.</td><td class="full">25</td><td class="half">12,5</td><td class="half">12,5</td></tr>
+        <tr class="g0"><td class="grp" rowspan="3">3&ndash;4</td><td class="pl">1.</td><td class="full">30</td><td class="full">30</td><td class="full">30</td></tr>
+        <tr class="g0"><td class="pl">2.</td><td class="full">25</td><td class="full">25</td><td class="full">25</td></tr>
+        <tr class="g0"><td class="pl">3./4.</td><td class="full">20</td><td class="full">20</td><td class="half">10</td></tr>
+        <tr class="g1"><td class="grp" rowspan="4">5&ndash;6</td><td class="pl">1.</td><td class="full">30</td><td class="full">30</td><td class="full">30</td></tr>
+        <tr class="g1"><td class="pl">2.</td><td class="full">25</td><td class="full">25</td><td class="full">25</td></tr>
+        <tr class="g1"><td class="pl">3./4.</td><td class="full">20</td><td class="full">20</td><td class="full">20</td></tr>
+        <tr class="g1"><td class="pl">5.&ndash;8.</td><td class="full">8</td><td class="full">8</td><td class="half">4</td></tr>
+        <tr class="g0"><td class="grp" rowspan="4">7&ndash;11</td><td class="pl">1.</td><td class="full">30</td><td class="full">30</td><td class="full">30</td></tr>
+        <tr class="g0"><td class="pl">2.</td><td class="full">25</td><td class="full">25</td><td class="full">25</td></tr>
+        <tr class="g0"><td class="pl">3./4.</td><td class="full">20</td><td class="full">20</td><td class="full">20</td></tr>
+        <tr class="g0"><td class="pl">5.&ndash;8.</td><td class="full">8</td><td class="full">8</td><td class="full">8</td></tr>
+      </tbody>
+    </table>
+    <div class="cmp-note">
+      <b>Unterschiede:</b> <b>Variante&nbsp;1 &amp; 2</b> sind hier identisch (immer volle Punkte) &ndash; ihr Unterschied
+      liegt nur au&szlig;erhalb G1-SE (Variante&nbsp;2 nimmt auch BRLT + Cut-off die Halbierung).
+      <b>V1/V2&nbsp;&harr;&nbsp;V3</b> nur bei 1 Starter (1.) und 2 Startern (2.).
+      <b>V3&nbsp;&harr;&nbsp;V4</b> nur bei 3&ndash;4 Startern (3./4.) und 5&ndash;6 Startern (5.).
+      <b>Ab 7 Startern</b> sind alle vier Varianten gleich. (Ab 9 Startern gibt es zus&auml;tzlich 9.&nbsp;Plätze = 0&nbsp;Punkte.)<br>
+      <b>Original:</b> halbiert, „wer kein Match gewonnen hat" (0 Siege) &ndash; das h&auml;ngt am tats&auml;chlichen
+      Bracket/Freilos und ist daher nicht eindeutig pro Starterzahl/Platz; genau das l&ouml;sen die Varianten auf.
     </div>
   </div>
 
