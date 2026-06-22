@@ -71,102 +71,171 @@
   .vb-cmp{ margin-top:18px; border-top:1px solid #e6e6e9; padding-top:12px; }
   .vb-cmp-h{ margin:0 0 4px; font-size:13.5px; color:#444; }
   .vb-warn{ margin-top:10px; background:#fff7e6; border-left:4px solid #e0a32e; padding:9px 12px; font-size:13px; color:#6b4e12; border-radius:0 6px 6px 0; line-height:1.5; }
+  /* ===== Warum Variante 3 ===== */
+  .why3{ background:#fff; border:1px solid #e3e3e6; border-top:5px solid var(--rot); border-radius:10px;
+         padding:20px 22px 22px; margin-bottom:22px; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  .why3-h{ display:block; color:var(--rot); font-size:20px; font-weight:bold; margin-bottom:14px; }
+  .why3-h small{ display:block; font-size:12px; font-weight:bold; text-transform:uppercase; letter-spacing:.6px; color:#999; margin-bottom:3px; }
+  .why3-lead{ margin:0 0 18px; font-size:18px; line-height:1.5; color:#1a1a1a; }
+  .why3-lead b{ color:var(--rot); }
+  .why3-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:20px; }
+  .why3-step{ background:#f6f8fb; border:1px solid #e3e8f0; border-radius:8px; padding:14px 14px 14px 42px;
+              position:relative; font-size:13.5px; line-height:1.5; }
+  .why3-num{ position:absolute; left:12px; top:13px; width:22px; height:22px; background:var(--blau); color:#fff;
+             border-radius:50%; font-size:13px; font-weight:bold; display:flex; align-items:center; justify-content:center; }
+  .why3-test{ background:#073763; color:#fff; border-radius:9px; padding:18px 20px; margin-bottom:18px; }
+  .why3-q{ font-size:13px; text-transform:uppercase; letter-spacing:.5px; opacity:.85; margin-bottom:8px; }
+  .why3-qbig{ font-size:19px; font-weight:bold; line-height:1.45; margin-bottom:14px; }
+  .why3-qbig u{ text-decoration-color:#ffcf4d; text-underline-offset:3px; }
+  .why3-tab{ width:100%; border-collapse:collapse; font-size:14px; background:#fff; color:#1a1a1a; border-radius:6px; overflow:hidden; }
+  .why3-tab th{ background:#0b5394; color:#fff; padding:8px 10px; text-align:left; font-size:13px; }
+  .why3-tab td{ padding:9px 10px; border-top:1px solid #e3e6ea; }
+  .why3-tab td.l{ font-weight:bold; }
+  .why3-tab td.ok{ color:#1a7f37; font-weight:bold; }
+  .why3-tab td.no{ color:#c0392b; font-weight:bold; }
+  .why3-tab td.yes{ color:#1a7f37; font-weight:bold; }
+  .why3-tab td.non{ color:#c0392b; font-weight:bold; }
+  .why3-isv3{ margin-top:12px; font-size:14.5px; text-align:center; }
+  .why3-isv3 b{ color:#ffcf4d; }
+  .why3-others{ margin-bottom:14px; }
+  .why3-ohead{ font-size:13px; font-weight:bold; text-transform:uppercase; letter-spacing:.5px; color:#555; margin-bottom:8px; }
+  .why3-others ul{ margin:0; padding-left:20px; }
+  .why3-others li{ margin-bottom:8px; font-size:13.5px; line-height:1.5; }
+  .why3-others b{ color:#333; }
+  .why3-kicker{ background:#fff7e6; border-left:4px solid #e0a32e; border-radius:0 7px 7px 0; padding:12px 15px;
+                font-size:14.5px; line-height:1.5; color:#5a4410; }
+  .why3-kicker b{ color:#8a5a00; }
+  @media(max-width:640px){ .why3-grid{ grid-template-columns:1fr; } .why3-lead{ font-size:16px; } .why3-qbig{ font-size:16px; } }
+  /* ===== Kompakte Varianten-Tabelle (ersetzt die Karten) ===== */
+  .vov-wrap{ background:#fff; border:1px solid #e3e3e6; border-radius:10px; margin-bottom:22px; box-shadow:0 1px 3px rgba(0,0,0,.05); overflow-x:auto; }
+  .vov{ width:100%; min-width:600px; border-collapse:collapse; font-size:13.5px; }
+  .vov th{ background:var(--blau); color:#fff; text-align:left; padding:9px 12px; font-size:12.5px; }
+  .vov td{ padding:10px 12px; border-top:1px solid #eceef1; vertical-align:middle; line-height:1.45; }
+  .vov-name{ font-weight:bold; white-space:nowrap; }
+  .vov-b{ display:inline-flex; width:22px; height:22px; border-radius:50%; background:var(--blau); color:#fff;
+          align-items:center; justify-content:center; font-size:12px; margin-right:7px; vertical-align:middle; font-style:normal; }
+  .vov-imp{ font-size:12.5px; color:#6b4e12; }
+  .vov-imp b{ color:#8a5a00; }
+  .vov-go{ display:inline-block; background:var(--rot); color:#fff; text-decoration:none; font-weight:bold;
+           padding:6px 13px; border-radius:6px; font-size:12.5px; white-space:nowrap; }
+  .vov-go:hover{ background:#7d1515; }
+  .vov-org td{ color:#666; }
+  .vov-org .vov-b{ background:#595959; }
+  .vov-fav td{ background:#fff8ec; box-shadow:inset 4px 0 0 #e0a32e; }
+  .vov-fav .vov-b{ background:#e0a32e; color:#3a2a00; }
+  .vov-star{ color:#e0a32e; font-size:14px; }
+  .vov-cap{ font-size:12.5px; color:#777; margin:0 0 22px; padding:0 2px; }
 </style>
 </head>
 <body>
 <div class="entwurf">&#9888; Entwurf &ndash; Nicht zur Veröffentlichung bestimmt</div>
 <div class="head">
   <h1>DTU Bundesrangliste Technik 2026 &ndash; Test-Varianten</h1>
-  <p>Vier Test-Varianten, die unterschiedlich mit der <b>Punkte-Halbierung</b> umgehen
-     (&bdquo;Sportler im Punktebereich, der niemanden hinter sich lässt&ldquo;). Alle bauen auf demselben
-     Datenstand auf (German Open, BRLT&nbsp;I, BRLT&nbsp;II, Austria Open). In jeder Variante zeigt ein blauer
-     Banner oben die geänderte Regel, eine Kurz-Zusammenfassung zum 1.&nbsp;Platz und – pro Sportler unter dem
-     Namen – die farbige Rang-/Punkteänderung gegenüber dem Original.</p>
+  <p>Vier Test-Varianten zur <b>Punkte-Halbierung</b> &ndash; der Regel, dass ein
+     &bdquo;Sportler im Punktebereich, der niemanden hinter sich lässt&ldquo; nur halbe Punkte bekommt.
+     Gleicher Datenstand für alle (German Open, BRLT&nbsp;I, BRLT&nbsp;II, Austria Open).</p>
 </div>
 <div class="wrap">
 
   <div class="intro">
-    <b>Kurzüberblick.</b> Die Varianten 1, 3 und 4 betreffen nur <b>German Open</b> und <b>Austria Open</b>
-    (G1, Single&nbsp;Elimination); Variante&nbsp;2 betrifft alle Turniere. <b>BRLT&nbsp;I/II</b> bleibt in den
-    Varianten 1, 3 und 4 unverändert. Klick auf eine Variante öffnet die jeweilige Rangliste in einem neuen Tab.
+    <b>Kurzüberblick.</b> Varianten&nbsp;1, 3, 4 betreffen nur <b>German Open</b> + <b>Austria Open</b>
+    (Single&nbsp;Elimination); Variante&nbsp;2 alle Turniere. <b>BRLT&nbsp;I/II</b> bleibt in 1, 3, 4 unverändert.
   </div>
 
-  <div class="card">
-    <div class="top" style="background:#595959"><span class="badge" style="color:#595959;font-size:12px">Org</span><h2>Original &ndash; unveränderte Rangliste (aktuelle Halbierungsregel)</h2></div>
-    <div class="body">
-      <p>Der <b>Ausgangsstand</b> ohne Änderung: halbiert wird, „wer kein Match gewonnen hat" (0 Siege).
-         Durch Freilose ist derselbe Platz mal halbiert, mal voll (siehe Tabelle unten) &ndash; genau diese
-         Uneindeutigkeit greifen die vier Varianten auf.</p>
-      <a class="btn" href="rangliste-2026-check.html" target="_blank" style="background:#595959">Original öffnen &rarr;</a>
-    </div>
+  <div class="vov-wrap">
+    <table class="vov">
+      <thead><tr><th>Variante</th><th>Regel (Kurzform)</th><th>1.&nbsp;Platz betroffen (WM)</th><th></th></tr></thead>
+      <tbody>
+        <tr class="vov-org">
+          <td class="vov-name"><span class="vov-b">Org</span>Original</td>
+          <td>halbiert, wer 0 Siege hat &ndash; <b>Status quo</b>. Durch Freilose mal halb, mal voll.</td>
+          <td class="vov-imp">&ndash;</td>
+          <td><a class="vov-go" href="rangliste-2026-check.html" target="_blank" style="background:#595959">öffnen &rarr;</a></td>
+        </tr>
+        <tr>
+          <td class="vov-name"><span class="vov-b">1</span>GO&nbsp;+&nbsp;Austria</td>
+          <td>SE-Halbierung <b>komplett entfernt</b> (BRLT &amp; Cut-off bleiben).</td>
+          <td class="vov-imp"><b>1 Klasse:</b> U30 Team w &rarr; Gleichstand Platz&nbsp;1.</td>
+          <td><a class="vov-go" href="Rangliste_2026_G1-SE-ohne.html" target="_blank">öffnen &rarr;</a></td>
+        </tr>
+        <tr>
+          <td class="vov-name"><span class="vov-b">2</span>Alle Turniere</td>
+          <td>Halbierung <b>überall</b> entfernt (SE&nbsp;+&nbsp;Cut-off, alle Turniere).</td>
+          <td class="vov-imp"><b>2 Klassen:</b> U30 Team w; Freestyle Junior Paar.</td>
+          <td><a class="vov-go" href="Rangliste_2026_ohne-halbierung.html" target="_blank">öffnen &rarr;</a></td>
+        </tr>
+        <tr>
+          <td class="vov-name"><span class="vov-b">3</span>GO&nbsp;+&nbsp;Austria</td>
+          <td>halbieren <b>nur bei 1&ndash;2 Startern</b> (ab 3 entscheidet das Los &rarr; volle Punkte).</td>
+          <td class="vov-imp"><b>1 Klasse:</b> U30 Team w &rarr; Gleichstand Platz&nbsp;1.</td>
+          <td><a class="vov-go" href="Rangliste_2026_G1-SE-fair.html" target="_blank">öffnen &rarr;</a></td>
+        </tr>
+        <tr>
+          <td class="vov-name"><span class="vov-b">4</span>GO&nbsp;+&nbsp;Austria</td>
+          <td>halbieren <b>nur beim formal letzten Platz</b> (ab 7 Startern keine).</td>
+          <td class="vov-imp"><b>1 Klasse:</b> U30 Team w &rarr; Gleichstand Platz&nbsp;1.</td>
+          <td><a class="vov-go" href="Rangliste_2026_G1-SE-formal.html" target="_blank">öffnen &rarr;</a></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-
-  <div class="card">
-    <div class="top"><span class="badge">1</span><h2>Halbierung bei GO + Austria (SE) komplett entfernt</h2></div>
-    <div class="body">
-      <p>Bei German Open und Austria Open wird in <b>allen SE-Klassen (Losverfahren)</b> die Halbierung
-         entfernt &ndash; volle Punkte, Hinweis &bdquo;(kein Match gewonnen)&ldquo;.</p>
-      <p class="keep">Unverändert: Freestyle/Cut-off-Klassen und alle BRLT-Turniere.</p>
-      <div class="impact">&#127942; <b>Einfluss auf den 1.&nbsp;Platz (WM-relevant): 1 Klasse.</b>
-        U30 Team weiblich &ndash; Hoffmann/Silberhorn/Do ziehen gleich &rarr; neuer Gleichstand auf Platz&nbsp;1
-        mit Siepmann/Vuong/Storm. Sonst überall der 1.&nbsp;Platz unverändert.</div>
-      <a class="btn" href="Rangliste_2026_G1-SE-ohne.html" target="_blank">Variante&nbsp;1 öffnen &rarr;</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="top"><span class="badge">2</span><h2>Halbierung überall komplett entfernt</h2></div>
-    <div class="body">
-      <p>Die Halbierung wird <b>durchgängig</b> nicht mehr angewendet &ndash; bei <b>allen Turnieren</b>
-         (GO, BRLT&nbsp;I, BRLT&nbsp;II, Austria) und in <b>allen Klassen</b> (SE und Cut-off). Alle Sportler
-         erhalten die vollen Punkte.</p>
-      <p class="keep">Hinweis: bei SE &bdquo;(kein Match gewonnen)&ldquo;, bei Cut-off &bdquo;(letzter Platz)&ldquo;.</p>
-      <div class="impact">&#127942; <b>Einfluss auf den 1.&nbsp;Platz (WM-relevant): 2 Klassen.</b>
-        U30 Team weiblich &ndash; Gleichstand auf Platz&nbsp;1 (wie Variante&nbsp;1); <b>Freestyle Junior Paar</b> &ndash;
-        Kampke/Romeyke ziehen an Riesemann/Finke vorbei auf Platz&nbsp;1. Sonst unverändert.</div>
-      <a class="btn" href="Rangliste_2026_ohne-halbierung.html" target="_blank">Variante&nbsp;2 öffnen &rarr;</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="top"><span class="badge">3</span><h2>Halbierung entfällt ab 3 Startern (Freilos/keine Setzung)</h2></div>
-    <div class="body">
-      <p>Bei GO + Austria entfällt die SE-Halbierung in allen Brackets <b>ab 3 Startern</b> &ndash; also überall,
-         wo Freilose und/oder eine fehlende Setzung nach Weltrangliste auftreten. <b>Behalten</b> wird sie nur bei
-         Cut-off-Klassen sowie SE-Brackets mit nur 1 oder 2 Startern.</p>
-      <p class="keep">Hinweis bei vollen Punkten: &bdquo;(volle Punkte &ndash; Freilos/keine Setzung im Bracket)&ldquo;.</p>
-      <div class="impact">&#127942; <b>Einfluss auf den 1.&nbsp;Platz (WM-relevant): 1 Klasse.</b>
-        U30 Team weiblich &ndash; Hoffmann/Silberhorn/Do gleichauf mit Siepmann/Vuong/Storm &rarr; Gleichstand auf
-        Platz&nbsp;1. Sonst überall unverändert.</div>
-      <a class="btn" href="Rangliste_2026_G1-SE-fair.html" target="_blank">Variante&nbsp;3 öffnen &rarr;</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="top"><span class="badge">4</span><h2>Halbierung nur beim formal letzten Platz</h2></div>
-    <div class="body">
-      <p>Bei GO + Austria wird die SE-Halbierung <b>nur auf den jeweils formal letzten Platz</b> angewendet
-         (= kein Platz dahinter im Gesamtfeld), unabhängig von Siegen oder Freilosen.
-         Schwellen: 1.&nbsp;bei&nbsp;1 Starter, 2.&nbsp;bei&nbsp;2, 3./4.&nbsp;bei&nbsp;3&ndash;4,
-         5.&nbsp;bei&nbsp;5&ndash;6; <b>ab 7 Startern keine Halbierung</b>.</p>
-      <p class="keep">Unterschied zu Variante&nbsp;3: kleine Felder mit echtem letztem Platz (z.&nbsp;B. 3. im 4er-Feld,
-         5. im 5er-Feld) bleiben hier halbiert.</p>
-      <div class="impact">&#127942; <b>Einfluss auf den 1.&nbsp;Platz (WM-relevant): 1 Klasse.</b>
-        U30 Team weiblich &ndash; Hoffmann/Silberhorn/Do (Austria 3. im 7er-Feld &rarr; volle Punkte) ziehen gleich
-        &rarr; Gleichstand auf Platz&nbsp;1. Sonst überall unverändert.</div>
-      <a class="btn" href="Rangliste_2026_G1-SE-formal.html" target="_blank">Variante&nbsp;4 öffnen &rarr;</a>
-    </div>
-  </div>
-
-  <div class="ref">
-    Zum Vergleich: <a href="rangliste-2026-check.html" target="_blank">Original-Rangliste (unveränderter Stand)</a>
-  </div>
-
+  <p class="vov-cap">Details zu jeder Variante zeigt die Grafik unten; jede Zeile öffnet die volle Rangliste in einem neuen Tab.</p>
 
   <div class="cmp-sec">
     <h2>Grafik: Wo wird halbiert?</h2>
-    <p class="sub">Pro Block eine Variante (plus Original). <b>Zeilen = Platzierung</b> (1./2./3./5.), <b>Spalten = Anzahl Starter</b> (1–11). <span class="full">grün</span> volle Punkte, <span class="half">rot</span> halbiert, <span class="dep" style="background:none">gelb</span> im Original uneindeutig (je Freilos, anklickbar), grau = Platz gibt es nicht. Ein <b style="color:#a32d2d">!</b> markiert die Felder, in denen vor allem <b>Variante&nbsp;4</b> strittig ist (Freilos-Sportler volle Punkte, echtes Match nur die Hälfte) &ndash; anklicken. Gut zu sehen: das Original ist „rot+gelb durcheinander", Variante&nbsp;4 ist die saubere rote „Treppe" (immer nur der letzte Platz).</p>
+    <p class="sub"><b>Zeilen = Platzierung</b>, <b>Spalten = Anzahl Starter</b> (1–11); Legende oben im Bild. <span class="dep" style="background:none">Gelbe</span> und <b style="color:#a32d2d">!</b>-Felder sind anklickbar. Gut zu sehen: das Original ist „rot+gelb durcheinander", Variante&nbsp;4 die saubere rote „Treppe" &ndash; die aber den Freilos-Sportler belohnt und das echte Match halbiert.</p>
     <svg width="100%" viewBox="0 0 680 705" role="img" xmlns="http://www.w3.org/2000/svg" style="max-width:760px;display:block;margin:0 auto"><title>Wo wird halbiert? Vergleich der Varianten</title><desc>Raster Anzahl Starter mal Platz fuer Original und vier Varianten.</desc><rect x="4" y="18" width="15" height="15" rx="3" fill="#d8edc4" stroke="#6aa121"/><text x="25" y="30" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#555">volle Punkte</text><rect x="121.0" y="18" width="15" height="15" rx="3" fill="#f6ccc8" stroke="#c0392b"/><text x="142.0" y="30" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#555">halbiert</text><rect x="212.0" y="18" width="15" height="15" rx="3" fill="#f9e3ad" stroke="#c79a1f"/><text x="233.0" y="30" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#555">uneindeutig (je Freilos)</text><rect x="407.0" y="18" width="15" height="15" rx="3" fill="#edeef1" stroke="#d9dbdf"/><text x="428.0" y="30" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#555">Platz gibt es nicht</text><text x="4" y="52" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#444">Punkte je Platz (voll): 1.=30 · 2.=25 · 3.=20 · 5.=8 — rot = die Hälfte davon</text><text x="4" y="70" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#a32d2d" font-weight="bold">!</text><text x="14" y="70" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#444">= anklicken: vor allem Variante 4 strittig – Freilos-Sportler volle Punkte, echtes Match (auch 0 Siege) nur die Hälfte</text><text x="4" y="104" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="bold" fill="#111">Original</text><text x="71.2" y="104" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#666">— je Freilos uneindeutig — gelbe Felder anklicken</text><text x="372.0" y="120" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="bold" fill="#555" text-anchor="middle">Anzahl Starter  →</text><text x="142.0" y="134" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">1</text><text x="188.0" y="134" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">2</text><text x="234.0" y="134" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">3</text><text x="280.0" y="134" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">4</text><text x="326.0" y="134" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">5</text><text x="372.0" y="134" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">6</text><text x="418.0" y="134" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">7</text><text x="464.0" y="134" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">8</text><text x="510.0" y="134" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">9</text><text x="556.0" y="134" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">10</text><text x="602.0" y="134" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">11</text><text x="106" y="134" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="bold" fill="#555" text-anchor="end">↓ Platz</text><text x="106" y="153.0" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#333" text-anchor="end">1.</text><rect x="120" y="136" width="43" height="23" rx="4" fill="#f6ccc8" stroke="#c0392b"/><rect x="166" y="136" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="212" y="136" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="258" y="136" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="304" y="136" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="350" y="136" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="396" y="136" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="442" y="136" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="488" y="136" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="534" y="136" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="580" y="136" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><text x="106" y="179.0" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#333" text-anchor="end">2.</text><rect x="120" y="162" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="166" y="162" width="43" height="23" rx="4" fill="#f6ccc8" stroke="#c0392b"/><g style="cursor:pointer" onclick="vbShow('A')"><rect x="212" y="162" width="43" height="23" rx="4" fill="#f9e3ad" stroke="#c79a1f" stroke-width="1.5"/><title>Klicken: wann wird halbiert?</title><text x="233.5" y="177.5" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="bold" fill="#8a5a00" text-anchor="middle">?</text></g><rect x="258" y="162" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="304" y="162" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="350" y="162" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="396" y="162" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="442" y="162" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="488" y="162" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="534" y="162" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="580" y="162" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><text x="106" y="205.0" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#333" text-anchor="end">3.</text><rect x="120" y="188" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="166" y="188" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><g style="cursor:pointer" onclick="vbShow('U3')"><rect x="212" y="188" width="43" height="23" rx="4" fill="#f6ccc8" stroke="#c0392b" stroke-width="1.5"/><title>Klicken: Losglück – in Variante 4 bekommt ein Freilos-Sportler volle Punkte, ein Match-Sportler nur die Hälfte.</title><text x="233.5" y="203.5" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="bold" fill="#a32d2d" text-anchor="middle">!</text></g><rect x="258" y="188" width="43" height="23" rx="4" fill="#f6ccc8" stroke="#c0392b"/><g style="cursor:pointer" onclick="vbShow('N5')"><rect x="304" y="188" width="43" height="23" rx="4" fill="#f9e3ad" stroke="#c79a1f" stroke-width="1.5"/><title>Klicken: wann wird halbiert?</title><text x="325.5" y="203.5" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="bold" fill="#8a5a00" text-anchor="middle">?</text></g><g style="cursor:pointer" onclick="vbShow('N6')"><rect x="350" y="188" width="43" height="23" rx="4" fill="#f9e3ad" stroke="#c79a1f" stroke-width="1.5"/><title>Klicken: wann wird halbiert?</title><text x="371.5" y="203.5" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="bold" fill="#8a5a00" text-anchor="middle">?</text></g><g style="cursor:pointer" onclick="vbShow('N7')"><rect x="396" y="188" width="43" height="23" rx="4" fill="#f9e3ad" stroke="#c79a1f" stroke-width="1.5"/><title>Klicken: wann wird halbiert?</title><text x="417.5" y="203.5" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="bold" fill="#8a5a00" text-anchor="middle">?</text></g><rect x="442" y="188" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="488" y="188" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="534" y="188" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="580" y="188" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><text x="106" y="231.0" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#333" text-anchor="end">5.</text><rect x="120" y="214" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="166" y="214" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="212" y="214" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="258" y="214" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><g style="cursor:pointer" onclick="vbShow('U5')"><rect x="304" y="214" width="43" height="23" rx="4" fill="#f6ccc8" stroke="#c0392b" stroke-width="1.5"/><title>Klicken: Losglück – in Variante 4 bekommt ein Freilos-Sportler volle Punkte, ein Match-Sportler nur die Hälfte.</title><text x="325.5" y="229.5" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="bold" fill="#a32d2d" text-anchor="middle">!</text></g><g style="cursor:pointer" onclick="vbShow('U5')"><rect x="350" y="214" width="43" height="23" rx="4" fill="#f6ccc8" stroke="#c0392b" stroke-width="1.5"/><title>Klicken: Losglück – in Variante 4 bekommt ein Freilos-Sportler volle Punkte, ein Match-Sportler nur die Hälfte.</title><text x="371.5" y="229.5" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="bold" fill="#a32d2d" text-anchor="middle">!</text></g><g style="cursor:pointer" onclick="vbShow('U5')"><rect x="396" y="214" width="43" height="23" rx="4" fill="#f6ccc8" stroke="#c0392b" stroke-width="1.5"/><title>Klicken: Losglück – in Variante 4 bekommt ein Freilos-Sportler volle Punkte, ein Match-Sportler nur die Hälfte.</title><text x="417.5" y="229.5" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="bold" fill="#a32d2d" text-anchor="middle">!</text></g><rect x="442" y="214" width="43" height="23" rx="4" fill="#f6ccc8" stroke="#c0392b"/><g style="cursor:pointer" onclick="vbShow('N9')"><rect x="488" y="214" width="43" height="23" rx="4" fill="#f9e3ad" stroke="#c79a1f" stroke-width="1.5"/><title>Klicken: wann wird halbiert?</title><text x="509.5" y="229.5" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="bold" fill="#8a5a00" text-anchor="middle">?</text></g><g style="cursor:pointer" onclick="vbShow('N10')"><rect x="534" y="214" width="43" height="23" rx="4" fill="#f9e3ad" stroke="#c79a1f" stroke-width="1.5"/><title>Klicken: wann wird halbiert?</title><text x="555.5" y="229.5" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="bold" fill="#8a5a00" text-anchor="middle">?</text></g><g style="cursor:pointer" onclick="vbShow('N11')"><rect x="580" y="214" width="43" height="23" rx="4" fill="#f9e3ad" stroke="#c79a1f" stroke-width="1.5"/><title>Klicken: wann wird halbiert?</title><text x="601.5" y="229.5" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="bold" fill="#8a5a00" text-anchor="middle">?</text></g><text x="4" y="254" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="bold" fill="#111">Variante 1 &amp; 2</text><text x="115.60000000000001" y="254" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#666">— nie halbiert (in SE)</text><text x="372.0" y="270" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="bold" fill="#555" text-anchor="middle">Anzahl Starter  →</text><text x="142.0" y="284" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">1</text><text x="188.0" y="284" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">2</text><text x="234.0" y="284" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">3</text><text x="280.0" y="284" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">4</text><text x="326.0" y="284" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">5</text><text x="372.0" y="284" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">6</text><text x="418.0" y="284" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">7</text><text x="464.0" y="284" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">8</text><text x="510.0" y="284" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">9</text><text x="556.0" y="284" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">10</text><text x="602.0" y="284" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">11</text><text x="106" y="284" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="bold" fill="#555" text-anchor="end">↓ Platz</text><text x="106" y="303.0" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#333" text-anchor="end">1.</text><rect x="120" y="286" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="166" y="286" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="212" y="286" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="258" y="286" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="304" y="286" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="350" y="286" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="396" y="286" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="442" y="286" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="488" y="286" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="534" y="286" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="580" y="286" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><text x="106" y="329.0" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#333" text-anchor="end">2.</text><rect x="120" y="312" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="166" y="312" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="212" y="312" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="258" y="312" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="304" y="312" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="350" y="312" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="396" y="312" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="442" y="312" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="488" y="312" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="534" y="312" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="580" y="312" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><text x="106" y="355.0" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#333" text-anchor="end">3.</text><rect x="120" y="338" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="166" y="338" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="212" y="338" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="258" y="338" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="304" y="338" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="350" y="338" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="396" y="338" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="442" y="338" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="488" y="338" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="534" y="338" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="580" y="338" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><text x="106" y="381.0" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#333" text-anchor="end">5.</text><rect x="120" y="364" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="166" y="364" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="212" y="364" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="258" y="364" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="304" y="364" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="350" y="364" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="396" y="364" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="442" y="364" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="488" y="364" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="534" y="364" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="580" y="364" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><text x="4" y="404" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="bold" fill="#111">Variante 3</text><text x="86.0" y="404" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#666">— nur bei 1–2 Startern</text><text x="372.0" y="420" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="bold" fill="#555" text-anchor="middle">Anzahl Starter  →</text><text x="142.0" y="434" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">1</text><text x="188.0" y="434" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">2</text><text x="234.0" y="434" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">3</text><text x="280.0" y="434" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">4</text><text x="326.0" y="434" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">5</text><text x="372.0" y="434" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">6</text><text x="418.0" y="434" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">7</text><text x="464.0" y="434" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">8</text><text x="510.0" y="434" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">9</text><text x="556.0" y="434" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">10</text><text x="602.0" y="434" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">11</text><text x="106" y="434" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="bold" fill="#555" text-anchor="end">↓ Platz</text><text x="106" y="453.0" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#333" text-anchor="end">1.</text><rect x="120" y="436" width="43" height="23" rx="4" fill="#f6ccc8" stroke="#c0392b"/><rect x="166" y="436" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="212" y="436" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="258" y="436" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="304" y="436" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="350" y="436" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="396" y="436" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="442" y="436" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="488" y="436" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="534" y="436" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="580" y="436" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><text x="106" y="479.0" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#333" text-anchor="end">2.</text><rect x="120" y="462" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="166" y="462" width="43" height="23" rx="4" fill="#f6ccc8" stroke="#c0392b"/><rect x="212" y="462" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="258" y="462" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="304" y="462" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="350" y="462" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="396" y="462" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="442" y="462" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="488" y="462" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="534" y="462" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="580" y="462" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><text x="106" y="505.0" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#333" text-anchor="end">3.</text><rect x="120" y="488" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="166" y="488" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="212" y="488" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="258" y="488" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="304" y="488" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="350" y="488" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="396" y="488" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="442" y="488" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="488" y="488" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="534" y="488" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="580" y="488" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><text x="106" y="531.0" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#333" text-anchor="end">5.</text><rect x="120" y="514" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="166" y="514" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="212" y="514" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="258" y="514" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="304" y="514" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="350" y="514" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="396" y="514" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="442" y="514" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="488" y="514" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="534" y="514" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="580" y="514" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><text x="4" y="554" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="bold" fill="#111">Variante 4</text><text x="86.0" y="554" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#666">— nur beim letzten Platz</text><text x="372.0" y="570" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="bold" fill="#555" text-anchor="middle">Anzahl Starter  →</text><text x="142.0" y="584" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">1</text><text x="188.0" y="584" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">2</text><text x="234.0" y="584" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">3</text><text x="280.0" y="584" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">4</text><text x="326.0" y="584" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">5</text><text x="372.0" y="584" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">6</text><text x="418.0" y="584" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">7</text><text x="464.0" y="584" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">8</text><text x="510.0" y="584" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">9</text><text x="556.0" y="584" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">10</text><text x="602.0" y="584" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#777" text-anchor="middle">11</text><text x="106" y="584" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="bold" fill="#555" text-anchor="end">↓ Platz</text><text x="106" y="603.0" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#333" text-anchor="end">1.</text><rect x="120" y="586" width="43" height="23" rx="4" fill="#f6ccc8" stroke="#c0392b"/><rect x="166" y="586" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="212" y="586" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="258" y="586" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="304" y="586" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="350" y="586" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="396" y="586" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="442" y="586" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="488" y="586" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="534" y="586" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="580" y="586" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><text x="106" y="629.0" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#333" text-anchor="end">2.</text><rect x="120" y="612" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="166" y="612" width="43" height="23" rx="4" fill="#f6ccc8" stroke="#c0392b"/><rect x="212" y="612" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="258" y="612" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="304" y="612" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="350" y="612" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="396" y="612" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="442" y="612" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="488" y="612" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="534" y="612" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="580" y="612" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><text x="106" y="655.0" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#333" text-anchor="end">3.</text><rect x="120" y="638" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="166" y="638" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><g style="cursor:pointer" onclick="vbShow('U3')"><rect x="212" y="638" width="43" height="23" rx="4" fill="#f6ccc8" stroke="#c0392b" stroke-width="1.5"/><title>Klicken: Losglück – in Variante 4 bekommt ein Freilos-Sportler volle Punkte, ein Match-Sportler nur die Hälfte.</title><text x="233.5" y="653.5" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="bold" fill="#a32d2d" text-anchor="middle">!</text></g><rect x="258" y="638" width="43" height="23" rx="4" fill="#f6ccc8" stroke="#c0392b"/><rect x="304" y="638" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="350" y="638" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="396" y="638" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="442" y="638" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="488" y="638" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="534" y="638" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="580" y="638" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><text x="106" y="681.0" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#333" text-anchor="end">5.</text><rect x="120" y="664" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="166" y="664" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="212" y="664" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><rect x="258" y="664" width="43" height="23" rx="4" fill="#edeef1" stroke="#d9dbdf"/><g style="cursor:pointer" onclick="vbShow('U5')"><rect x="304" y="664" width="43" height="23" rx="4" fill="#f6ccc8" stroke="#c0392b" stroke-width="1.5"/><title>Klicken: Losglück – in Variante 4 bekommt ein Freilos-Sportler volle Punkte, ein Match-Sportler nur die Hälfte.</title><text x="325.5" y="679.5" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="bold" fill="#a32d2d" text-anchor="middle">!</text></g><g style="cursor:pointer" onclick="vbShow('U5')"><rect x="350" y="664" width="43" height="23" rx="4" fill="#f6ccc8" stroke="#c0392b" stroke-width="1.5"/><title>Klicken: Losglück – in Variante 4 bekommt ein Freilos-Sportler volle Punkte, ein Match-Sportler nur die Hälfte.</title><text x="371.5" y="679.5" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="bold" fill="#a32d2d" text-anchor="middle">!</text></g><g style="cursor:pointer" onclick="vbShow('U5')"><rect x="396" y="664" width="43" height="23" rx="4" fill="#f6ccc8" stroke="#c0392b" stroke-width="1.5"/><title>Klicken: Losglück – in Variante 4 bekommt ein Freilos-Sportler volle Punkte, ein Match-Sportler nur die Hälfte.</title><text x="417.5" y="679.5" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="bold" fill="#a32d2d" text-anchor="middle">!</text></g><rect x="442" y="664" width="43" height="23" rx="4" fill="#f6ccc8" stroke="#c0392b"/><rect x="488" y="664" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="534" y="664" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/><rect x="580" y="664" width="43" height="23" rx="4" fill="#d8edc4" stroke="#6aa121"/></svg>
+  </div>
+
+  <!-- ===== Knackiger Erklär-Block: Warum Variante 3 (ans Seitenende) ===== -->
+  <div class="why3">
+    <div class="why3-h"><small>Fazit &amp; Royas persönliche Meinung</small>Warum Variante&nbsp;3 aus meiner Sicht die einzig gerechte ist</div>
+    <p class="why3-lead">
+      Die Halbierung soll <b>Leistung</b> belohnen. Im gelosten Baum belohnt sie jedoch <b>Losglück</b>
+      oder bestraft sogar <b>Leistung</b> &ndash; durch die Halbierung.
+      <b>Variante&nbsp;3</b> wendet sie nur dort an, wo man Schwäche und Pech <i>nicht</i> verwechseln kann.
+    </p>
+
+    <div class="why3-grid">
+      <div class="why3-step"><span class="why3-num">1</span>
+        <b>Wozu die Regel?</b> Sie soll <i>einen</i> abwerten: den, der <b>klar der Schlechteste</b> war
+        (niemanden hinter sich gelassen). Sie ist eine <b>Korrektur</b>.</div>
+      <div class="why3-step"><span class="why3-num">2</span>
+        <b>Eine Korrektur braucht ein klares Ziel.</b> Man muss sagen können <i>wer</i> der Schlechteste war –
+        und das muss die <b>Leistung</b> entscheiden, nicht das <b>Los</b>.</div>
+      <div class="why3-step"><span class="why3-num">3</span>
+        <b>Im gelosten K.o.-Baum fehlt dieses Ziel.</b> Ein Freilos schiebt jemanden nach oben, ohne Kampf.
+        Eine blind angewandte „Korrektur" korrigiert nichts – <b>sie würfelt nur ein zweites Mal.</b></div>
+    </div>
+
+    <div class="why3-test">
+      <div class="why3-q">Der Lackmus-Test &mdash; eine einzige Frage entscheidet:</div>
+      <div class="why3-qbig">&bdquo;Steht durch <u>Leistung</u> fest, wer der Letzte war &ndash; oder durch das <u>Los</u>?&ldquo;</div>
+      <table class="why3-tab">
+        <thead><tr><th>Situation</th><th>Letzter steht fest durch&hellip;</th><th>Halbieren?</th></tr></thead>
+        <tbody>
+          <tr><td class="l">Cutoff (Punktewertung, kein Baum)</td><td class="ok">Leistung&nbsp;&#10003;</td><td class="yes">Ja</td></tr>
+          <tr><td class="l">1&ndash;2 Starter</td><td class="ok">Leistung&nbsp;&#10003;</td><td class="yes">Ja</td></tr>
+          <tr><td class="l">K.o. ab 3 Startern (Los/Freilos im Spiel)</td><td class="no">Los&nbsp;&#10007;</td><td class="non">Nein</td></tr>
+        </tbody>
+      </table>
+      <div class="why3-isv3">Diese Tabelle <b>ist</b> Variante&nbsp;3. Nicht mehr, nicht weniger.</div>
+    </div>
+
+    <div class="why3-others">
+      <div class="why3-ohead">Warum nicht die anderen</div>
+      <ul>
+        <li><b>Original &amp; Variante&nbsp;4:</b> halbieren auch da, wo das <b>Los</b> entscheidet &rarr; bestrafen Pech statt Schwäche
+          (die roten <b>!</b>-Kästen in der Grafik oben). <b>Variante&nbsp;4 sieht „sauber" aus</b> &ndash; die rote Treppe &ndash; ist bei der Fairness aber die schlechteste. <i>Sauber aussehen &ne; gerecht sein.</i></li>
+        <li><b>Variante&nbsp;2:</b> schafft die Regel <b>ganz</b> ab &ndash; auch wo sie klar fair ist. Dafür gibt es keinen Grund. V3 <i>behält</i> die Regel, wendet sie nur korrekt an.</li>
+        <li><b>Variante&nbsp;1:</b> akzeptabler Kompromiss, aber pauschal („SE komplett aus"). V3 ist die <b>präzisere</b> Version davon.</li>
+      </ul>
+    </div>
+
+    <div class="why3-kicker">
+      Der entscheidende Punkt: <b>Variante&nbsp;3 weicht die Regel nicht auf &ndash; sie wendet sie nur dort an, wo sie <i>eindeutig</i> ist.</b>
+      Wer gegen V3 ist, müsste verteidigen, dass das <b>Los</b> mitbestimmen darf, wer halbiert wird.
+    </div>
   </div>
 
   <div class="foot">DTU Bundesrangliste Technik 2026 &middot; interne Test-Varianten zur Halbierungsregel</div>
