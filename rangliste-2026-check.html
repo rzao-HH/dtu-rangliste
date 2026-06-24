@@ -4826,15 +4826,26 @@ function showIntro() {
     if (e.key === 'Escape') dismiss(true);
   });
 
-  // Animation läuft bei jedem Seitenaufruf einmal kurz durch (~4s).
-  // Wer sie nicht mehr sehen möchte, klickt auf "Überspringen" — dann wird
-  // sie bis zum Ende der Browser-Session unterdrückt.
-  // Intro wird bei jedem Seitenaufruf gezeigt; Skip gilt nur für diesen Ladevorgang
-  const suppressed = typeof _introSkippedThisLoad !== 'undefined' && _introSkippedThisLoad;
-  if (suppressed && !/[?&]demo=1\b/.test(location.search)) {
+  // ── Hilfe-Animation nur beim ERSTEN Besuch zeigen ─────────────────
+  // Ob sie schon gesehen wurde, wird in einem Cookie gemerkt (1 Jahr gültig).
+  // Über den "Hilfe"-Button (Reload mit ?demo=1) lässt sie sich jederzeit
+  // erneut abspielen, unabhängig vom Cookie.
+  const INTRO_COOKIE = 'rl_check_intro_seen';
+  function introSchonGesehen() {
+    return document.cookie.split('; ').some(c => c.indexOf(INTRO_COOKIE + '=') === 0);
+  }
+  function introAlsGesehenMerken() {
+    document.cookie = INTRO_COOKIE + '=1; path=/; max-age=' + (60 * 60 * 24 * 365) + '; SameSite=Lax';
+  }
+
+  const introErzwungen = /[?&]demo=1\b/.test(location.search);  // via "Hilfe"-Button
+  if (!introErzwungen && introSchonGesehen()) {
     overlay.remove();
     return;
   }
+  // Ab hier wird die Animation gezeigt → dauerhaft als "gesehen" merken,
+  // auch wenn sofort übersprungen wird.
+  introAlsGesehenMerken();
 
   // Animation starten, sobald Layout steht
   requestAnimationFrame(() => {
